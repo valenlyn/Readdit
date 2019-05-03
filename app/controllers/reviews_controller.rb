@@ -3,18 +3,20 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!#, :except => [ :show, :index ]
 
   def index
-    render plain: 'reviews here'
+    @reviews = Review.all
+    @users = User.all
   end
 
   def new
-
+    @books = Book.all
+    @users = User.all
   end
 
   def create
     @review = Review.new(review_params)
 
     if @review.save
-      redirect_to root_path
+      redirect_to reviews_path
     else
       render plain: 'review not added successfully'
     end
