@@ -1,3 +1,4 @@
 class Review < ActiveRecord::Base
-  #fill this in
+  belongs_to :user
+  belongs_to :book
 end

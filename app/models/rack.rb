@@ -1,3 +1,4 @@
 class Rack < ActiveRecord::Base
-  #fill this in
+  has_many_and_belongs_to :books
+  belongs_to :user
 end

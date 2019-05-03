@@ -1,3 +1,3 @@
 class Book < ActiveRecord::Base
-  #fill this in
+  has_and_belongs_to_many :racks
 end
