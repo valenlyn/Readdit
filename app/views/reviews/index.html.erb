@@ -1,0 +1,8 @@
+
+  <h2> Reviews </h2>
+  <% @reviews.each do |review| %>
+  Book: <%= review.book.title %> <br>
+	Review: <%= review.reviews %> <br>
+	Reviewer: <%= review.user.email %> <br>
+	Rating:<%= review.rating %> <br>
+	<% end %>

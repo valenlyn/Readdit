@@ -1,0 +1,26 @@
+<%= form_with scope: :review, url: reviews_path, local: true do |form| %>
+
+  <p>
+	<%= form.label :review %><br>
+	<%= form.text_area :reviews %>
+  </p>
+
+  <p>
+	<%= form.label :rating %><br>
+	<%= form.text_field :rating %>
+  </p>
+
+
+	<p>
+  <%= form.collection_select :book_id, @books, :id, :title %>
+	</p>
+
+		<p>
+  <%= form.collection_select :user_id, @users, :id, :email %>
+	</p>
+
+
+  <p>
+	<%= form.submit %>
+  </p>
+<% end %>
