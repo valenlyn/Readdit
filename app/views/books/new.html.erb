@@ -1,0 +1,26 @@
+<%= @users[0].id %>
+
+
+<%= form_with scope: :book, url: books_path, local: true do |form| %>
+
+  <p>
+	<%= form.label :title %><br>
+	<%= form.text_area :title %>
+  </p>
+
+  <p>
+	<%= form.label :author %><br>
+	<%= form.text_field :author %>
+  </p>
+
+  <p>
+	<%= form.label :image_url %><br>
+	<%= form.text_field :image_url %>
+  </p>
+
+  <p>
+	<%= form.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'Go back to Book index', root_path %>
