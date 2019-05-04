@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_04_145316) do
+ActiveRecord::Schema.define(version: 2019_05_04_205232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "booklists", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "books", force: :cascade do |t|
     t.string "title"
@@ -23,23 +29,13 @@ ActiveRecord::Schema.define(version: 2019_05_04_145316) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "books_racks", force: :cascade do |t|
+  create_table "books_booklists", force: :cascade do |t|
     t.bigint "book_id"
-    t.bigint "rack_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_books_racks_on_book_id"
-    t.index ["rack_id"], name: "index_books_racks_on_rack_id"
-  end
-
-  create_table "racks", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "book_id"
-    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_racks_on_book_id"
-    t.index ["user_id"], name: "index_racks_on_user_id"
+    t.index ["book_id"], name: "index_books_booklists_on_book_id"
+    t.index ["user_id"], name: "index_books_booklists_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
