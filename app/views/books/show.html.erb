@@ -1,0 +1,16 @@
+<%= @book.title %><br>
+<%= @book.author %><br>
+<%= @book.image_url %>
+
+<% if @book.reviews[0] == nil %>
+<p>Read the book? Add a review here!</p>
+<%= link_to 'Add a Review', new_review_path %>
+<% else %>
+<% @book.reviews.each_with_index do |review, index| %>
+<p>
+<%= review.reviews %>
+</p>
+<% end %>
+<% end %>
+
+<%= link_to 'Back to Root', root_path %>
