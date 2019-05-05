@@ -1,0 +1,15 @@
+<%= form_with scope: :booklist, model: @booklist, local: true do |form| %>
+
+
+	<%= form.collection_select :user_id, @users, :id, :email %>
+  <%= form.collection_check_boxes :book_ids, @books, :id, :title %>
+
+  <p>
+	<%= form.label :booklist_type %><br>
+	<%= form.text_area :booklist_type %>
+  </p>
+
+  <p>
+	<%= form.submit %>
+  </p>
+<% end %>

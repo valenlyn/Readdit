@@ -1,16 +1,27 @@
+<h2> Books </h2>
+<div class="row d-flex justify-content-center">
 
-	<%= link_to 'New Book', new_book_path %>
-	<div>
-  <h2> Book Index </h2>
-  <% @books.each do |book| %>
-  Title: <%= book.title %> <br>
-	Author: <%= book.author %> <br>
-	<%= image_tag "#{book.image_url}" %> <br>
-	<%= link_to 'View Book', book_path(book) %>
-	<%= link_to 'Edit Book', edit_book_path(book) %>
-	<%= link_to 'Delete Book', book_path(book),
-		        method: :delete,
-		        data: { confirm: 'Are you sure?' } %>
+	<div class="col-8">
+
+		<%= link_to 'New Book', new_book_path %>
+		<br>
+		<br>
+
+		<% @books.each do |book| %>
+		<a href=<%=book_path(book)%>>
+			<div class="row my-1">
+					<div class="col-3 d-flex justify-content-center ">
+						<img src=<%= book.image_url %> alt=<%= book.title %>>
+					</div>
+					<div>
+						<%= book.title %> <br>
+						by <%= book.author %> <br>
+					</div>
+			</div>
+		</a>
+		<% end %>
+
+			<%= will_paginate @books %>
+
 	</div>
-	<% end %>
-	<%= will_paginate @books %>
+</div>

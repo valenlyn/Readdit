@@ -1,0 +1,28 @@
+<h2> All Booklists </h2>
+<div class="row d-flex justify-content-center">
+
+	<div class="col-8">
+
+		<%= link_to 'New Booklist', new_booklist_path %>
+		<br>
+		<br>
+
+		<% @booklists.each do |booklist| %>
+		<a href=<%=booklist_path(booklist)%>>
+			<div class="row my-1">
+					<div class="col-3 d-flex justify-content-center ">
+						User id: <%= booklist.user_id %>
+					</div>
+					<div>
+						Type of Booklist: <%= booklist.booklist_type %> <br>
+					</div>
+					<%= link_to '✏️', edit_booklist_path(booklist) %>
+					<%= link_to '❌',booklist_path(booklist), method: :delete, data: { confirm: 'Do you really want to delete this?'} %>
+			</div>
+		</a>
+		<% end %>
+
+
+
+	</div>
+</div>
