@@ -4,11 +4,12 @@ class ReviewsController < ApplicationController
 
   def index
 
-    if request.query_parameters[:sort]
+    if request.query_parameters[:sort] == "rating"
       @reviews = Review.order(rating: :desc)
-    else
+    elsif request.query_parameters[:sort] == "desc"
       #showing most recent reviews first
       @reviews = Review.order(created_at: :desc)
+    else
     end
 
   end
