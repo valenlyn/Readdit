@@ -22,11 +22,24 @@
 		   	</div>
 
 		   	<div class="col-9">
-		   		<%= link_to "#{review.book.title}", root_path %> <br>
+		   		<%= link_to "#{review.book.title}", book_path(review.book_id) %> <br>
 		   		<%= review.book.author %>
 
 		   		<br><br>
-		   		<%= review.user.email %> rated it <%= review.rating %> stars <br>
+		   		<%= review.user.email %> rated it
+					<% if review.rating == 5 %>
+		   			<span class="star-color">★★★★★</span>
+		   		<% elsif review.rating == 4 %>
+		   			<span class="star-color">★★★★</span><span class="grey-text">★</span>
+		   		<% elsif review.rating == 3 %>
+		   			<span class="star-color">★★★</span><span class="grey-text">★★</span>
+		   		<% elsif review.rating == 2 %>
+		   			<span class="star-color">★★</span><span class="grey-text">★★★</span>
+		   		<% else %>
+		   			<span class="star-color">★</span><span class="grey-text">★★★★</span>
+		   		<% end %>
+		   		<br>
+
 					<%= review.reviews %> <br><br>
 
 					<span class="grey-text"><%= review.created_at.in_time_zone('Singapore').strftime('%d %B %Y %I:%M %p') %></span>
