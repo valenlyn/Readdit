@@ -1,6 +1,6 @@
 <%= @book.title %><br>
 <%= @book.author %><br>
-<%= @book.image_url %>
+<%= image_tag "#{@book.image_url}" %> <br>
 
 <% if @book.reviews[0] == nil %>
 <p>Read the book? Add a review here!</p>

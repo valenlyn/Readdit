@@ -6,11 +6,7 @@
   Title: <%= book.title %> <br>
 	Author: <%= book.author %> <br>
 	<%= image_tag "#{book.image_url}" %> <br>
-	<%= link_to 'View Book', book_path(book) %>
-	<%= link_to 'Edit Book', edit_book_path(book) %>
-	<%= link_to 'Delete Book', book_path(book),
-		        method: :delete,
-		        data: { confirm: 'Are you sure?' } %>
-	</div>
+	<%= link_to '🔎', book_path(book) %>
+	</div><br>
 	<% end %>
 	<%= will_paginate @books %>
