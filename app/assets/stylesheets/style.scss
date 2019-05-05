@@ -2,13 +2,20 @@ body {
 
 }
 
-.grey-text {
+.grey-text, .star-color-2 {
 	color: #CCCCCC;
 }
 
 
 .star-color {
 	color: #ffc700;
+	padding: 0;
+	margin-right: 0;
+}
+
+.star-color-2 {
+	padding: 0;
+	margin-left: 0;
 }
 
 
@@ -55,4 +62,8 @@ body {
 
 .pagination > a,em,span {
 	padding:5px;
+}
+
+a:hover {
+	text-decoration: none;
 }
