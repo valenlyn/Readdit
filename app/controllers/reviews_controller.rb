@@ -3,8 +3,14 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!#, :except => [ :show, :index ]
 
   def index
-    @reviews = Review.all
-    @users = User.all
+
+    if request.query_parameters[:sort]
+      @reviews = Review.order(rating: :desc)
+    else
+      #showing most recent reviews first
+      @reviews = Review.order(created_at: :desc)
+    end
+
   end
 
   def new
@@ -24,6 +30,28 @@ class ReviewsController < ApplicationController
 
   def show
     @review = Review.find(params[:id])
+  end
+
+  def edit
+    @review = Review.find(params[:id])
+  end
+
+  def update
+    @review = Review.find(params[:id])
+
+    @review.update(review_params)
+    redirect_to reviews_path
+  end
+
+
+  def destroy
+    @review = Review.find(params[:id])
+
+    if @review.destroy
+      redirect_to reviews_path
+    else
+      'review was not deleted successfully'
+    end
   end
 
 private

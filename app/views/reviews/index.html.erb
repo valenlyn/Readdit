@@ -1,8 +1,26 @@
+	<h2> Most recent reviews </h2>
 
-  <h2> Reviews </h2>
+	<%= link_to 'Sort by highest rated books', "#{reviews_path}?sort=rating" %>
+	<br>
+	<%= link_to 'Sort by most recent reviews', "#{reviews_path}" %>
+	<br>
+	<br>
+
+  <%= link_to 'Add a new review', new_review_path %>
+  <br>
+  <br>
+
   <% @reviews.each do |review| %>
-  Book: <%= review.book.title %> <br>
+
+  <%= image_tag "#{review.book.image_url}" %> <br>
+  <%= review.book.title %> by <%= review.book.author %><br>
 	Review: <%= review.reviews %> <br>
 	Reviewer: <%= review.user.email %> <br>
-	Rating:<%= review.rating %> <br>
+	Rating: <%= review.rating %> <br>
+	🕓 <%= review.created_at.in_time_zone('Singapore').strftime('%d %B %Y %I:%M %p') %>
+
+	<%= link_to '✏️', edit_review_path(review) %>
+	<%= link_to '❌',review_path(review), method: :delete, data: { confirm: 'Do you really want to delete this?'} %>
+	<br>
+  <br>
 	<% end %>
