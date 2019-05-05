@@ -11,11 +11,13 @@ class BooklistsController < ApplicationController
 
   def new
     @users = User.all
+    @books = Book.all
 
   end
 
   def edit
     @users = User.all
+    @books = Book.all
     @booklists = Booklist.find(params[:id])
 
   end
@@ -26,7 +28,7 @@ class BooklistsController < ApplicationController
     if @booklist.save
       redirect_to booklists_path
     else
-      render plain: 'book not added successfully'
+      render plain: 'booklist not added created'
     end
   end
 
