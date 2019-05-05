@@ -3,8 +3,10 @@ class BooksController < ApplicationController
   before_action :authenticate_user!#, :except => [ :show, :index ]
 
   def index
-    @books = Book.all
+    @books = Book.paginate(:page => params[:page])
     @users = User.all
+
+
   end
 
   def new
@@ -38,6 +40,8 @@ class BooksController < ApplicationController
 
   def destroy
     @book = Book.find(params[:id])
+    p "hello"
+    p @book
     @book.destroy
 
     redirect_to root_path
