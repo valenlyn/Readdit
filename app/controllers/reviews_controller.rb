@@ -10,6 +10,7 @@ class ReviewsController < ApplicationController
       #showing most recent reviews first
       @reviews = Review.order(created_at: :desc)
     else
+      @reviews = Review.order(created_at: :desc)
     end
 
   end
