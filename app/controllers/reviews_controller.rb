@@ -13,7 +13,10 @@ class ReviewsController < ApplicationController
       @reviews = Review.where user_id: current_user.id
     else
       @reviews = Review.order(created_at: :desc)
+      # @test = @reviews.first
     end
+
+    @review = Review.first
 
   end
 
