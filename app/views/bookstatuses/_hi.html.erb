@@ -10,8 +10,11 @@
 	<%= form.hidden_field :user_id, value: current_user.id %>
 	</p>
 
-	<%= form.hidden_field :book_id, value: helpme.book.id %>
-
+	<% if helpme.class == Review %>
+		<%= form.hidden_field :book_id, value: helpme.book.id %>
+	<% elsif helpme.class == Book %>
+		<%= form.hidden_field :book_id, value: helpme.id %>
+	<% end %>
 
   <p>
 	<%= form.submit %>
