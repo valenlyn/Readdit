@@ -21,6 +21,7 @@ class BooksController < ApplicationController
     @users = User.all
   else
     @books = Book.paginate(:page => params[:page])
+
     @users = User.all
   end
 

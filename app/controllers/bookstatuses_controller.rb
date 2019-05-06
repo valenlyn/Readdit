@@ -9,6 +9,7 @@ class BookstatusesController < ApplicationController
   def new
     @bookstatuses = Bookstatus.all
     @books = Book.all
+
   end
 
   def create

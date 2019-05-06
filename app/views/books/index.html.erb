@@ -15,17 +15,23 @@
 		<br>
 
 		<% @books.each do |book| %>
-		<a href=<%=book_path(book)%>>
+
 			<div class="row my-1">
+					<a href=<%=book_path(book)%> >
 					<div class="col-3 d-flex justify-content-center ">
 						<img src=<%= book.image_url %> alt=<%= book.title %>>
 					</div>
+					</a>
+					<a href=<%=book_path(book)%> >
 					<div>
 						<%= book.title %> <br>
 						by <%= book.author %> <br>
 					</div>
+					</a>
+					<%= render partial: 'bookstatuses/hi' , locals: { helpme: book }  %>
 			</div>
-		</a>
+
+
 		<% end %>
 
 			<%= will_paginate @books %>
