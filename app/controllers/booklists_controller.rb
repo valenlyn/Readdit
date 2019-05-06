@@ -18,7 +18,7 @@ class BooklistsController < ApplicationController
               .where('read_status = ? and user_id = ?', 3, current_user.id)
     end
 
-    @booklists = Booklist.where('user_id = ?', current_user.id)
+    @booklists = Booklist.where(:user_id => current_user.id)
 
   end
 

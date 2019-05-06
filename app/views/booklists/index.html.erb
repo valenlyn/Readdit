@@ -1,18 +1,29 @@
-<h2> My books </h2>
+
 <div class="row d-flex justify-content-center">
 	<div class="col-3">
+		<h2> My books </h2>
+		<ul>
+			<li><a class="booklist" href=<%= "#{booklists_path}?sort=all" %>>All books</a></li>
+			<li><a class="booklist" href=<%= "#{booklists_path}?sort=current" %>>Currently reading</a></li>
+			<li><a class="booklist" href=<%= "#{booklists_path}?sort=want" %>>Want to read</a></li>
+			<li><a class="booklist" href=<%= "#{booklists_path}?sort=read" %>>Read</a></li>
+		</ul>
 
-		<a class="booklist" href=<%= "#{booklists_path}?sort=all" %>>All books</a>
-		<a class="booklist" href=<%= "#{booklists_path}?sort=current" %>>Currently reading</a>
-		<a class="booklist" href=<%= "#{booklists_path}?sort=want" %>>Want to read</a>
-		<a class="booklist" href=<%= "#{booklists_path}?sort=read" %>>Read</a>
-		<br>
-		<br>
 		<hr>
-			<% @booklists.each do |booklist| %>
-				<%= link_to "#{booklist.booklist_type}", booklist_path(booklist.id) %>
-			<% end %>
-		<%= link_to 'New list', new_booklist_path %>
+			<ul>
+				<% @booklists.each do |booklist| %>
+
+						<li><%= link_to "#{booklist.booklist_type}", booklist_path(booklist.id) %> </li>
+
+				<% end %>
+			</ul>
+		<a href="#" id="show-input">New list</a>
+		<%= form_with scope: :booklist, url: booklists_path, local: true do |form| %>
+
+			<%= form.hidden_field :user_id, value: current_user.id %>
+			<input type="text" id="new-list" style="display: none" name="booklist[booklist_type]">
+
+		<% end %>
 	</div>
 	<div class="col-8">
 
@@ -40,7 +51,7 @@
   			<% @books.each_with_index do |book, index| %>
 		    <tr>
 		      <th scope="row"><%= index+1 %></th>
-		      <td><%= book.title %></td>
+		      <td><%= link_to "#{book.title}", book_path(book.id) %></td>
 		      <td><%= book.author %></td>
 		      <td><%= book.created_at.in_time_zone('Singapore').strftime('%d %B %Y') %></td>
 		    </tr>
@@ -54,3 +65,5 @@
 
 	</div>
 </div>
+
+<script src="/assets/script.js" type="text/javascript"></script>
