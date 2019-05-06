@@ -1,4 +1,4 @@
-<%= form_with(model: [ @review ], local: true) do |form| %>
+<%= form_with(scope: :bookstatus, url: bookstatuses_path, local: true) do |form| %>
 
 	<select name="bookstatus[read_status]">
 	  <option value="1">Want to read</option>

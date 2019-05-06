@@ -3,14 +3,14 @@
 
 
 <% if @booklist.books[0] == nil %>
-<p>Add books to your booklist?</p>
-<%= link_to 'Add a book', new_booklist_path %>
+	<p>Add books to your booklist?</p>
+	<%= link_to 'Add a book', new_booklist_path %>
 <% else %>
-<% @booklist.books.each_with_index do |book, index| %>
-<p>
-<%= index+1 %> <%= book.title %>
-</p>
-<% end %>
+	<% @booklist.books.each_with_index do |book, index| %>
+		<p>
+		<%= index+1 %> <%= book.title %>
+		</p>
+	<% end %>
 <% end %>
 
 <%= link_to 'Back to all your booklist', booklists_path %>

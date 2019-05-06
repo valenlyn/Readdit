@@ -1,25 +1,29 @@
-<h2> All Booklists </h2>
+<h2> My books </h2>
 <div class="row d-flex justify-content-center">
+	<div class="col-3">
 
+		<a class="booklist" href=<%= "#{booklists_path}?sort=all" %>>All books</a>
+		<a class="booklist" href=<%= "#{booklists_path}?sort=current" %>>Currently reading</a>
+		<a class="booklist" href=<%= "#{booklists_path}?sort=want" %>>Want to read</a>
+		<a class="booklist" href=<%= "#{booklists_path}?sort=read" %>>Read</a>
+		<br>
+		<br>
+		<%= link_to 'New list', new_booklist_path %>
+	</div>
 	<div class="col-8">
 
-		<%= link_to 'New Booklist', new_booklist_path %>
+
 		<br>
 		<br>
 
-		<% @booklists.each do |booklist| %>
-		<a href=<%=booklist_path(booklist)%>>
-			<div class="row my-1">
-					<div class="col-3 d-flex justify-content-center ">
-						User id: <%= booklist.user_id %>
-					</div>
-					<div>
-						Type of Booklist: <%= booklist.booklist_type %> <br>
-					</div>
-					<%= link_to '✏️', edit_booklist_path(booklist) %>
-					<%= link_to '❌',booklist_path(booklist), method: :delete, data: { confirm: 'Do you really want to delete this?'} %>
-			</div>
-		</a>
+		<% if !@books %>
+			<p>no books</p>
+		<% else %>
+			<% @books.each do |book| %>
+				<%= book.title %>
+				<%= book.id %>
+				<br>
+			<% end %>
 		<% end %>
 
 
