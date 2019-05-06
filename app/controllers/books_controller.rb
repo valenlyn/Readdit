@@ -3,9 +3,26 @@ class BooksController < ApplicationController
   before_action :authenticate_user!#, :except => [ :show, :index ]
 
   def index
+
+
+    ####
+
+  if params[:title]
+
+    p "here in params"
+
+    stringSearch = params[:title].capitalize
+
+    @books = Book.where(["title LIKE ? ", "%#{stringSearch}%"]);
+
+    p @books;
+    @books = @books.paginate(:page => params[:page])
+
+    @users = User.all
+  else
     @books = Book.paginate(:page => params[:page])
     @users = User.all
-
+  end
 
   end
 
@@ -55,6 +72,8 @@ class BooksController < ApplicationController
 private
 
   def book_params
+    p "hello"
+    p params
     params.require(:book).permit(:title, :author, :image_url, :booklist_ids =>[])
   end
 

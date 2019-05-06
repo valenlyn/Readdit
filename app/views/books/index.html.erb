@@ -1,4 +1,11 @@
 <h2> Books </h2>
+
+<%= form_tag books_path, :method => :get do %>
+   <%= text_field_tag :title, params[:title] %>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
+
+
 <div class="row d-flex justify-content-center">
 
 	<div class="col-8">
