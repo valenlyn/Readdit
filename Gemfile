@@ -22,7 +22,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'devise'
 
 # Use Bootstrap for stylesheets
-gem 'bootstrap', '~> 4.1.3'
+gem "bootstrap", ">= 4.3.1"
 gem 'jquery-rails'
 
 # Use CoffeeScript for .coffee assets and views
