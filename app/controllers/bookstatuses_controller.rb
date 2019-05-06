@@ -14,8 +14,7 @@ class BookstatusesController < ApplicationController
 
   def create
     @bookstatus = Bookstatus.new(bookstatus_params)
-    p "AT CREATE CONTROLLER"
-    p @bookstatus
+
     if @bookstatus.save
       render plain: 'yay'
     else
