@@ -6,16 +6,19 @@ class BooklistsController < ApplicationController
 
     if request.query_parameters[:sort] == "all"
       @books = Book.joins(:bookstatuses)
+              .where('user_id = ?', current_user.id)
     elsif request.query_parameters[:sort] == "current"
       @books = Book.joins(:bookstatuses)
-              .where('read_status = 2')
+              .where('read_status = ? and user_id = ?', 2, current_user.id)
     elsif request.query_parameters[:sort] == "want"
       @books = Book.joins(:bookstatuses)
-              .where('read_status = 1')
+              .where('read_status = ? and user_id = ?', 1, current_user.id)
     else request.query_parameters[:sort] == "read"
       @books = Book.joins(:bookstatuses)
-              .where('read_status = 3')
+              .where('read_status = ? and user_id = ?', 3, current_user.id)
     end
+
+    @booklists = Booklist.where('user_id = ?', current_user.id)
 
   end
 
@@ -66,6 +69,6 @@ class BooklistsController < ApplicationController
 private
 
   def book_params
-    params.require(:booklist).permit(:user_id, :type, :book_ids =>[])
+    params.require(:booklist).permit(:user_id, :booklist_type, :book_ids =>[])
   end
 end
