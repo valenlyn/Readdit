@@ -9,6 +9,8 @@ class ReviewsController < ApplicationController
     elsif request.query_parameters[:sort] == "desc"
       #showing most recent reviews first
       @reviews = Review.order(created_at: :desc)
+    elsif request.query_parameters[:sort] == "own"
+      @reviews = Review.where user_id: current_user.id
     else
       @reviews = Review.order(created_at: :desc)
     end
