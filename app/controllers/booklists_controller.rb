@@ -3,9 +3,19 @@ class BooklistsController < ApplicationController
   before_action :authenticate_user!#, :except => [ :show, :index ]
 
   def index
-    @booklists = Booklist.all
-    @users = User.all
 
+    if request.query_parameters[:sort] == "all"
+      @books = Book.joins(:bookstatuses)
+    elsif request.query_parameters[:sort] == "current"
+      @books = Book.joins(:bookstatuses)
+              .where('read_status = 2')
+    elsif request.query_parameters[:sort] == "want"
+      @books = Book.joins(:bookstatuses)
+              .where('read_status = 1')
+    else request.query_parameters[:sort] == "read"
+      @books = Book.joins(:bookstatuses)
+              .where('read_status = 3')
+    end
 
   end
 
