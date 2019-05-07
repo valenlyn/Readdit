@@ -3,6 +3,16 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!#, :except => [ :show, :index ]
 
+  def find
+    # @book = Book.first
+    @book = Book.search(params[:title])
+    respond_to do |format|
+      format.json do
+        render json: @book.to_json
+      end
+    end
+  end
+
   def index
     p "hi"
     p params

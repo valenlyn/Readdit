@@ -12,4 +12,11 @@ class Book < ActiveRecord::Base
     :tsearch => {:prefix=>true}
   }
 
+  def self.search(searchString)
+    if searchString
+      where('lower(title) LIKE?', "%#{searchString.downcase}%")
+    else
+      all
+    end
+  end
 end
