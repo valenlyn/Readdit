@@ -1,4 +1,3 @@
-
 <div class="row d-flex justify-content-center">
 	<div class="col-3">
 		<h2> My books </h2>
@@ -10,20 +9,19 @@
 		</ul>
 
 		<hr>
+			<a href="#" id="show-input">Add new list</a>
+			<%= form_with scope: :booklist, url: booklists_path, local: true do |form| %>
+
+				<%= form.hidden_field :user_id, value: current_user.id %>
+				<input type="text" id="new-list" style="display: none" name="booklist[booklist_type]" autofocus>
+				<input type="submit" id="list-button" style="display: none" value="Add">
+
+			<% end %>
 			<ul>
 				<% @booklists.each do |booklist| %>
-
-						<li><%= link_to "#{booklist.booklist_type}", booklist_path(booklist.id) %> </li>
-
+						<li><a href=<%= "#{booklists_path}?sort=#{booklist.id}" %>><%= booklist.booklist_type %></a></li>
 				<% end %>
 			</ul>
-		<a href="#" id="show-input">New list</a>
-		<%= form_with scope: :booklist, url: booklists_path, local: true do |form| %>
-
-			<%= form.hidden_field :user_id, value: current_user.id %>
-			<input type="text" id="new-list" style="display: none" name="booklist[booklist_type]">
-
-		<% end %>
 	</div>
 	<div class="col-8">
 
