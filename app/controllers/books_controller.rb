@@ -5,13 +5,18 @@ class BooksController < ApplicationController
 
   def index
     p "hi"
-    p params
-    p params[:search]
+
   if params[:search]
+    p "YOOOO"
+    p params[:search]
     @books = Book.search_by_title(params[:search])
     # @users = User.all
     @books = @books.paginate(:page => params[:page])
-
+    # respond_to do |format|
+    #     # format.json { render partial: 'search-results'}
+    #     format.js { render partial: 'search-results'}
+    #     # format.html { render 'index'}
+    #   end
   else
     @books = Book.paginate(:page => params[:page])
     @users = User.all
