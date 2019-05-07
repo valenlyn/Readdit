@@ -4,12 +4,7 @@ class BooklistsController < ApplicationController
 
   def index
 
-    if request.query_parameters[:sort] == "all"
-      @books = Book.joins(:bookstatuses)
-              .where('user_id = ?', current_user.id)
-              # .joins(:booklists)
-              # .where('user_id = ?', current_user.id)
-    elsif request.query_parameters[:sort] == "current"
+    if request.query_parameters[:sort] == "current"
       @books = Book.joins(:bookstatuses)
               .where('read_status = ? and user_id = ?', 2, current_user.id)
     elsif request.query_parameters[:sort] == "want"
@@ -18,9 +13,14 @@ class BooklistsController < ApplicationController
     elsif request.query_parameters[:sort] == "read"
       @books = Book.joins(:bookstatuses)
               .where('read_status = ? and user_id = ?', 3, current_user.id)
-    else
+    elsif request.query_parameters[:sort]
       @books = Book.joins(:booklists)
               .where('booklists.id = ? and user_id = ?', request.query_parameters[:sort], current_user.id)
+    else
+      @books = Book.joins(:bookstatuses)
+              .where('user_id = ?', current_user.id)
+              # .joins(:booklists)
+              # .where('user_id = ?', current_user.id)
     end
 
     @booklists = Booklist.where(:user_id => current_user.id)
