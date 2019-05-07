@@ -1,10 +1,12 @@
 <h2> Books </h2>
 
 <%= form_tag(books_path, method: "get") do %>
-	<input id="search" type="text" class="form-control" name="search" placeholder="What are you reading next?">
+	<input id="search-form" type="text" class="form-control" name="search" placeholder="What are you reading next?">
   <%= submit_tag 'Search' %>
 <% end %>
 
+<a href="#" id="stuff">hello</a>
+<a href="#" id="hello">hello</a>
 
 <div class="row d-flex justify-content-center">
 
@@ -49,4 +51,4 @@
 	</div>
 </div>
 
-<script src="_search-results.js.erb" type="text/javascript"></script>
+<script src="/assets/test.js" type="text/javascript"></script>

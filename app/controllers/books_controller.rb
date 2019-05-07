@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
 
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  # before_action :set_book, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!#, :except => [ :show, :index ]
 
   def index
@@ -11,9 +11,7 @@ class BooksController < ApplicationController
     @books = Book.search_by_title(params[:search])
     # @users = User.all
     @books = @books.paginate(:page => params[:page])
-      # respond_to do |format|
-      #   format.js { render partial: 'search-results'}
-      # end
+
   else
     @books = Book.paginate(:page => params[:page])
     @users = User.all
