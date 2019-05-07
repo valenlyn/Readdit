@@ -52,7 +52,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
 
     @book.update(book_params)
-    redirect_to @book
+    redirect_to books_path
 
   end
 
