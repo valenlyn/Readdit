@@ -1,7 +1,4 @@
-<%= @users[0].id %>
-
-
-<%= form_with scope: :book, url: books_path, local: true do |form| %>
+<%= form_with scope: :book, model: @book, local: true do |form| %>
 
   <p>
 	<%= form.label :title %><br>
