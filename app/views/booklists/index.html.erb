@@ -1,31 +1,29 @@
-
 <div class="row d-flex justify-content-center">
-	<div class="col-3">
+	<div class="col-2">
 		<h2> My books </h2>
 		<ul>
-			<li><a class="booklist" href=<%= "#{booklists_path}?sort=all" %>>All books</a></li>
+			<li><a class="booklist" href=<%= "#{booklists_path}" %>>All books</a></li>
 			<li><a class="booklist" href=<%= "#{booklists_path}?sort=current" %>>Currently reading</a></li>
 			<li><a class="booklist" href=<%= "#{booklists_path}?sort=want" %>>Want to read</a></li>
 			<li><a class="booklist" href=<%= "#{booklists_path}?sort=read" %>>Read</a></li>
 		</ul>
 
 		<hr>
+			<a href="#" id="show-input">Add new list</a>
+			<%= form_with scope: :booklist, url: booklists_path, local: true do |form| %>
+
+				<%= form.hidden_field :user_id, value: current_user.id %>
+				<input type="text" id="new-list" style="display: none" name="booklist[booklist_type]" autofocus>
+				<input type="submit" id="list-button" style="display: none" value="Add">
+
+			<% end %>
 			<ul>
 				<% @booklists.each do |booklist| %>
-
-						<li><%= link_to "#{booklist.booklist_type}", booklist_path(booklist.id) %> </li>
-
+						<li><a href=<%= "#{booklists_path}?sort=#{booklist.id}" %>><%= booklist.booklist_type %></a></li>
 				<% end %>
 			</ul>
-		<a href="#" id="show-input">New list</a>
-		<%= form_with scope: :booklist, url: booklists_path, local: true do |form| %>
-
-			<%= form.hidden_field :user_id, value: current_user.id %>
-			<input type="text" id="new-list" style="display: none" name="booklist[booklist_type]">
-
-		<% end %>
 	</div>
-	<div class="col-8">
+	<div class="col-9">
 
 
 		<br>
@@ -41,6 +39,7 @@
   		<thead class="thead-dark">
     		<tr>
 		      <th scope="col">#</th>
+		      <th scope="col">Cover</th>
 		      <th scope="col">Title</th>
 		      <th scope="col">Author</th>
 		      <th scope="col">Date added</th>
@@ -51,6 +50,7 @@
   			<% @books.each_with_index do |book, index| %>
 		    <tr>
 		      <th scope="row"><%= index+1 %></th>
+		      <td><%= image_tag("#{book.image_url}", size: "52x70") %></td>
 		      <td><%= link_to "#{book.title}", book_path(book.id) %></td>
 		      <td><%= book.author %></td>
 		      <td><%= book.created_at.in_time_zone('Singapore').strftime('%d %B %Y') %></td>
@@ -60,8 +60,6 @@
 			</table>
 
 		<% end %>
-
-
 
 	</div>
 </div>
