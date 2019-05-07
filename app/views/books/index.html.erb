@@ -26,6 +26,7 @@
 					<div>
 						<%= book.title %> <br>
 						by <%= book.author %> <br>
+						<%= book.excerpt %>
 					</div>
 					</a>
 					<%= render partial: 'bookstatuses/hi' , locals: { helpme: book }  %>
