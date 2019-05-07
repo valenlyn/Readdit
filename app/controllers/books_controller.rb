@@ -2,25 +2,30 @@ class BooksController < ApplicationController
 
   # before_action :set_book, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!#, :except => [ :show, :index ]
+  def find
+    p 'hello find'
+    p params
+    @book = Book.search_by_title(params[:title])
+    p @book
+    respond_to do |format|
+      format.json do
+        render json: @book.to_json
+      end
+    end
+  end
+
 
   def index
-    p "hi"
+    if params[:search]
 
-  if params[:search]
-    p "YOOOO"
-    p params[:search]
-    @books = Book.search_by_title(params[:search])
-    # @users = User.all
-    @books = @books.paginate(:page => params[:page])
-    # respond_to do |format|
-    #     # format.json { render partial: 'search-results'}
-    #     format.js { render partial: 'search-results'}
-    #     # format.html { render 'index'}
-    #   end
-  else
-    @books = Book.paginate(:page => params[:page])
-    @users = User.all
-  end
+      @books = Book.search_by_title(params[:search])
+      @users = User.all
+      @books = @books.paginate(:page => params[:page])
+
+    else
+      @books = Book.paginate(:page => params[:page])
+      @users = User.all
+    end
 
   end
 

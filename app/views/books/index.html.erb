@@ -1,15 +1,17 @@
 <h2> Books </h2>
 
-<%= form_tag(books_path, method: "get", id:"search-form") do %>
-	<input type="text" id="search-bar" class="form-control" name="search" placeholder="What are you reading next?">
+<%= form_tag(books_path, method: "get" ) do %>
+	<input  id="search" type="text" class="form-control" name="search" placeholder="What are you reading next?">
   <%= submit_tag 'Search' %>
 <% end %>
 
-<a href="#" id="stuff">hello</a>
-<a href="#" id="hello">hello</a>
 
 <div class="row d-flex justify-content-center">
+	<div class="col-3">
+		<div id="search-results">
 
+		</div>
+	</div>
 	<div class="col-8">
 
 		<%= link_to 'New Book', new_book_path %>
@@ -20,11 +22,11 @@
 		<table>
 			<thead>
 				<tr>
-					<th colspan="3">Book Image</th>
+					<th colspan="2">Book Image</th>
 					<th>Title</th>
 					<th>Author</th>
 					<th>Status</th>
-					<th colspan="3"></th>
+					<th colspan="2"></th>
 				</tr>
 			</thead>
 
@@ -45,9 +47,7 @@
 		</table>
 	</div>
 	<%= will_paginate @books %>
-	<div id="search-results">
 
-	</div>
 	</div>
 </div>
 

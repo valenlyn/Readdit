@@ -1,51 +1,57 @@
-//USE THIS TO RENDER
+var searchNode = document.getElementById("search-results");
 
-var xhttp = new XMLHttpRequest();
-
-// console.log(xhttp)
-var stuff = document.getElementById("search-bar");
-
-document.getElementById("search-form").addEventListener("keydown", showInput);
-
-function showInput() {
-    console.log('you are typing something')
-    // console.log(stuff.value);
+window.onload = () =>{
+    let timeout;
+    const searchBar = document.getElementById("search");
+    searchBar.addEventListener('keydown', e =>{
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(() => {searchForBook(e)}, 1000);
+    })
 }
 
+function searchForBook(e) {
+    fetch(`/find/${e.target.value}`, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    })
+        .then(res =>{
+            return res.json();
+        })
+        .then(json => {
+            clearPreviousResults();
+            appendResults(json);
+            console.log(json);
+        });
+}
 
-var responseHandler = function() {
-    console.log("INSIDE??")
-    console.log("response text!!!!!!!!!!", document.getElementById("search-bar").value);
+function clearPreviousResults(){
+    while (searchNode.firstChild) {
+        searchNode.removeChild(searchNode.firstChild);
+    }
+}
 
-  // var stuff = JSON.parse( this.responseText );
-  // console.log("SOMETHING USEFUL?", stuff );
-  // // console.log("status text", this.statusText);
-  // // console.log("status code", this.status);
-  // var thing = document.createElement('h1');
-  // thing.innerText = person.name;
-  // document.body.appendChild(thing);
-};
+// <ul>
+//     <li><a href="#">hello</a></li>
+// </ul>
 
-console.log('HERR"')
+function appendResults(jsonData) {
+    var listMain = document.createElement('ul');
+    listMain.setAttribute("style", "list-style: none")
+    searchNode.append(listMain);
 
-window.onload = function(){
-    console.log('anything?')
-  document.getElementById("search-bar").addEventListener('keydown', function(){
+    for(let i=0; i < jsonData.length; i++){
+        var listElement = document.createElement('li');
+        listElement.setAttribute("style", "color:black; border: 1px solid blue;")
+        var linkTag = document.createElement('a');
 
-    // make a new request
-    var request = new XMLHttpRequest();
-    // console.log(request.value)
-    // listen for the request response
-    request.addEventListener("load", responseHandler);
+        // linkTag.href = `/book/${jsonData[i].id}`;
+        listElement.innerText = `${jsonData[i].title} by ${jsonData[i].author}`;
 
-    // ready the system by calling open, and specifying the url
-    // var url = "https://swapi.co/api/people/1";
+        // listElement.innerText = linkTag;
 
-    var url = "http://localhost:3000";
-    request.open("GET", url);
+        listMain.append(listElement);
+    }
 
-    // send the request
-    request.send();
-
-  });
 }
