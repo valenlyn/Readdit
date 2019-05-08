@@ -80,7 +80,7 @@ function buildQueryString(string){
 
     var itemArr =[];
 
-    var start = `?utf8=✓&search=`;
+    var start = `/books?utf8=✓&search=`;
 
     itemArr =  string.split(" ");
 

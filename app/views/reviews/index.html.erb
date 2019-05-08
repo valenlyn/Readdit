@@ -29,7 +29,13 @@
 
 
 
-	  <% @reviews.each do |review| %>
+	  <% @reviews.each.with_index do |review, index| %>
+	  	<% indexNow = index+1 %>
+	  	<% @idUnqiue = 'review_' + indexNow.to_s %>
+	  	<% @idTextBox = 'edit_review_' + indexNow.to_s %>
+	  	<% @idButton = 'edit_button_' + indexNow.to_s %>
+
+
 	   	<div class="row">
 		   	<div class="col-3 d-flex justify-content-center">
 		   		<img height="200px" src=<%= review.book.image_url %>>
@@ -54,13 +60,25 @@
 		   			<span class="star-color">★</span><span class="star-color-2">★★★★</span>
 		   		<% end %>
 		   		<br>
-
-					<%= review.reviews %> <br><br>
+		   		<div class="review-content-">
+						<%= review.reviews %>
+					</div>
+					<br><br>
 
 					<span class="star-color-2"><%= review.created_at.in_time_zone('Singapore').strftime('%d %B %Y %I:%M %p') %></span>
 
+
+
 					<!-- Only show edit and delete functions to current logged in user, with Devise -->
+
 					<% if current_user == review.user %>
+						<p class="edit-review" id=<%= @idUnqiue %>>✏️</p>
+						<%= form_with scope: :review, model: @review, local:true do |form| %>
+						<input type="text" style="display:none" name="review[reviews]" autofocus id=<%= @idTextBox %>>
+						<input type="submit" style="display:none" value="update" id=<%= @idButton %>>
+
+						<% end %>
+
 						<%= link_to '✏️', edit_review_path(review) %>
 						<%= link_to '❌',review_path(review), method: :delete, data: { confirm: 'Do you really want to delete this?'} %>
 					<% else %>
@@ -72,6 +90,7 @@
 
 		  </div>
 		  <hr>
+
 		  <% end %>
 
 
@@ -79,3 +98,4 @@
 </div>
 
 <script src="/assets/search-bar.js" type="text/javascript"></script>
+<script src="/assets/reviews.js" type="text/javascript"></script>
