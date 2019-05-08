@@ -6,7 +6,7 @@ window.onload = () =>{
     const searchBar = document.getElementById("search");
     searchBar.addEventListener('keydown', e =>{
         if (timeout) clearTimeout(timeout);
-        timeout = setTimeout(() => {searchForBook(e)}, 1000);
+        timeout = setTimeout(() => {searchForBook(e)}, 500);
     })
 }
 //passes in e?
