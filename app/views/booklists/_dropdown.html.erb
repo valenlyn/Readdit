@@ -1,0 +1,18 @@
+<%= form_with(scope: :booklists, url: booklists_path, local: true) do |form| %>
+
+  <%= form.label "My lists:" %><br>
+  <% if @booklists[0] %>
+	<% @booklists.each do |booklist| %>
+		<input type="checkbox"> <%= booklist.booklist_type %> <br>
+	<% end %>
+  <% else %>
+  <% end %>
+
+
+
+	<%= form.hidden_field :user_id, value: current_user.id %>
+
+	<%= form.hidden_field :book_id, value: object.id %>
+
+
+<% end %>
