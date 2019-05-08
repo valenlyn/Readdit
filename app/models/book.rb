@@ -7,7 +7,7 @@ class Book < ActiveRecord::Base
 
   self.per_page = 10
 
-  pg_search_scope :search_by_title, :against =>[:title],
+  pg_search_scope :search_by_title, :against =>[:title, :author],
   using:{
     :tsearch => {:prefix=>true}
   }

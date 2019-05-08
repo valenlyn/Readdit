@@ -6,7 +6,7 @@ class BooksController < ApplicationController
     p 'hello find'
     p params
     @book = Book.search_by_title(params[:title])
-    p @book
+    @book = @book.paginate(:page => params[:page])
     respond_to do |format|
       format.json do
         render json: @book.to_json
