@@ -1,19 +1,23 @@
-<div class="row d-flex justify-contents-center">
-	<div class="col-3">
-		<%= image_tag "#{@book.image_url}" %> <br>
-		<%= render partial: 'bookstatuses/readstatus' , locals: { object: @book }  %>
-	</div>
-	<div class="col-5">
-		<h4><%= @book.title %></h4>
-		<%= @book.author %>
-		<br><br>
-
-		<%= @book._description %>
-
+<div class="container">
+	<div class="row">
+		<div class="col-4">
+			<%= image_tag "#{@book.image_url}", :class => 'imgs' %>
+			<%= render partial: 'bookstatuses/readstatus' , locals: { object: @book }  %>
+		</div>
+		<div class="col-8">
+			<h4>
+				<%= @book.title %>
+			</h4>
+			<h4>
+				<%= @book.author %>
+			</h4>
+			<p>
+				<%= @book._description %>
+			</p>
 	</div>
 </div>
 
-
+<hr>
 
 <% if @book.reviews[0] == nil %>
 <p>Read the book? Add a review here!</p>
