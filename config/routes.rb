@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :books, :booklists, :reviews, :bookstatuses
-  root 'books#index'
+  root 'reviews#index'
   get 'find/:title' => 'books#find'
   # BOOKS
   # get '/books' => 'books#index', as: 'books'

@@ -1,4 +1,4 @@
-var searchNode = document.getElementById("search-results");
+var searchContainerDiv = document.getElementById("search-results");
 var fullString;
 //creates event listener when page loads
 //function triggers a settime out when eventlistener is triggered
@@ -9,8 +9,13 @@ window.addEventListener('DOMContentLoaded', () => {
     searchBar.addEventListener('keydown', e =>{
         if (timeout) clearTimeout(timeout);
         timeout = setTimeout(() => {searchForBook(e)}, 500);
+        if (e.keyCode == 8){
+            clearPreviousResults();
+        }
     })
 })
+
+
 //passes in e?
 //fetches at route /find/:params
 function searchForBook(e) {
@@ -35,42 +40,64 @@ function searchForBook(e) {
 
 //removes all child elements when setimeout triggered
 function clearPreviousResults(){
-    while (searchNode.firstChild) {
-        searchNode.removeChild(searchNode.firstChild);
+    while (searchContainerDiv.firstChild) {
+        searchContainerDiv.removeChild(searchContainerDiv.firstChild);
     }
 }
-
+// <div>
+//     <a>
+//       <img src="#">
+//       <div>
+//           <div>title</div>
+//           <div>by athor</div>
+//       </div>
+//      </a>
+// </div>
 //displays results// need to style more// how to use partial?
+
+function documentCreator(jsonData){
+
+    var viewSearchResultLink = buildQueryString(fullString);
+    var listSize = 5;
+    var titleDiv = document.createElement('div');
+    var authorDiv = document.createElement('div');
+    var innerDiv = document.createElement('div');
+    var imgElement = document.createElement('img');
+    var linkElement = document.createElement('a');
+    var outerDiv = document.createElement('div');
+}
 function appendResults(jsonData) {
 
     var viewSearchResultLink = buildQueryString(fullString);
     var listMain = document.createElement('ul');
-    listMain.setAttribute("style", "list-style: none")
-    searchNode.append(listMain);
     var listSize = 5;
+
+    listMain.setAttribute("style", "list-style: none")
+    searchContainerDiv.append(listMain);
+
     if(jsonData.length < listSize){
         listSize = jsonData.length;
     }
+
     for(let i=0;  i < listSize; i++){
         var listElement = document.createElement('li');
-        listElement.className = "search-bar-list"
         var linkTag = document.createElement('a');
 
+        listElement.className = "search-bar-list"
         linkTag.href = `/books/${jsonData[i].id}`;
         linkTag.innerText = `${jsonData[i].title} by ${jsonData[i].author}`;
 
         listElement.append(linkTag);
-
         listMain.append(listElement);
 
         if(i === listSize-1){
             var lastList = document.createElement('li');
             var lastLink = document.createElement('a');
+
             lastLink.href = `${viewSearchResultLink}`;
             lastLink.innerText = `See all results for "${fullString}"`;
 
             lastList.append(lastLink);
-
             listMain.append(lastList);
         }
     }

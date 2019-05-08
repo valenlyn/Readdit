@@ -1,17 +1,14 @@
-<h2> Books </h2>
-
 <%= form_tag(books_path, method: "get" ) do %>
 	<input  id="search" type="text" class="form-control" name="search" placeholder="What are you reading next?">
   <%= submit_tag 'Search' %>
 <% end %>
+<div id="search-results" class="column d-flex">
+	<div class="col-4">
 
+	</div>
+</div>
 
 <div class="row d-flex justify-content-center">
-	<div class="col-3">
-		<div id="search-results">
-
-		</div>
-	</div>
 	<div class="col-8">
 
 		<%= link_to 'New Book', new_book_path %>
@@ -25,6 +22,7 @@
 					<th colspan="2">Book Image</th>
 					<th>Title</th>
 					<th>Author</th>
+					<th>Description</th>
 					<th>Status</th>
 					<th colspan="2"></th>
 				</tr>
@@ -33,12 +31,18 @@
 			<tbody>
 				<% @books.each do |book| %>
 				<tr>
-					<td><img src=<%= book.image_url %> alt=<%= book.title %>></td>
+					<td><%= image_tag("#{book.image_url}", size: "52x70") %>
+
+					</td>
 					<td>
 						<a href=<%=book_path(book)%>> <%= book.title %> </a>
 					</td>
 					<td><%= book.author %></td>
+
+					<th><%= book._description %></th>
+
 					<td><%= render partial: 'bookstatuses/readstatus' , locals: { object: book } %>
+
 					</td>
 				</tr>
 				<% end %>

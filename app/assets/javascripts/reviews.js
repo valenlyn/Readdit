@@ -1,7 +1,4 @@
-// document.getElementsByClassName("edit-review").forEach(item)=>{}addEventListener("click", showEditForm);
-
 var i;
-
 
 console.log('gello')
 
