@@ -1,10 +1,34 @@
+$primary-color: #bcb1b3;
+$secondary-color: #dec8c1;
+$tertiary-color: #ede2d5;
+$quaternary-color: #f4eee9;
+$quinary-color: #f3f1ee;
+
 body {
 	background-color: white;
 }
 
+nav {
+	font-size: 50px;
+	display: flex;
+	background-color: $quinary-color;
+	width: 80px;
+}
+
+a, nav {
+	color: #000000;
+}
+
+a:hover, nav {
+	color: $primary-color;
+}
+
+i {
+	margin: 15px 10px 14px 10px;
+}
+
 .grey-text, .star-color-2 {
-	// color: #CCCCCC;
-	color: blue;
+	color: #CCCCCC;
 }
 
 .star-color {
@@ -69,14 +93,46 @@ a:hover {
 }
 
 .booklist {
-	background-color: pink;
+	background-color: $primary-color;
 	padding: 10px;
 	border-radius: 5px;
+	color: black;
+	display: inline-block;
+	width: 75%;
+	height: 95%;
+	margin: 3px;
+	font-weight: 700;
+}
+
+.booklist-custom {
+	background-color: $secondary-color;
+	padding: 10px;
+	border-radius: 5px;
+	color: black;
+	display: inline-block;
+	width: 75%;
+	height: 95%;
+	margin: 3px;
+	font-weight: 700;
+}
+
+.booklist:hover {
+	background-color: $tertiary-color;
+	color: black;
+}
+
+.booklist-custom:hover {
+	background-color: $tertiary-color;
+	color: black;
 }
 
 li {
 	list-style: none;
-	margin: 18px;
+	// margin: 18px;
+}
+
+ul {
+	padding: 15px;
 }
 
 #search-results{
