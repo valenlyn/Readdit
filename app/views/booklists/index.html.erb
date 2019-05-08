@@ -18,8 +18,14 @@
 
 			<% end %>
 			<ul>
+
 				<% @booklists.each do |booklist| %>
-						<li><a href=<%= "#{booklists_path}?sort=#{booklist.id}" %>><%= booklist.booklist_type %></a></li>
+						<li>
+							<a href=<%= "#{booklists_path}?sort=#{booklist.id}" %>><%= booklist.booklist_type %></a>
+
+							<%= link_to '❌',booklist_path(booklist), method: :delete, data: { confirm: 'Do you really want to delete this?'} %>
+						</li>
+
 				<% end %>
 			</ul>
 	</div>
