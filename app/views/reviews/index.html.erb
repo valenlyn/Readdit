@@ -65,7 +65,7 @@
 						<%= link_to '❌',review_path(review), method: :delete, data: { confirm: 'Do you really want to delete this?'} %>
 					<% else %>
 					<% end %>
-					<%= render partial: 'bookstatuses/readstatus' , locals: { helpme: review.book }  %>
+					<%= render partial: 'bookstatuses/readstatus' , locals: { object: review.book }  %>
 				</div>
 
 				<!-- Dropdown list to mark book should appear on reviews that are not the user's -->
