@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
 
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  # before_action :set_book, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!#, :except => [ :show, :index ]
 
   def index
@@ -61,7 +61,6 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-
   end
 
 private
