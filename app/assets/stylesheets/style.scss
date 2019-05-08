@@ -79,7 +79,14 @@ li {
 	margin: 18px;
 }
 
+#search-results{
+	position: absolute;
+	z-index: 1;
+	width:350px;
+}
+
 .search-bar-list {
+
  	margin-top: 0px;
  	margin-bottom: 0px;
 	border: 1px solid black;
