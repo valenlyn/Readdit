@@ -34,9 +34,6 @@ function clearPreviousResults(){
     }
 }
 
-// <ul>
-//     <li><a href="#">hello</a></li>
-// </ul>
 //displays results// need to style more// how to use partial?
 function appendResults(jsonData) {
     var listMain = document.createElement('ul');
@@ -48,12 +45,25 @@ function appendResults(jsonData) {
         listElement.setAttribute("style", "color:black; border: 1px solid blue;")
         var linkTag = document.createElement('a');
 
-        // linkTag.href = `/book/${jsonData[i].id}`;
-        listElement.innerText = `${jsonData[i].title} by ${jsonData[i].author}`;
+        linkTag.href = `/books/${jsonData[i].id}`;
+        linkTag.innerText = `${jsonData[i].title} by ${jsonData[i].author}`;
 
-        // listElement.innerText = linkTag;
+        listElement.append(linkTag);
 
         listMain.append(listElement);
     }
+
+    var viewMoreElement = document.createElement('li');
+    viewMoreElement.setAttribute("style", "color:black; border: 1px solid red;")
+
+    var linkToView = document.createElement('a');
+
+    linkToView.href = `/#`;
+
+    linkToView.innerText =`HELLO`;
+
+    viewMoreElement.append(linkToView);
+
+    listMain.append(viewMoreElement);
 
 }
