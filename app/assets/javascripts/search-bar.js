@@ -32,7 +32,7 @@ function searchForBook(e) {
         .then(json => {
             fullString = e.target.value;
             clearPreviousResults();
-            appendResults(json);
+            searchElementsCreator(json);
             console.log(json);
         });
 }
@@ -53,52 +53,55 @@ function clearPreviousResults(){
 //       </div>
 //      </a>
 // </div>
-//displays results// need to style more// how to use partial?
 
-function documentCreator(jsonData){
-
-    var viewSearchResultLink = buildQueryString(fullString);
-    var listSize = 5;
-    var titleDiv = document.createElement('div');
-    var authorDiv = document.createElement('div');
-    var innerDiv = document.createElement('div');
-    var imgElement = document.createElement('img');
-    var linkElement = document.createElement('a');
-    var outerDiv = document.createElement('div');
-}
-function appendResults(jsonData) {
+function searchElementsCreator(jsonData){
 
     var viewSearchResultLink = buildQueryString(fullString);
-    var listMain = document.createElement('ul');
+    console.log('HELLO')
+    console.log(viewSearchResultLink);
     var listSize = 5;
 
-    listMain.setAttribute("style", "list-style: none")
-    searchContainerDiv.append(listMain);
 
     if(jsonData.length < listSize){
         listSize = jsonData.length;
     }
 
-    for(let i=0;  i < listSize; i++){
-        var listElement = document.createElement('li');
-        var linkTag = document.createElement('a');
+    for(let i = 0; i < listSize; i++){
+        var titleDiv = document.createElement('div');
+        var authorDiv = document.createElement('div');
+        var innerDiv = document.createElement('div');
+        var imgElement = document.createElement('img');
+        var linkElement = document.createElement('a');
+        var outerDiv = document.createElement('div');
 
-        listElement.className = "search-bar-list"
-        linkTag.href = `/books/${jsonData[i].id}`;
-        linkTag.innerText = `${jsonData[i].title} by ${jsonData[i].author}`;
+        linkElement.href=`/books/${jsonData[i].id}`; // <a> tag
 
-        listElement.append(linkTag);
-        listMain.append(listElement);
+        imgElement.src=`${jsonData[i].image_url}`; //img link tag
+        imgElement.className = "search-bar-img";
+
+        titleDiv.innerText = `${jsonData[i].title}`;
+        authorDiv.innerText = `by ${jsonData[i].author}`;
+
+        innerDiv.append(titleDiv);
+        innerDiv.append(authorDiv);
+
+        linkElement.append(imgElement);
+        linkElement.append(innerDiv);
+
+        outerDiv.append(linkElement);
+        outerDiv.className = "search-bar-item";
+
+        searchContainerDiv.append(outerDiv);
 
         if(i === listSize-1){
-            var lastList = document.createElement('li');
             var lastLink = document.createElement('a');
 
             lastLink.href = `${viewSearchResultLink}`;
             lastLink.innerText = `See all results for "${fullString}"`;
 
-            lastList.append(lastLink);
-            listMain.append(lastList);
+            outerDiv.append(lastLink);
+
+            searchContainerDiv.append(outerDiv);
         }
     }
 }
@@ -107,16 +110,16 @@ function buildQueryString(string){
 
     var itemArr =[];
 
-    var start = `/books?utf8=✓&search=`;
+    var searchString = `/books?utf8=✓&search=`;
 
     itemArr =  string.split(" ");
 
     itemArr.pop();
 
     for(let i=0; i <itemArr.length;i++){
-        start = start + `${itemArr[i]}+` ;
+        searchString = searchString + `${itemArr[i]}+` ;
     }
-    start = start + `&commit=Search`;
+    searchString = searchString + `&commit=Search`;
 
-    return start;
+    return searchString;
 }
