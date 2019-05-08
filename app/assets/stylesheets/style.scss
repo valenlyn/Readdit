@@ -136,15 +136,19 @@ ul {
 }
 
 #search-results{
+	display:flex;
+	flex-direction: column;
 	position: absolute;
 	z-index: 1;
 	width:350px;
+
 }
 
-.search-bar-list {
+.search-bar-item > a{
+	order: 2;
+}
 
- 	margin-top: 0px;
- 	margin-bottom: 0px;
-	border: 1px solid black;
-	background-color:#ECE9D8;
+.search-bar-img {
+	width: 52px;
+	height: 70px;
 }
