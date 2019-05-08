@@ -1,4 +1,3 @@
-console.log("hi")
 
 document.getElementById("show-input").addEventListener("click", showInput);
 document.getElementById("show-input").style.color = "red";

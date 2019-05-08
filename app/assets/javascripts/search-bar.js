@@ -1,8 +1,9 @@
 var searchNode = document.getElementById("search-results");
-var somethingStuf;
+var fullString;
 //creates event listener when page loads
 //function triggers a settime out when eventlistener is triggered
-window.addEventListener('DOMContentLoaded', () =>{
+
+window.addEventListener('DOMContentLoaded', () => {
     let timeout;
     const searchBar = document.getElementById("search");
     searchBar.addEventListener('keydown', e =>{
@@ -24,7 +25,7 @@ function searchForBook(e) {
             return res.json();
         })//ready to use
         .then(json => {
-            somethingStuf = e.target.value;
+            fullString = e.target.value;
             clearPreviousResults();
             appendResults(json);
             console.log(json);
@@ -42,7 +43,7 @@ function clearPreviousResults(){
 //displays results// need to style more// how to use partial?
 function appendResults(jsonData) {
 
-    var viewSearchResultLink = buildQueryString(somethingStuf);
+    var viewSearchResultLink = buildQueryString(fullString);
     var listMain = document.createElement('ul');
     listMain.setAttribute("style", "list-style: none")
     searchNode.append(listMain);
@@ -53,7 +54,6 @@ function appendResults(jsonData) {
     for(let i=0;  i < listSize; i++){
         var listElement = document.createElement('li');
         listElement.className = "search-bar-list"
-        // listElement.setAttribute("style", "color:black; border: 1px solid blue;")
         var linkTag = document.createElement('a');
 
         linkTag.href = `/books/${jsonData[i].id}`;
@@ -67,7 +67,7 @@ function appendResults(jsonData) {
             var lastList = document.createElement('li');
             var lastLink = document.createElement('a');
             lastLink.href = `${viewSearchResultLink}`;
-            lastLink.innerText = `Click to View More`;
+            lastLink.innerText = `See all results for "${fullString}"`;
 
             lastList.append(lastLink);
 

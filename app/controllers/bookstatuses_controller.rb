@@ -61,6 +61,10 @@ class BookstatusesController < ApplicationController
     redirect_to reviews_path
   end
 
+  def status
+
+  end
+
 private
 
   def bookstatus_params
