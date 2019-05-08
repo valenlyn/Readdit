@@ -31,9 +31,6 @@ Rails.application.routes.draw do
   get '/users/:user_id/books/new' => 'books#create', as: 'new_customer_books'
   post '/users/:user_id/books' => 'books#create'
 
-  # REVIEWS
-
-
-
+  # post '/status/:status' => 'bookstatuses#status'
 
 end

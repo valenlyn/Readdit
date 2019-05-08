@@ -1,5 +1,5 @@
 <div class="row d-flex justify-content-center">
-	<div class="col-2">
+	<div class="col-3">
 		<h2> My books </h2>
 		<ul>
 			<li><a class="booklist" href=<%= "#{booklists_path}" %>>All books</a></li>
@@ -18,8 +18,14 @@
 
 			<% end %>
 			<ul>
+
 				<% @booklists.each do |booklist| %>
-						<li><a href=<%= "#{booklists_path}?sort=#{booklist.id}" %>><%= booklist.booklist_type %></a></li>
+						<li>
+							<a href=<%= "#{booklists_path}?sort=#{booklist.id}" %>><%= booklist.booklist_type %></a>
+
+							<%= link_to '❌',booklist_path(booklist), method: :delete, data: { confirm: 'Do you really want to delete this?'} %>
+						</li>
+
 				<% end %>
 			</ul>
 	</div>

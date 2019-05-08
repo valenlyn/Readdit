@@ -34,9 +34,9 @@ class BooklistsController < ApplicationController
   end
 
   def edit
-    @users = User.all
-    @books = Book.all
-    @booklists = Booklist.find(params[:id])
+    # @users = User.all
+    # @books = Book.all
+    # @booklists = Booklist.find(params[:id])
 
   end
 
@@ -46,7 +46,7 @@ class BooklistsController < ApplicationController
     if @booklist.save
       redirect_to booklists_path
     else
-      render plain: 'booklist not added created'
+      render plain: 'booklist not created'
     end
   end
 
@@ -55,7 +55,6 @@ class BooklistsController < ApplicationController
 
     @booklist.update(booklist_params)
     redirect_to @booklist
-
   end
 
   def destroy
@@ -63,7 +62,7 @@ class BooklistsController < ApplicationController
 
     @booklist.destroy
 
-    redirect_to root_path
+    redirect_to @booklist
   end
 
   def show
@@ -74,6 +73,6 @@ class BooklistsController < ApplicationController
 private
 
   def book_params
-    params.require(:booklist).permit(:user_id, :booklist_type, :book_ids =>[])
+    params.require(:booklist).permit(:user_id, :booklist_type)
   end
 end
