@@ -37,7 +37,7 @@
 					<td><a href=<%=book_path(book)%> ><%= book.title %>
 						</a></td>
 					<td><%= book.author %></td>
-					<td><%= render partial: 'bookstatuses/hi' , locals: { helpme: book } %>
+					<td><%= render partial: 'bookstatuses/readstatus' , locals: { helpme: book } %>
 					</td>
 				</tr>
 				<% end %>

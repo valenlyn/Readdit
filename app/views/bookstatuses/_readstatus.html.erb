@@ -6,17 +6,10 @@
 	  <option value="3">Read</option>
 	</select>
 
-	<p>
 	<%= form.hidden_field :user_id, value: current_user.id %>
-	</p>
 
-	<% if helpme.class == Review %>
-		<%= form.hidden_field :book_id, value: helpme.book.id %>
-	<% elsif helpme.class == Book %>
-		<%= form.hidden_field :book_id, value: helpme.id %>
-	<% end %>
+	<%= form.hidden_field :book_id, value: helpme.id %>
 
-  <p>
 	<%= form.submit %>
-  </p>
+
 <% end %>
