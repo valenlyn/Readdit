@@ -55,7 +55,6 @@ class BooklistsController < ApplicationController
 
     @booklist.update(booklist_params)
     redirect_to @booklist
-
   end
 
   def destroy

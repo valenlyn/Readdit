@@ -1,5 +1,5 @@
 body {
-	background-color: pink;
+	background-color: white;
 }
 
 .grey-text, .star-color-2 {
@@ -69,5 +69,12 @@ a:hover {
 }
 
 .booklist {
-	font-size: 50px;
+	background-color: pink;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+li {
+	list-style: none;
+	margin: 18px;
 }
