@@ -27,6 +27,9 @@ gem 'devise'
 gem "bootstrap", "~> 4.3.1"
 gem 'jquery-rails'
 
+# Use FontAwesome for icons
+gem 'font-awesome-sass', '~> 5.8.1'
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
