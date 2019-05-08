@@ -1,7 +1,7 @@
 <div class="row d-flex justify-contents-center">
 	<div class="col-3">
 		<%= image_tag "#{@book.image_url}" %> <br>
-		<%= render partial: 'bookstatuses/readstatus' , locals: { helpme: @book }  %>
+		<%= render partial: 'bookstatuses/readstatus' , locals: { object: @book }  %>
 	</div>
 	<div class="col-5">
 		<h4><%= @book.title %></h4>

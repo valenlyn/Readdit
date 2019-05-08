@@ -1,14 +1,14 @@
 var searchNode = document.getElementById("search-results");
 //creates event listener when page loads
 //function triggers a settime out when eventlistener is triggered
-window.onload = () =>{
+window.addEventListener('DOMContentLoaded', () => {
     let timeout;
     const searchBar = document.getElementById("search");
     searchBar.addEventListener('keydown', e =>{
         if (timeout) clearTimeout(timeout);
         timeout = setTimeout(() => {searchForBook(e)}, 500);
     })
-}
+})
 //passes in e?
 //fetches at route /find/:params
 function searchForBook(e) {
@@ -45,7 +45,7 @@ function appendResults(jsonData) {
 
     for(let i=0; i < jsonData.length; i++){
         var listElement = document.createElement('li');
-        listElement.setAttribute("style", "color:black; border: 1px solid blue;")
+        // listElement.setAttribute("style", "color:black; border: 1px solid blue;")
         var linkTag = document.createElement('a');
 
         // linkTag.href = `/book/${jsonData[i].id}`;
