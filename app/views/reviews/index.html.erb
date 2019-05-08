@@ -72,7 +72,7 @@
 					<!-- Only show edit and delete functions to current logged in user, with Devise -->
 
 					<% if current_user == review.user %>
-						<a href="#" class="edit-review" id=<%= @idUnqiue %>>✏️</a>
+						<p class="edit-review" id=<%= @idUnqiue %>>✏️</p>
 						<%= form_with scope: :review, model: @review, local:true do |form| %>
 						<input type="text" style="display:none" name="review[reviews]" autofocus id=<%= @idTextBox %>>
 						<input type="submit" style="display:none" value="update" id=<%= @idButton %>>
