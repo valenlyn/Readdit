@@ -14,7 +14,6 @@ class BookstatusesController < ApplicationController
 
   def create
     @bookstatus = Bookstatus.new(bookstatus_params)
-
     if @bookstatus.save
       render plain: 'yay'
     else
@@ -35,6 +34,10 @@ class BookstatusesController < ApplicationController
 
     @bookstatus.update(bookstatus_params)
     redirect_to reviews_path
+  end
+
+  def status
+
   end
 
 private
