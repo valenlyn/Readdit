@@ -42,16 +42,19 @@ function appendResults(jsonData) {
     var listMain = document.createElement('ul');
     listMain.setAttribute("style", "list-style: none")
     searchNode.append(listMain);
-
-    for(let i=0; i < jsonData.length; i++){
+    var listSize = 5;
+    if(jsonData.length < listSize){
+        listSize = jsonData.length;
+    }
+    for(let i=0;  i < listSize; i++){
         var listElement = document.createElement('li');
         listElement.setAttribute("style", "color:black; border: 1px solid blue;")
         var linkTag = document.createElement('a');
 
-        // linkTag.href = `/book/${jsonData[i].id}`;
-        listElement.innerText = `${jsonData[i].title} by ${jsonData[i].author}`;
+        linkTag.href = `/books/${jsonData[i].id}`;
+        linkTag.innerText = `${jsonData[i].title} by ${jsonData[i].author}`;
 
-        // listElement.innerText = linkTag;
+        listElement.append(linkTag);
 
         listMain.append(listElement);
     }
