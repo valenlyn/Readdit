@@ -1,11 +1,14 @@
 <div class="col-11 padding0">
-		<%= form_tag(books_path, method: "get" ) do %>
-		<input id="search" type="text" class="form-control" name="search" placeholder="What are you reading next?">
-	  <%= submit_tag 'Search' %>
-		<% end %>
 
-		<div id="search-results">
+		<%= form_tag(books_path, method: "get" ) do %>
+			<input  id="search" type="text" class="form-control search-form" name="search" placeholder="What are you reading next?">
+  		<%= submit_tag 'Search', class:"btn btn-primary", type:"submit"%>
+		<% end %>
+		<div id="search-results" class="column d-flex">
 		</div>
+
+
+
 
 		<h2>Reviews </h2>
 
@@ -25,12 +28,6 @@
 	  <br>
 
 	  <% @reviews.each.with_index do |review, index| %>
-	  	<% indexNow = index+1 %>
-	  	<% @idUnqiue = 'review_' + indexNow.to_s %>
-	  	<% @idTextBox = 'edit_review_' + indexNow.to_s %>
-	  	<% @idButton = 'edit_button_' + indexNow.to_s %>
-
-
 	   	<div class="row">
 		   	<div class="col-3 d-flex justify-content-center">
 		   		<img height="200px" src=<%= review.book.image_url %>>
@@ -87,15 +84,19 @@
 					<!-- Only show edit and delete functions to current logged in user, with Devise -->
 
 					<% if current_user == review.user %>
-						<p class="edit-review" id=<%= @idUnqiue %>>✏️</p>
-						<%= form_with scope: :review, model: @review, local:true do |form| %>
-						<input type="text" style="display:none" name="review[reviews]" autofocus id=<%= @idTextBox %>>
-						<input type="submit" style="display:none" value="update" id=<%= @idButton %>>
 
-						<% end %>
+					<% indexNow = index+1 %>
+	<% idUnqiue = 'review_' + indexNow.to_s %>
+<% idTextBox = 'edit_review_' + indexNow.to_s %>
+<% idButton = 'edit_button_' + indexNow.to_s %>
+	  				<div class="row ml-1">
+							<div class="edit-review" id=<%= idUnqiue %>>✏️</div>
 
-						<%= link_to '✏️', edit_review_path(review) %>
-						<%= link_to '❌',review_path(review), method: :delete, data: { confirm: 'Do you really want to delete this?'} %>
+							<%= link_to '❌',review_path(review), method: :delete, data: { confirm: 'Do you really want to delete this?'} %>
+
+						</div>
+						<% indexNow = index+1 %>
+						<%= render partial: 'reviews/hidden_edit' , locals: {object: review, indexNum: indexNow } %>
 					<% else %>
 					<% end %>
 					<%= render partial: 'bookstatuses/readstatus' , locals: { object: review.book }  %>

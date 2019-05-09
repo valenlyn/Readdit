@@ -162,8 +162,9 @@ ul {
 
 }
 
-.search-bar-item > a{
-	order: 2;
+.search-item{
+	background-color:#F3F1EE;
+	border: 1px solid grey;
 }
 
 .search-bar-list {
@@ -191,6 +192,15 @@ ul {
 	height: 70px;
 }
 
+
+.edit-review:hover{
+	cursor: pointer;
+}
+
+.search-form{
+
+}
+
 .padding0 {
 	padding: 0 !important;
 	margin: 0 !important;
@@ -206,4 +216,5 @@ ul {
 	font-weight: 700;
 	font-size: $secondary-nav-font-size;
 	margin: 0px;
+
 }

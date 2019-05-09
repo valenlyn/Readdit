@@ -7,6 +7,7 @@ class BooksController < ApplicationController
     p params
     @book = Book.search_by_title(params[:title])
     @book = @book.paginate(:page => params[:page])
+
     respond_to do |format|
       format.json do
         render json: @book.to_json

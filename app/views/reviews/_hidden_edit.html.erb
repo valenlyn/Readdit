@@ -1,0 +1,18 @@
+<% p 'hello' %>
+<% p indexNum %>
+<% p object %>
+<% p current_user.id %>
+
+
+<% indexNow = indexNum %>
+<% idUnqiue = 'review_' + indexNow.to_s %>
+<% idTextBox = 'edit_review_' + indexNow.to_s %>
+<% idButton = 'edit_button_' + indexNow.to_s %>
+
+
+<%= form_with scope: :review, model: @review, local:true do |form| %>
+	<input type="text" style="display:none" name="reviews" autofocus id=<%= idTextBox %>>
+	<%= form.hidden_field :user_id, value: current_user.id %>
+	<%= form.hidden_field :book_id, value: object.book_id %>
+	<input type="submit" style="display:none" value="update" id=<%= idButton %>>
+<% end %>

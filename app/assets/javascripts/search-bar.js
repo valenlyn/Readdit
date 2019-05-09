@@ -45,11 +45,16 @@ function clearPreviousResults(){
     }
 }
 // <div>
-//     <a>
+//      <div>
+        // <a>
 //       <img src="#">
+        // </a>
+     // </div>
 //       <div>
+//          <a>
 //           <div>title</div>
 //           <div>by athor</div>
+//          </a>
 //       </div>
 //      </a>
 // </div>
@@ -71,25 +76,37 @@ function searchElementsCreator(jsonData){
         var authorDiv = document.createElement('div');
         var innerDiv = document.createElement('div');
         var imgElement = document.createElement('img');
-        var linkElement = document.createElement('a');
+        var imgDiv = document.createElement('div');
+        var linkElementImg = document.createElement('a');
+        var linkElementDetails = document.createElement('a');
         var outerDiv = document.createElement('div');
 
-        linkElement.href=`/books/${jsonData[i].id}`; // <a> tag
+        linkElementImg.href=`/books/${jsonData[i].id}`; // <a> tag
 
         imgElement.src=`${jsonData[i].image_url}`; //img link tag
         imgElement.className = "search-bar-img";
 
+        linkElementImg.append(imgElement);
+        imgDiv.append(linkElementImg);
+
+        ////////////
+
         titleDiv.innerText = `${jsonData[i].title}`;
         authorDiv.innerText = `by ${jsonData[i].author}`;
 
-        innerDiv.append(titleDiv);
-        innerDiv.append(authorDiv);
+        linkElementDetails.href =`/books/${jsonData[i].id}`;
 
-        linkElement.append(imgElement);
-        linkElement.append(innerDiv);
+        linkElementDetails.append(titleDiv);
+        linkElementDetails.append(authorDiv);
 
-        outerDiv.append(linkElement);
-        outerDiv.className = "search-bar-item";
+        innerDiv.append(linkElementDetails);
+
+        outerDiv.append(imgDiv);
+        outerDiv.append(innerDiv);
+
+        outerDiv.className = "d-flex justify-content-start p-1 search-item"
+        imgDiv.className = "mr-2";
+        innerDiv.className = "ml-2";
 
         searchContainerDiv.append(outerDiv);
 
@@ -99,9 +116,7 @@ function searchElementsCreator(jsonData){
             lastLink.href = `${viewSearchResultLink}`;
             lastLink.innerText = `See all results for "${fullString}"`;
 
-            outerDiv.append(lastLink);
-
-            searchContainerDiv.append(outerDiv);
+            searchContainerDiv.append(lastLink);
         }
     }
 }

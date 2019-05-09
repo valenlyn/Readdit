@@ -4,7 +4,7 @@ console.log('gello')
 
 window.addEventListener('DOMContentLoaded', () =>{
     document.querySelectorAll('.edit-review').forEach((item,index) => {
-        // console.log(index)
+
         item.addEventListener('click', ()=>{
             showEditForm(index+1)
         });
@@ -12,10 +12,8 @@ window.addEventListener('DOMContentLoaded', () =>{
     })
 })
 
-
-
 function showEditForm(indexOnPage){
-    console.log('hi');
+    console.log(indexOnPage);
     // console.log(e.target);
     var idUnique = `review_` + indexOnPage;
     var editFormId = `edit_review_` + indexOnPage;
