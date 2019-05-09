@@ -22,7 +22,6 @@
 					<th colspan="2">Book Image</th>
 					<th>Title</th>
 					<th>Author</th>
-					<th>Description</th>
 					<th>Status</th>
 					<th colspan="2"></th>
 				</tr>
@@ -38,8 +37,6 @@
 						<a href=<%=book_path(book)%>> <%= book.title %> </a>
 					</td>
 					<td><%= book.author %></td>
-
-					<th><%= book._description %></th>
 
 					<td><%= render partial: 'bookstatuses/readstatus' , locals: { object: book } %>
 
