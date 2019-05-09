@@ -1,0 +1,53 @@
+<p>HeLLO CUP </p>
+
+<!-- Part 1:
+Create dropdown list which is a form.
+Users can choose 3 status
+
+if choose 'want', status = 1;
+dropdown button shows current status,
+drops down to status 2 & 3.
+
+if choose 'currently', status = 2;
+dropdown button shows current status,
+drops down to status 1 & 3.
+
+if choose 'read', status =3;
+dropdown button shows current status,
+drops down to status 1 & 2.
+Prompts user to write review.
+
+Part 2:
+Dropdown displays other booklists user has created.
+Booklist drop down is a checkbox form.  -->
+<br>
+<%= book.title %>
+<br>
+<br>
+<%= user.id %>
+<br>
+<br>
+<% if book.bookstatuses.length == 0 %>
+no status
+<% elsif book.bookstatuses.read_status == 1 %>
+want to read
+<% elsif book.bookstatuses.read_status == 2 %>
+currently reading
+<% end %>
+
+<div class="btn-group current-user" id=<%= user.id %>>
+  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Want to Read
+  </button>
+  <% if book.bookstatuses.length == 0 %>
+  <div class="dropdown-menu">
+
+    	<button class="dropdown-item" id="drop-down-button" type="button" value="1">Want to Read</button>
+    	<button class="dropdown-item" id="drop-down-button" type="button" value="2">Currently Reading</button>
+    	<button class="dropdown-item" id="drop-down-button" type="button" value="3">Read</button>
+
+  </div>
+  <% elsif book.bookstatuses.read_status == 1 %>
+  Sup man you submit?
+  <% end %>
+</div>

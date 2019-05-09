@@ -6,6 +6,12 @@ Rails.application.routes.draw do
   root 'reviews#index'
   get 'find/:title' => 'books#find'
 
+  #individual book add read status
+  post '/bookstatuses/:user_id/:book_id/:read_status' => 'bookstatuses#book_create'
+
+
+
+
 
   # BOOKS
   # get '/books' => 'books#index', as: 'books'
