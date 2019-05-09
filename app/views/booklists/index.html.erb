@@ -21,8 +21,7 @@
 				<% @booklists.each do |booklist| %>
 						<li>
 							<a class="booklist-custom" href=<%= "#{booklists_path}?sort=#{booklist.id}" %>><%= booklist.booklist_type %></a>
-
-							<%= link_to '❌',booklist_path(booklist), method: :delete, data: { confirm: 'Do you really want to delete this?'} %>
+							<a data-confirm="Do you really want to delete this?" rel="nofollow" data-method="delete" href=<%= booklist_path(booklist) %>><i class="fas fa-trash-alt"></i></a>
 						</li>
 
 				<% end %>

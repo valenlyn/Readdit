@@ -1,18 +1,43 @@
-<%= form_with(scope: :booklists, url: booklists_path, local: true) do |form| %>
+<div class="btn-group">
+  <button type="button" class="btn btn-danger">Read</button>
+  <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
 
-  <%= form.label "My lists:" %><br>
-  <% if @booklists[0] %>
-	<% @booklists.each do |booklist| %>
-		<input type="checkbox"> <%= booklist.booklist_type %> <br>
-	<% end %>
-  <% else %>
-  <% end %>
+  <div class="dropdown-menu">
 
 
 
-	<%= form.hidden_field :user_id, value: current_user.id %>
+  	<%= form_with(scope: :bookstatus, url: bookstatuses_path, local: true) do |form| %>
+			<%= form.hidden_field :user_id, value: current_user.id %>
+			<%= form.hidden_field :book_id, value: object.id %>
+	    <a class="dropdown-item" href="#">Want to read</a>
+    <a class="dropdown-item" href="#">Currently reading</a>
+    <a class="dropdown-item" href="#">Read</a>
+    <% end %>
 
-	<%= form.hidden_field :book_id, value: object.id %>
 
 
-<% end %>
+    <div class="dropdown-divider"></div>
+
+
+
+		<%= form_with(scope: :booklists, url: booklists_path, local: true) do |form| %>
+
+			  <% if @booklists[0] %>
+
+					<% @booklists.each do |booklist| %>
+
+					<div class="dropdown-item"><input type="checkbox">  <%= booklist.booklist_type %> <br></div>
+				<% end %>
+			  <% else %>
+			  <% end %>
+
+			<%= form.hidden_field :user_id, value: current_user.id %>
+			<%= form.hidden_field :book_id, value: object.id %>
+
+		<% end %>
+
+
+  </div>
+</div>
