@@ -16,7 +16,7 @@ nav {
 	font-size: 50px;
 	display: flex;
 	background-color: $quinary-color;
-	width: 101px;
+	width: 116px;
 	height: 100%;
 	margin: 0px;
 }
@@ -31,6 +31,10 @@ a:hover, nav {
 
 i {
 	margin: 15px 10px 14px 10px;
+}
+
+select {
+	background-color: $quinary-color;
 }
 
 .grey-text, .star-color-2 {
