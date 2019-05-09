@@ -1,27 +1,55 @@
-<div class="row d-flex justify-contents-center">
-	<div class="col-3">
-		<%= image_tag "#{@book.image_url}" %> <br>
-		<%= render partial: 'bookstatuses/readstatus' , locals: { object: @book }  %>
-	</div>
-	<div class="col-5">
-		<h4><%= @book.title %></h4>
-		<%= @book.author %>
-		<br><br>
-
-		<%= @book._description %>
-
+<div class="container">
+	<div class="row">
+		<div class="col-4">
+			<%= image_tag "#{@book.image_url}", :class => 'imgs' %>
+			<%= render partial: 'bookstatuses/readstatus' , locals: { object: @book }  %>
+		</div>
+		<div class="col-8">
+			<h4>
+				<%= @book.title %>
+			</h4>
+			<h4>
+				<%= @book.author %>
+			</h4>
+			<p>
+				<%= @book._description %>
+			</p>
 	</div>
 </div>
 
-
+<hr>
 
 <% if @book.reviews[0] == nil %>
 <p>Read the book? Add a review here!</p>
 <%= link_to 'Add a Review', new_review_path %>
 <% else %>
 <% @book.reviews.each_with_index do |review, index| %>
+
+<%= review.user.username %> rated it
+<% if review.rating == 5 %>
+	<span class="star-color">★★★★★</span>
+<% elsif review.rating == 4 %>
+	<span class="star-color">★★★★</span><span class="star-color-2">★</span>
+<% elsif review.rating == 3 %>
+	<span class="star-color">★★★</span><span class="star-color-2">★★</span>
+<% elsif review.rating == 2 %>
+	<span class="star-color">★★</span><span class="star-color-2">★★★</span>
+<% else %>
+	<span class="star-color">★</span><span class="star-color-2">★★★★</span>
+<% end %>
+
 <p>
-<%= review.reviews %>
+	<%= review.reviews %>
 </p>
+
+<p>
+	<%= review.created_at.in_time_zone('Singapore').strftime('%d %B %Y %I:%M %p') %>
+</p>
+
+<% if current_user == review.user %>
+	<%= link_to '✏️', edit_review_path(review) %>
+	<%= link_to '❌',review_path(review), method: :delete, data: { confirm: 'Do you really want to delete this?'} %><br>
+<% end %>
+
 <% end %>
 <% end %>
