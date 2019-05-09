@@ -1,14 +1,13 @@
-<%= form_tag(books_path, method: "get" ) do %>
-	<input  id="search" type="text" class="form-control" name="search" placeholder="What are you reading next?">
-  <%= submit_tag 'Search' %>
-<% end %>
-<div id="search-results">
-
-</div>
-
-
 <div class="row d-flex justify-content-center">
-	<div class="col-9">
+	<div class="col-3">
+		<%= form_tag(books_path, method: "get" ) do %>
+			<input  id="search" type="text" class="form-control search-form" name="search" placeholder="What are you reading next?">
+  		<%= submit_tag 'Search', class:"btn btn-primary", type:"submit"%>
+		<% end %>
+		<div id="search-results" class="column d-flex">
+		</div>
+	</div>
+	<div class="col-8">
 
 		<h2> Reviews </h2>
 
@@ -30,12 +29,6 @@
 
 
 	  <% @reviews.each.with_index do |review, index| %>
-	  	<% indexNow = index+1 %>
-	  	<% @idUnqiue = 'review_' + indexNow.to_s %>
-	  	<% @idTextBox = 'edit_review_' + indexNow.to_s %>
-	  	<% @idButton = 'edit_button_' + indexNow.to_s %>
-
-
 	   	<div class="row">
 		   	<div class="col-3 d-flex justify-content-center">
 		   		<img height="200px" src=<%= review.book.image_url %>>
@@ -72,14 +65,20 @@
 					<!-- Only show edit and delete functions to current logged in user, with Devise -->
 
 					<% if current_user == review.user %>
-						<p class="edit-review" id=<%= @idUnqiue %>>✏️</p>
-						<%= form_with scope: :review, model: @review, local:true do |form| %>
-						<input type="text" style="display:none" name="review[reviews]" autofocus id=<%= @idTextBox %>>
-						<input type="submit" style="display:none" value="update" id=<%= @idButton %>>
 
+						<% indexNow = index+1 %>
+	  				<% idUnqiue = 'review_' + indexNow.to_s %>
+	  				<% idTextBox = 'edit_review_' + indexNow.to_s %>
+	  				<% idButton = 'edit_button_' + indexNow.to_s %>
+
+						<div class="edit-review" id=<%= idUnqiue %>>✏️</div>
+						<%= form_with scope: :review, model: @review, local:true do |form| %>
+							<input type="text" style="display:none" name="review[reviews]" autofocus id=<%= idTextBox %>>
+							<%= form.hidden_field :user_id, value: current_user.id %>
+							<%= form.hidden_field :book_id, value: review.book.id %>
+							<input type="submit" style="display:none" value="update" id=<%= idButton %>>
 						<% end %>
 
-						<%= link_to '✏️', edit_review_path(review) %>
 						<%= link_to '❌',review_path(review), method: :delete, data: { confirm: 'Do you really want to delete this?'} %>
 					<% else %>
 					<% end %>
