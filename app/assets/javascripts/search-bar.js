@@ -19,22 +19,22 @@ window.addEventListener('DOMContentLoaded', () => {
 //passes in e?
 //fetches at route /find/:params
 function searchForBook(e) {
-
+    console.log(e.target.value)
     fetch(`/find/${e.target.value}`, {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         }
     })//callback response? returns a json object
-        .then(res =>{
-            return res.json();
-        })//ready to use
-        .then(json => {
-            fullString = e.target.value;
-            clearPreviousResults();
-            searchElementsCreator(json);
-            console.log(json);
-        });
+    .then(res =>{
+        return res.json();
+    })//ready to use
+    .then(json => {
+        fullString = e.target.value;
+        clearPreviousResults();
+        searchElementsCreator(json);
+        console.log(json);
+    });
 }
 
 
