@@ -41,8 +41,6 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    p "ORRR am i here?"
-    p params
     @review = Review.find(params[:id])
   end
 

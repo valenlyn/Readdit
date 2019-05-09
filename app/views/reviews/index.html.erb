@@ -66,20 +66,18 @@
 
 					<% if current_user == review.user %>
 
+					<% indexNow = index+1 %>
+	<% idUnqiue = 'review_' + indexNow.to_s %>
+<% idTextBox = 'edit_review_' + indexNow.to_s %>
+<% idButton = 'edit_button_' + indexNow.to_s %>
+	  				<div class="row ml-1">
+							<div class="edit-review" id=<%= idUnqiue %>>✏️</div>
+
+							<%= link_to '❌',review_path(review), method: :delete, data: { confirm: 'Do you really want to delete this?'} %>
+
+						</div>
 						<% indexNow = index+1 %>
-	  				<% idUnqiue = 'review_' + indexNow.to_s %>
-	  				<% idTextBox = 'edit_review_' + indexNow.to_s %>
-	  				<% idButton = 'edit_button_' + indexNow.to_s %>
-
-						<div class="edit-review" id=<%= idUnqiue %>>✏️</div>
-						<%= form_with scope: :review, model: @review, local:true do |form| %>
-							<input type="text" style="display:none" name="review[reviews]" autofocus id=<%= idTextBox %>>
-							<%= form.hidden_field :user_id, value: current_user.id %>
-							<%= form.hidden_field :book_id, value: review.book.id %>
-							<input type="submit" style="display:none" value="update" id=<%= idButton %>>
-						<% end %>
-
-						<%= link_to '❌',review_path(review), method: :delete, data: { confirm: 'Do you really want to delete this?'} %>
+						<%= render partial: 'reviews/hidden_edit' , locals: {object: review, indexNum: indexNow } %>
 					<% else %>
 					<% end %>
 					<%= render partial: 'bookstatuses/readstatus' , locals: { object: review.book }  %>

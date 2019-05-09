@@ -158,8 +158,9 @@ ul {
 
 }
 
-.search-bar-item > a{
-	order: 2;
+.search-item{
+	background-color:#F3F1EE;
+	border: 1px solid grey;
 }
 
 .search-bar-list {
@@ -187,14 +188,15 @@ ul {
 	height: 70px;
 }
 
-<<<<<<< HEAD
+
 .edit-review:hover{
 	cursor: pointer;
 }
 
 .search-form{
-	cursor: progress;
-=======
+
+}
+
 .padding0 {
 	padding: 0 !important;
 	margin: 0 !important;
@@ -210,5 +212,5 @@ ul {
 	font-weight: 700;
 	font-size: $secondary-nav-font-size;
 	margin: 0px;
->>>>>>> 958e927e1892ab966e1be215cdaf2f2f92ca47db
+
 }
