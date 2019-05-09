@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', () =>{
 })
 
 function showEditForm(indexOnPage){
-    console.log(indexOnPage);
+    // console.log(indexOnPage);
     // console.log(e.target);
     var idUnique = `review_` + indexOnPage;
     var editFormId = `edit_review_` + indexOnPage;
