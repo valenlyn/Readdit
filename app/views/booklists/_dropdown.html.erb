@@ -2,6 +2,7 @@
 
 	<% if readstatus == 1 %>
 		 <button type="button" class="btn btn-success">Want to read</button>
+		 <% stylename = "testing" %>
 	<% elsif readstatus == 2 %>
 		 <button type="button" class="btn btn-success">Currently reading</button>
 	<% elsif readstatus == 3 %>
@@ -22,8 +23,8 @@
 			<%= form.hidden_field :user_id, value: current_user.id %>
 			<%= form.hidden_field :book_id, value: object.id %>
 	    <a class="dropdown-item" href="#">Want to read</a>
-    <a class="dropdown-item" href="#">Currently reading</a>
-    <a class="dropdown-item" href="#">Read</a>
+	    <a class="dropdown-item" href="#">Currently reading</a>
+	    <a class="dropdown-item" href="#">Read</a>
     <% end %>
 
 
