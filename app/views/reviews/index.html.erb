@@ -1,10 +1,11 @@
 <%= form_tag(books_path, method: "get" ) do %>
-	<input  id="search" type="text" class="form-control" name="search" placeholder="What are you reading next?">
+	<input id="search" type="text" class="form-control" name="search" placeholder="What are you reading next?">
   <%= submit_tag 'Search' %>
 <% end %>
-<div id="search-results">
 
+<div id="search-results">
 </div>
+
 
 
 <div class="row d-flex justify-content-center">
