@@ -1,22 +1,80 @@
 <div class="btn-group">
 
 	<% if readstatus == 1 %>
-		 <button type="button" class="btn btn-success">Want to read</button>
-		 <% stylename = "testing" %>
-	<% elsif readstatus == 2 %>
-		 <button type="button" class="btn btn-success">Currently reading</button>
-	<% elsif readstatus == 3 %>
-		 <button type="button" class="btn btn-success">Read</button>
-	<% else %>
-		 <button type="button" class="btn btn-danger">NOTHING SET</button>
-	<% end %>
+		 <button type="button" class="btn btn-secondary">Want to read</button>
 
-  <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <span class="sr-only">Toggle Dropdown</span>
-  </button>
+<!-- Beginning of stupidity -->
+
+		 <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    	<span class="sr-only">Toggle Dropdown</span>
+  	</button>
 
   <div class="dropdown-menu">
 
+
+  	<%= form_with(scope: :bookstatus, url: bookstatuses_path, local: true) do |form| %>
+			<%= form.hidden_field :user_id, value: current_user.id %>
+			<%= form.hidden_field :book_id, value: object.id %>
+	    <a class="dropdown-item" href="#">Currently reading</a>
+	    <a class="dropdown-item" href="#">Read</a>
+    <% end %>
+
+<!-- End of stupidity -->
+
+
+
+	<% elsif readstatus == 2 %>
+		 <button type="button" class="btn btn-secondary">Currently reading</button>
+
+<!-- Stupidity here we go again -->
+
+		 <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    	<span class="sr-only">Toggle Dropdown</span>
+  	</button>
+
+  <div class="dropdown-menu">
+
+
+  	<%= form_with(scope: :bookstatus, url: bookstatuses_path, local: true) do |form| %>
+			<%= form.hidden_field :user_id, value: current_user.id %>
+			<%= form.hidden_field :book_id, value: object.id %>
+	    <a class="dropdown-item" href="#">Want to read</a>
+	    <a class="dropdown-item" href="#">Read</a>
+    <% end %>
+
+<!-- End of stupidity -->
+
+	<% elsif readstatus == 3 %>
+		 <button type="button" class="btn btn-secondary">Read</button>
+
+<!-- Stupz stupid -->
+
+		 <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    	<span class="sr-only">Toggle Dropdown</span>
+  	</button>
+
+  <div class="dropdown-menu">
+
+
+  	<%= form_with(scope: :bookstatus, url: bookstatuses_path, local: true) do |form| %>
+			<%= form.hidden_field :user_id, value: current_user.id %>
+			<%= form.hidden_field :book_id, value: object.id %>
+	    <a class="dropdown-item" href="#">Want to read</a>
+	    <a class="dropdown-item" href="#">Currently reading</a>
+    <% end %>
+
+<!-- End of stupz -->
+
+	<% else %>
+		 <button type="button" class="btn btn-success">Want to read</button>
+
+<!-- Final act of stupidity -->
+
+		 <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    	<span class="sr-only">Toggle Dropdown</span>
+  	</button>
+
+  <div class="dropdown-menu">
 
 
   	<%= form_with(scope: :bookstatus, url: bookstatuses_path, local: true) do |form| %>
@@ -26,6 +84,11 @@
 	    <a class="dropdown-item" href="#">Currently reading</a>
 	    <a class="dropdown-item" href="#">Read</a>
     <% end %>
+
+<!-- End of stupidity -->
+	<% end %>
+
+
 
 
 
