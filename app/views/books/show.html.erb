@@ -7,12 +7,26 @@
 		</div>
 		<div class="col-8">
 
-			<h4>
+			<h3>
+
 				<%= @book.title %>
-			</h4>
-			<h4>
-				<%= @book.author %>
-			</h4>
+			</h3>
+			<h3>
+				by <%= @book.author %>
+			</h3>
+			<% if @avg_ratings == 5  %>
+				<span class="star-color">★★★★★</span>
+			<% elsif @avg_ratings >= 4 && @avg_ratings < 5 %>
+				<span class="star-color">★★★★</span><span class="star-color-2">★</span>
+			<% elsif @avg_ratings >= 3 && @avg_ratings < 4 %>
+				<span class="star-color">★★★</span><span class="star-color-2">★★</span>
+			<% elsif @avg_ratings >= 2 && @avg_ratings < 3 %>
+				<span class="star-color">★★</span><span class="star-color-2">★★★</span>
+			<% elsif @avg_ratings >= 1 && @avg_ratings < 2 %>
+				<span class="star-color">★</span><span class="star-color-2">★★★★</span>
+			<% end %>
+			<%= @avg_ratings.round(2) %> <br>
+			<%= @book.reviews.length %> reviews
 			<p>
 				<%= @book._description %>
 			</p>
@@ -20,40 +34,49 @@
 </div>
 
 <hr>
+<!--There are no reviews for this book OR user didn't add review for this book -->
+<% if @book.reviews[0] == nil || !@arr.include?(current_user.id) %>
+	<p>Read the book? Add a review here!</p>
+	<%= link_to 'Add a Review', new_review_path, :class => 'btn btn-secondary' %> <br>
+<% end %>
 
-<% if @book.reviews[0] == nil %>
-<p>Read the book? Add a review here!</p>
-<%= link_to 'Add a Review', new_review_path %>
-<% else %>
+<% if @book.reviews.length > 0 %>
+<h1>All Reviews</h1>
+<% end %>
+<!-- Iterates through 'reviews' arr and show their respective ratings -->
 <% @book.reviews.each_with_index do |review, index| %>
+<div class="border border-secondary">
+	<%= review.user.username %> rated it
+	<% if review.rating == 5 %>
+		<span class="star-color">★★★★★</span>
+	<% elsif review.rating == 4 %>
+		<span class="star-color">★★★★</span><span class="star-color-2">★</span>
+	<% elsif review.rating == 3 %>
+		<span class="star-color">★★★</span><span class="star-color-2">★★</span>
+	<% elsif review.rating == 2 %>
+		<span class="star-color">★★</span><span class="star-color-2">★★★</span>
+	<% else %>
+		<span class="star-color">★</span><span class="star-color-2">★★★★</span>
+	<% end %>
+	<p>
+		<%= review.reviews %>
+	</p>
+	<p>
+		<%= review.created_at.in_time_zone('Singapore').strftime('%d %B %Y %I:%M %p') %>
+	</p>
 
-<%= review.user.username %> rated it
-<% if review.rating == 5 %>
-	<span class="star-color">★★★★★</span>
-<% elsif review.rating == 4 %>
-	<span class="star-color">★★★★</span><span class="star-color-2">★</span>
-<% elsif review.rating == 3 %>
-	<span class="star-color">★★★</span><span class="star-color-2">★★</span>
-<% elsif review.rating == 2 %>
-	<span class="star-color">★★</span><span class="star-color-2">★★★</span>
-<% else %>
-	<span class="star-color">★</span><span class="star-color-2">★★★★</span>
-<% end %>
-
-<p>
-	<%= review.reviews %>
-</p>
-
-<p>
-	<%= review.created_at.in_time_zone('Singapore').strftime('%d %B %Y %I:%M %p') %>
-</p>
-
-<% if current_user == review.user %>
-	<%= link_to '✏️', edit_review_path(review) %>
-	<%= link_to '❌',review_path(review), method: :delete, data: { confirm: 'Do you really want to delete this?'} %><br>
-<% end %>
 
 <% end %>
 <% end %>
 
-<script type="text/javascript" src="/assets/testDrop"></script>
+
+
+	<% if current_user == review.user %>
+		<%= link_to 'Edit your Review', edit_review_path(review), :class => 'btn btn-secondary' %>
+		<%= link_to 'Delete your Review',review_path(review), method: :delete, data: { confirm: 'Do you really want to delete this?'}, :class => 'btn btn-danger' %><br>
+	<% end %>
+</div>
+<!-- The following end is for the loop -->
+<% end %>
+
+  <script type="text/javascript" src="/assets/testDrop"></script>
