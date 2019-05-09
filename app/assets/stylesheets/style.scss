@@ -3,6 +3,10 @@ $secondary-color: #dec8c1;
 $tertiary-color: #ede2d5;
 $quaternary-color: #f4eee9;
 $quinary-color: #f3f1ee;
+$action-color: #green;
+
+
+$secondary-nav-font-size: 20px;
 
 body {
 	background-color: white;
@@ -12,7 +16,8 @@ nav {
 	font-size: 50px;
 	display: flex;
 	background-color: $quinary-color;
-	width: 80px;
+	width: 101px;
+	height: 100%;
 }
 
 a, nav {
@@ -95,25 +100,27 @@ a:hover {
 .booklist {
 	background-color: $primary-color;
 	padding: 10px;
-	border-radius: 5px;
+	// border-radius: 5px;
 	color: black;
 	display: inline-block;
 	width: 75%;
 	height: 95%;
-	margin: 3px;
 	font-weight: 700;
+	font-size: $secondary-nav-font-size;
+	margin: 0px;
 }
 
 .booklist-custom {
 	background-color: $secondary-color;
 	padding: 10px;
-	border-radius: 5px;
+	// border-radius: 5px;
 	color: black;
 	display: inline-block;
 	width: 75%;
 	height: 95%;
-	margin: 3px;
 	font-weight: 700;
+	font-size: $secondary-nav-font-size;
+	margin: 0px;
 }
 
 .booklist:hover {
@@ -132,7 +139,13 @@ li {
 }
 
 ul {
-	padding: 15px;
+	padding: 0px;
+	margin: 0px;
+}
+
+#search {
+	background-color: $quaternary-color;
+	border: none;
 }
 
 #search-results{
@@ -171,4 +184,21 @@ ul {
 .search-bar-img {
 	width: 52px;
 	height: 70px;
+}
+
+.padding0 {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+#show-input {
+	background-color: $action-color;
+	padding: 10px;
+	// border-radius: 5px;
+	color: black;
+	display: inline-block;
+	width: 75%;
+	font-weight: 700;
+	font-size: $secondary-nav-font-size;
+	margin: 0px;
 }
