@@ -22,7 +22,7 @@
 			<% elsif @avg_ratings >= 1 && @avg_ratings < 2 %>
 				<span class="star-color">★</span><span class="star-color-2">★★★★</span>
 			<% end %>
-			<%= @avg_ratings %> <br>
+			<%= @avg_ratings.round(2) %> <br>
 			<%= @book.reviews.length %> reviews
 			<p>
 				<%= @book._description %>
