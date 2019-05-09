@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :books, :booklists, :reviews, :bookstatuses
   root 'reviews#index'
   get 'find/:title' => 'books#find'
+
+
   # BOOKS
   # get '/books' => 'books#index', as: 'books'
   # get '/books/new' => 'books#new', as: 'new_book'
