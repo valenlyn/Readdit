@@ -45,10 +45,7 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    p "am i here?"
-    p params
-    p params[:id]
-    p params[:review]
+
     @review = Review.find(params[:id])
 
     @review.update(review_params)

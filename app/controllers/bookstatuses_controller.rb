@@ -45,6 +45,21 @@ class BookstatusesController < ApplicationController
         end
       end
   end
+  #ajax route to create new entry
+  def book_create
+    p 'NEW CREATE FOR INDIVIDUAL BOOKS'
+    #HOW TO ADD LIKE THAT
+    p 'IS THIS PARAMS?'
+    p params.inspect
+    p params.book_id;
+    p params.read_status;
+    p params.user_id;
+
+    # @bookstatus = Bookstatus.new(user_id: params.id,book_id: params.id, read_status: params.status)
+
+
+
+  end
 
   def show
 

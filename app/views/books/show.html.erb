@@ -1,11 +1,14 @@
-<div class="container">
+<div class="container book-id" id=<%= @book.id%>>
 	<div class="row">
 		<div class="col-4">
 			<%= image_tag "#{@book.image_url}", :class => 'imgs' %>
 			<%= render partial: 'bookstatuses/readstatus' , locals: { object: @book }  %>
+			<%= render partial: 'booklists/bookshow_dropdown' , locals: { book: @book , user: current_user}  %>
 		</div>
 		<div class="col-8">
+
 			<h3>
+
 				<%= @book.title %>
 			</h3>
 			<h3>
@@ -62,6 +65,12 @@
 		<%= review.created_at.in_time_zone('Singapore').strftime('%d %B %Y %I:%M %p') %>
 	</p>
 
+
+<% end %>
+<% end %>
+
+
+
 	<% if current_user == review.user %>
 		<%= link_to 'Edit your Review', edit_review_path(review), :class => 'btn btn-secondary' %>
 		<%= link_to 'Delete your Review',review_path(review), method: :delete, data: { confirm: 'Do you really want to delete this?'}, :class => 'btn btn-danger' %><br>
@@ -69,3 +78,5 @@
 </div>
 <!-- The following end is for the loop -->
 <% end %>
+
+  <script type="text/javascript" src="/assets/testDrop"></script>

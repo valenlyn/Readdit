@@ -104,12 +104,14 @@
 					<% idUnqiue = 'review_' + indexNow.to_s %>
 
 	  				<div class="row ml-1">
+	  					<!-- #edit button -->
 							<div class="edit-review" id=<%= idUnqiue %>>✏️</div>
 
 							<%= link_to '❌',review_path(review), method: :delete, data: { confirm: 'Do you really want to delete this?'} %>
 
 						</div>
 						<% indexNow = index+1 %>
+						<!-- renders edit form when button pressed -->
 						<%= render partial: 'reviews/hidden_edit' , locals: {object: review, indexNum: indexNow } %>
 					<% else %>
 					<% end %>

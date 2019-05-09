@@ -71,6 +71,7 @@ class BooksController < ApplicationController
   def show
     # find the book with the corresponding :id
     @book = Book.find(params[:id])
+
     arr = @book.reviews
     # render plain: arr[0].reviews
     # declare an array to store user_id of review(s)
@@ -82,6 +83,7 @@ class BooksController < ApplicationController
     end
     # Pass this to our show view
     @avg_ratings = add_ratings / @book.reviews.length
+
   end
 
 private
