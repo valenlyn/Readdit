@@ -24,8 +24,6 @@
 	  <br>
 	  <br>
 
-
-
 	  <% @reviews.each.with_index do |review, index| %>
 	  	<% indexNow = index+1 %>
 	  	<% @idUnqiue = 'review_' + indexNow.to_s %>
@@ -41,6 +39,26 @@
 		   	<div class="col-9">
 		   		<%= link_to "#{review.book.title}", book_path(review.book_id) %> <br>
 		   		<%= review.book.author %>
+
+
+		   		<span style="color: red"><%= collectionzx = review.book.bookstatuses.inspect %></span>
+
+		   		<% if review.book.bookstatuses %>
+
+		   			<% review.book.bookstatuses.map do |meep| %>
+		   				<% if meep.user_id == current_user.id %>
+
+		   				<span style="color: blue">
+		   					<%= "I want this info and I'm passing it to the partial" %>
+		   					<p>Read status: <%= meep.read_status %></p>
+		   					<p>User ID:<%= meep.user_id %></p>
+		   				</span>
+
+		   				<% else %>
+		   				<% end %>
+		   		<% end %>
+		   		<% end %>
+
 
 		   		<br><br>
 		   		<%= review.user.username %> rated it

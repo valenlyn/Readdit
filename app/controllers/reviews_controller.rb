@@ -19,6 +19,13 @@ class ReviewsController < ApplicationController
     @review = Review.first
     @booklists = Booklist.where(:user_id => current_user.id)
 
+
+
+
+
+
+
+
   end
 
   def new
