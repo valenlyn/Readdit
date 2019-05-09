@@ -16,8 +16,9 @@ class ReviewsController < ApplicationController
       # @test = @reviews.first
     end
 
-    @review = Review.first
+    # @review = Review.first
     @booklists = Booklist.where(:user_id => current_user.id)
+
 
   end
 
