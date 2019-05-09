@@ -40,20 +40,24 @@
 
 		   		<span style="color: red"><%= collectionzx = review.book.bookstatuses.inspect %></span>
 
-		   		<% if review.book.bookstatuses %>
+		   		<% if review.book.bookstatuses.first %>
 
 		   			<% review.book.bookstatuses.map do |meep| %>
 		   				<% if meep.user_id == current_user.id %>
 
 		   				<span style="color: blue">
 		   					<%= "I want this info and I'm passing it to the partial" %>
-		   					<p>Read status: <%= meep.read_status %></p>
-		   					<p>User ID:<%= meep.user_id %></p>
+		   					<!-- Recording read status... -->
+
+		   					<p>Read status: <%= @p_read_status = meep.read_status %></p>
+
 		   				</span>
 
 		   				<% else %>
 		   				<% end %>
-		   		<% end %>
+		   		  <% end %>
+		   		<% else %>
+		   			<% @p_read_status = -1 %>
 		   		<% end %>
 
 
@@ -99,7 +103,9 @@
 					<% else %>
 					<% end %>
 					<%= render partial: 'bookstatuses/readstatus' , locals: { object: review.book }  %>
-					<%= render partial: 'booklists/dropdown', locals: { object: review.book, list: @booklists} %>
+
+					<!-- Sending information to dropdown partial: Book, booklists, read status -->
+					<%= render partial: 'booklists/dropdown', locals: { object: review.book, list: @booklists, readstatus: @p_read_status } %>
 
 				</div>
 
