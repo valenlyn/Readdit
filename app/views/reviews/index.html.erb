@@ -1,17 +1,13 @@
-<%= form_tag(books_path, method: "get" ) do %>
-	<input id="search" type="text" class="form-control" name="search" placeholder="What are you reading next?">
-  <%= submit_tag 'Search' %>
-<% end %>
+<div class="col-11 padding0">
+		<%= form_tag(books_path, method: "get" ) do %>
+		<input id="search" type="text" class="form-control" name="search" placeholder="What are you reading next?">
+	  <%= submit_tag 'Search' %>
+		<% end %>
 
-<div id="search-results">
-</div>
+		<div id="search-results">
+		</div>
 
-
-
-<div class="row d-flex justify-content-center">
-	<div class="col-9">
-
-		<h2> Reviews </h2>
+		<h2>Reviews </h2>
 
 		<select name="sample" onchange="location = this.value;">
 			<option value="">---Sort by---</option>
