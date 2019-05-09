@@ -8,8 +8,6 @@
 		</div>
 
 
-
-
 		<h2>Reviews </h2>
 
 		<select name="sample" onchange="location = this.value;">
@@ -28,43 +26,52 @@
 	  <br>
 
 	  <% @reviews.each.with_index do |review, index| %>
+
 	   	<div class="row">
 
-		   	<div class="col-3 d-flex justify-content-end">
+		   	<div class="col-3 d-flex justify-content-center">
 		   		<img height="200px" src=<%= review.book.image_url %>
 		   	</div>
 		   </div>
 
 		  <div class="col-7">
-	   		<%= link_to "#{review.book.title}", book_path(review.book_id) %> <br>
+
+
+
+	   		<%= link_to "#{review.book.title}", book_path(review.book_id) %>
+	   		<br>
 	   		<%= review.book.author %>
 
+	   		<br><br>
 
-   		<span style="color: red"><%= collectionzx = review.book.bookstatuses.inspect %></span>
-
+	   		<!-- If bookstatuses for this book exists  -->
 		  	<% if review.book.bookstatuses.first %>
 
+		  	<!-- Loop through records and get the read_status for the current user -->
 		   		<% review.book.bookstatuses.map do |meep| %>
 		   			<% if meep.user_id == current_user.id %>
 
-		   				<span style="color: blue">
-		   					<%= "I want this info and I'm passing it to the partial" %>
-		   					<!-- Recording read status... -->
-
-		   					<p>Read status: <%= @p_read_status = meep.read_status %></p>
-
-		   				</span>
+		   				<!-- Recording read status... -->
+		   				<% @p_read_status = meep.read_status %>
 
 		   			<% else %>
 		   			<% end %>
-		   		<% end %>
+
+		   			<% end %>
 
 		   	<% else %>
 
+		   	<!-- If there are no records at all (this means that this specific book has not been marked with ANY status at all by any users) -->
+		   	<!-- Set p_read_status; and do nothing -->
 		   		<% @p_read_status = -1 %>
 
 		   	<% end %>
-		   		<br>
+
+
+
+
+
+
 	   		<%= review.user.username %> rated it
 				<% if review.rating == 5 %>
 
