@@ -47,17 +47,41 @@ class BookstatusesController < ApplicationController
   end
   #ajax route to create new entry
   def book_create
+
     p 'NEW CREATE FOR INDIVIDUAL BOOKS'
-    #HOW TO ADD LIKE THAT
-    p 'IS THIS PARAMS?'
-    p params.inspect
-    p params.book_id;
-    p params.read_status;
-    p params.user_id;
+    @test = Bookstatus.where('book_id = ? and user_id = ?', params[:book_id], params[:user_id])
+    # if record found....it will update
+    p @test
+    p params[:book_id]
+    p params[:user_id]
+    p params[:read_status]
 
-    # @bookstatus = Bookstatus.new(user_id: params.id,book_id: params.id, read_status: params.status)
+    if @test.length == 0
 
+      @bookstatus = Bookstatus.new(user_id: params[:user_id] , book_id: params[:book_id] , read_status: params[:read_status])
 
+      @bookstatus.save
+      p ' NEWW saving..'
+      respond_to do |format|
+        format.json do
+          render json: @bookstatus.to_json
+        end
+      end
+
+    else
+      @bookstatus = Bookstatus.find(@test[0].id)
+
+      @bookstatus.update(user_id: params[:user_id] , book_id: params[:book_id] , read_status: params[:read_status])
+      p 'editTTING'
+      respond_to do |format|
+        format.json do
+          render json: @bookstatus.to_json
+        end
+      end
+
+    end
+
+    p 'saved?'
 
   end
 

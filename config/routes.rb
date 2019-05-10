@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'find/:title' => 'books#find'
 
   #individual book add read status
-  post '/bookstatuses/:user_id/:book_id/:read_status' => 'bookstatuses#book_create'
+  post '/bookstatuses/books' => 'bookstatuses#book_create'
 
 
 
