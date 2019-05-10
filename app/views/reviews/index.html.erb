@@ -17,11 +17,6 @@
 			<option value="<%= "#{reviews_path}?sort=own" %>">My reviews</option>
 		</select>
 
-		<br>
-		<br>
-
-	  <%= link_to 'Add a new review', new_review_path %>
-
 	  <br>
 	  <br>
 
@@ -120,6 +115,8 @@
 					<%= render partial: 'bookstatuses/readstatus' , locals: { object: review.book }  %>
 					<!-- Sending information to dropdown partial: Book, booklists, read status -->
 				<%= render partial: 'booklists/dropdown', locals: { object: review.book, list: @booklists, readstatus: @p_read_status } %>
+
+				<a href="/books/<%= review.book.id %>/reviews/new">Add a review</a>
 				</div>
 
 		  </div>

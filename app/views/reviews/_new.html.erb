@@ -1,8 +1,6 @@
-<h2> Add a review for <%= @book.title %> </h2>
+<%= form_with scope: :review, url: reviews_path, local: true do |form| %>
 
-<%= form_with scope: :review, url: book_review_create_path, local: true do |form| %>
-
-	<%= form.hidden_field :book_id, value: params[:book_id] %>
+	<%= form.hidden_field :book_id, value: params[:id] %>
 
 <div class="rate">
     <input type="radio" id="star5" name="review[rating]" value="5" />
