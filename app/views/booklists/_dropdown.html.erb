@@ -93,15 +93,16 @@
 
 
    <div class="dropdown-divider"></div>
-
+   <% p 'hello' %>
+   <% p list %>
 
 		<%= form_with(scope: :booklists, url: booklists_path, local: true) do |form| %>
 
-			  <% if @booklists[0] %>
+			  <% if list[0] %>
 
-					<% @booklists.each do |booklist| %>
-
-						<% if bookliststatus == booklist.id %>
+					<% list.each do |booklist| %>
+					<!-- need to fix  -->
+						<% if readstatus == booklist.id %>
 							<div class="dropdown-item"><input type="checkbox" checked>  <%= booklist.booklist_type %> <br></div>
 						<% else %>
 							<div class="dropdown-item"><input type="checkbox">  <%= booklist.booklist_type %> <br></div>

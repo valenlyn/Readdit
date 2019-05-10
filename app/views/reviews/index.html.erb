@@ -120,6 +120,7 @@
 					<% end %>
 					<%= render partial: 'bookstatuses/readstatus' , locals: { object: review.book }  %>
 					<!-- Sending information to dropdown partial: Book, booklists, read status -->
+					<!-- need to fix -->
 				<%= render partial: 'booklists/dropdown', locals: { object: review.book, list: @booklists, readstatus: @p_read_status } %>
 				</div>
 
