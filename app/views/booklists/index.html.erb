@@ -29,7 +29,6 @@
 	</div>
 	<div class="col-8 padding0">
 
-
 		<br>
 		<br>
 
@@ -46,6 +45,7 @@
 		      <th scope="col">Cover</th>
 		      <th scope="col">Title</th>
 		      <th scope="col">Author</th>
+		      <th scope="col">Status</th>
 		      <th scope="col">Date added</th>
 
     			</tr>
@@ -57,6 +57,33 @@
 		      <td><%= image_tag("#{book.image_url}", size: "52x70") %></td>
 		      <td><%= link_to "#{book.title}", book_path(book.id) %></td>
 		      <td><%= book.author %></td>
+		      <td>
+		      	<!-- If bookstatuses for this book exists  -->
+		  				<% if book.bookstatuses.first %>
+
+				  			<!-- Loop through records and get the read_status for the current user -->
+				   				<% book.bookstatuses.map do |morp| %>
+				   					<% if morp.user_id == current_user.id %>
+
+				   				<!-- Recording read status... -->
+				   					<% @p_read_status = morp.read_status %>
+
+				   					<% else %>
+				   					<% end %>
+
+				   					<% end %>
+
+				   			<!-- If there are no records at all (this means that this specific book has not been marked with ANY status at all by any users) -->
+		   					<% else %>
+
+						   	<!-- Set p_read_status; and do nothing -->
+						   		<% @p_read_status = -1 %>
+
+						   	<% end %>
+
+		      	<%= render partial: 'dropdown', locals: { object: book, list: @booklists, readstatus: @p_read_status } %>
+
+		      </td>
 		      <td><%= book.created_at.in_time_zone('Singapore').strftime('%d %B %Y') %></td>
 		    </tr>
     		<% end %>
