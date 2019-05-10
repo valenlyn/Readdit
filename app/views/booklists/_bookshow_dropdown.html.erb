@@ -1,5 +1,4 @@
-<p>HeLLO CUP </p>
-
+<br>
 <!-- Part 1:
 Create dropdown list which is a form.
 Users can choose 3 status
@@ -20,22 +19,11 @@ Prompts user to write review.
 Part 2:
 Dropdown displays other booklists user has created.
 Booklist drop down is a checkbox form.  -->
-<br>
-<%= book.title %>
-<br>
-<br>
-<%= user.id %>
-<br>
-<br>
-<%= book.bookstatuses[0][:read_status]  %>
-<br>
-<br>
 
-
-<div class="btn-group current-user" id=<%= user.id %>>
+<div class="btn-group book-id" id=<%= book.id %>>
 	<% if book.bookstatuses.length === 0 %>
 
-  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button class="btn btn-success dropdown-toggle" type="button" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Want to Read
   </button>
 

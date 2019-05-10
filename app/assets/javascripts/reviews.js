@@ -1,3 +1,5 @@
+// place eventlistener on each edit-reivew button
+//when button pressed, form hidden_edit html is rendered
 var i;
 
 console.log('gello')

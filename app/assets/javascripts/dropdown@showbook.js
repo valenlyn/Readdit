@@ -1,4 +1,5 @@
 console.log('hi')
+
 var bookId = document.getElementsByClassName('book-id')[0].id;
 var userId = document.getElementsByClassName('current-user')[0].id;
 
@@ -11,7 +12,8 @@ window.addEventListener('DOMContentLoaded', () =>{
         });
     })
 })
-// /bookstatuses/:book/:status
+
+
 function updateStatus(e){
     var status = e.target.value
 

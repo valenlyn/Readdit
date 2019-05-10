@@ -100,11 +100,13 @@
 
 					<% if current_user == review.user %>
 
+					<!-- looping through with index. so that each form has a unique Id to it -->
+					<!-- refer to reviews.js & hidden_edit.html.erb for more-->
 					<% indexNow = index+1 %>
 					<% idUnqiue = 'review_' + indexNow.to_s %>
 
 	  				<div class="row ml-1">
-	  					<!-- #edit button -->
+	  					<!-- #edit button , pressing this will render hidden_edit.html form-->
 							<div class="edit-review" id=<%= idUnqiue %>>✏️</div>
 
 							<%= link_to '❌',review_path(review), method: :delete, data: { confirm: 'Do you really want to delete this?'} %>

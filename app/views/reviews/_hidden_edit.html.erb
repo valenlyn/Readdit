@@ -1,14 +1,21 @@
 <% p 'hello' %>
 
+<!-- form is initially display:none -->
+<!-- when event listener triggered, form is displayed -->
+<!-- indexNum is passed to this html from index.html. This ensures all forms have unique id starting from 1 to.... depending on how many items.  -->
 <% indexNow = indexNum %>
 <% idUnqiue = 'review_' + indexNow.to_s %>
 <% idTextBox = 'edit_review_' + indexNow.to_s %>
 <% idButton = 'edit_button_' + indexNow.to_s %>
 
+in the form. id's are unique. will trigger SHOW on screen when pressed.
+
 <%= form_with scope: :review, url: "/reviews/#{object.id}", local:true do |form| %>
+
 	<input type="hidden" name="_method" value="patch">
 	<input type="text" style="display:none" name="review[reviews]" autofocus id=<%= idTextBox %>>
 	<%= form.hidden_field :user_id, value: current_user.id %>
 	<%= form.hidden_field :book_id, value: object.book_id %>
 	<input type="submit" style="display:none" value="update" id=<%= idButton %>>
+
 <% end %>
