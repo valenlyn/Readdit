@@ -23,7 +23,9 @@ class ReviewsController < ApplicationController
 
   def new
     @books = Book.all
+    @book = Book.find(params[:book_id])
     @users = User.all
+
   end
 
   def create
