@@ -11,7 +11,6 @@
 
   <div class="dropdown-menu">
 
-
   	<%= form_with(scope: :bookstatus, url: bookstatuses_path, local: true) do |form| %>
 			<%= form.hidden_field :user_id, value: current_user.id %>
 			<%= form.hidden_field :book_id, value: object.id %>
@@ -20,7 +19,6 @@
     <% end %>
 
 <!-- End of stupidity -->
-
 
 
 	<% elsif readstatus == 2 %>
@@ -88,21 +86,16 @@
 <!-- End of stupidity -->
 	<% end %>
 
+    <div class="dropdown-divider"></div>
 
-
-
-
-   <div class="dropdown-divider"></div>
-   <% p 'hello' %>
-   <% p list %>
 
 		<%= form_with(scope: :booklists, url: booklists_path, local: true) do |form| %>
 
-			  <% if list[0] %>
+			  <% if @booklists[0] %>
 
-					<% list.each do |booklist| %>
-					<!-- need to fix  -->
-						<% if readstatus == booklist.id %>
+					<% @booklists.each do |booklist| %>
+
+						<% if bookliststatus == booklist.id %>
 							<div class="dropdown-item"><input type="checkbox" checked>  <%= booklist.booklist_type %> <br></div>
 						<% else %>
 							<div class="dropdown-item"><input type="checkbox">  <%= booklist.booklist_type %> <br></div>

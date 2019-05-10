@@ -90,6 +90,7 @@
 						  		<% @booklist_number = mip.id %>
 						  	<% end %>
 						  <% end %>
+						  <!-- End of getting booklist ID for each book -->
 
 		     		<%= render partial: 'dropdown', locals: { object: book, list: @booklists, readstatus: @p_read_status, bookliststatus: @booklist_number } %>
 		      </td>
