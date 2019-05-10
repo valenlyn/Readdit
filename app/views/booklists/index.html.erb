@@ -60,7 +60,7 @@
 		      <td><%= link_to "#{book.title}", book_path(book.id) %></td>
 		      <td><%= book.author %></td>
 		      <td>
-		      	<!-- If bookstatuses for this book exists  -->
+		      		<!-- If bookstatuses for this book exists  -->
 		  				<% if book.bookstatuses.first %>
 
 				  			<!-- Loop through records and get the read_status for the current user -->
@@ -81,10 +81,17 @@
 						   	<!-- Set p_read_status; and do nothing -->
 						   		<% @p_read_status = -1 %>
 
-						   	<% end %>
+						   <% end %>
 
-		      	<%= render partial: 'dropdown', locals: { object: book, list: @booklists, readstatus: @p_read_status } %>
+						  <!-- Getting booklist ID for each book -->
+						  <% if book.booklists.first %>
 
+						  	<% book.booklists.each do |mip| %>
+						  		<% @booklist_number = mip.id %>
+						  	<% end %>
+						  <% end %>
+
+		     		<%= render partial: 'dropdown', locals: { object: book, list: @booklists, readstatus: @p_read_status, bookliststatus: @booklist_number } %>
 		      </td>
 		      <td><%= book.created_at.in_time_zone('Singapore').strftime('%d %B %Y') %></td>
 		    </tr>
