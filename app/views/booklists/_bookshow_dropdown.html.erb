@@ -27,19 +27,18 @@ Booklist drop down is a checkbox form.  -->
 <%= user.id %>
 <br>
 <br>
-<% if book.bookstatuses.length == 0 %>
-no status
-<% elsif book.bookstatuses.read_status == 1 %>
-want to read
-<% elsif book.bookstatuses.read_status == 2 %>
-currently reading
-<% end %>
+<%= book.bookstatuses[0][:read_status]  %>
+<br>
+<br>
+
 
 <div class="btn-group current-user" id=<%= user.id %>>
+	<% if book.bookstatuses.length === 0 %>
+
   <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Want to Read
   </button>
-  <% if book.bookstatuses.length == 0 %>
+
   <div class="dropdown-menu">
 
     	<button class="dropdown-item" id="drop-down-button" type="button" value="1">Want to Read</button>
@@ -47,7 +46,44 @@ currently reading
     	<button class="dropdown-item" id="drop-down-button" type="button" value="3">Read</button>
 
   </div>
-  <% elsif book.bookstatuses.read_status == 1 %>
-  Sup man you submit?
+
+  <% elsif book.bookstatuses[0][:read_status] === 1 %>
+
+  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Want to Read
+  </button>
+
+  <div class="dropdown-menu">
+
+    	<button class="dropdown-item" id="drop-down-button" type="button" value="2">Currently Reading</button>
+    	<button class="dropdown-item" id="drop-down-button" type="button" value="3">Read</button>
+
+  </div>
+
+  <% elsif book.bookstatuses[0][:read_status] === 2 %>
+
+  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Currently Reading
+  </button>
+
+  <div class="dropdown-menu">
+
+    	<button class="dropdown-item" id="drop-down-button" type="button" value="1">Want to Read</button>
+    	<button class="dropdown-item" id="drop-down-button" type="button" value="3">Read</button>
+
+  </div>
+  <% elsif book.bookstatuses[0][:read_status] === 3 %>
+
+  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Read
+  </button>
+
+  <div class="dropdown-menu">
+
+    	<button class="dropdown-item" id="drop-down-button" type="button" value="1">Want to Read</button>
+    	<button class="dropdown-item" id="drop-down-button" type="button" value="2">Currently Reading</button>
+
+  </div>
+
   <% end %>
 </div>
