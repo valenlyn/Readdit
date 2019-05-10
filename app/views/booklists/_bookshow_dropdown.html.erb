@@ -1,77 +1,18 @@
 <br>
-<!-- Part 1:
-Create dropdown list which is a form.
-Users can choose 3 status
+<!-- ********************************** -->
 
-if choose 'want', status = 1;
-dropdown button shows current status,
-drops down to status 2 & 3.
-
-if choose 'currently', status = 2;
-dropdown button shows current status,
-drops down to status 1 & 3.
-
-if choose 'read', status =3;
-dropdown button shows current status,
-drops down to status 1 & 2.
-Prompts user to write review.
-
-Part 2:
-Dropdown displays other booklists user has created.
-Booklist drop down is a checkbox form.  -->
 
 <div class="btn-group book-id" id=<%= book.id %>>
-	<% if book.bookstatuses.length === 0 %>
 
-  <button class="btn btn-success dropdown-toggle" type="button" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button class="btn btn-success dropdown-toggle" type="button" id="status-shelf" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Want to Read
   </button>
 
-  <div class="dropdown-menu">
-
+  <div class="dropdown-menu read-status-now">
+  	<!-- //value here is read_status value -->
     	<button class="dropdown-item" id="drop-down-button" type="button" value="1">Want to Read</button>
     	<button class="dropdown-item" id="drop-down-button" type="button" value="2">Currently Reading</button>
     	<button class="dropdown-item" id="drop-down-button" type="button" value="3">Read</button>
 
   </div>
-
-  <% elsif book.bookstatuses[0][:read_status] === 1 %>
-
-  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Want to Read
-  </button>
-
-  <div class="dropdown-menu">
-
-    	<button class="dropdown-item" id="drop-down-button" type="button" value="2">Currently Reading</button>
-    	<button class="dropdown-item" id="drop-down-button" type="button" value="3">Read</button>
-
-  </div>
-
-  <% elsif book.bookstatuses[0][:read_status] === 2 %>
-
-  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Currently Reading
-  </button>
-
-  <div class="dropdown-menu">
-
-    	<button class="dropdown-item" id="drop-down-button" type="button" value="1">Want to Read</button>
-    	<button class="dropdown-item" id="drop-down-button" type="button" value="3">Read</button>
-
-  </div>
-  <% elsif book.bookstatuses[0][:read_status] === 3 %>
-
-  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Read
-  </button>
-
-  <div class="dropdown-menu">
-
-    	<button class="dropdown-item" id="drop-down-button" type="button" value="1">Want to Read</button>
-    	<button class="dropdown-item" id="drop-down-button" type="button" value="2">Currently Reading</button>
-
-  </div>
-
-  <% end %>
-</div>
+ </div>
