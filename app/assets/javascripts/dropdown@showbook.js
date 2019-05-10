@@ -81,5 +81,3 @@ function initialDomButton(statusId){
         onLoadString.innerText = 'Read';
     }
 }
-
-// initialDomButton(currentStatus[0].id);
