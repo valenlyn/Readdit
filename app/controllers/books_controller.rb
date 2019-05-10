@@ -72,18 +72,23 @@ class BooksController < ApplicationController
     # find the book with the corresponding :id
     @book = Book.find(params[:id])
 
+    #What about cases when this book don't have any reviews?
+    #We will get an empty arr []
     arr = @book.reviews
-    # render plain: arr[0].reviews
-    # declare an array to store user_id of review(s)
-    @arr = []
-    add_ratings = 0
-    arr.each do |review|
-      @arr << review.user_id
-      add_ratings = add_ratings + review.rating
-    end
-    # Pass this to our show view
-    @avg_ratings = add_ratings / @book.reviews.length
+    # render plain: arr[0]
 
+    #Initially we must check if this book has any reviews!
+    if arr.length > 0
+      # declare an array to store user_id of review(s)
+      @arr = []
+      add_ratings = 0
+      arr.each do |review|
+        @arr << review.user_id
+        add_ratings = add_ratings + review.rating
+      end
+      # # # Pass this to our show view
+      @avg_ratings = add_ratings / @book.reviews.length
+    end
   end
 
 private

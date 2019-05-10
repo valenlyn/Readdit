@@ -1,32 +1,34 @@
 <div class="container current-user" id=<%= current_user.id%>>
 	<div class="row">
 		<div class="col-4">
+			<!-- Renders an img and a dropdown(Book's status)-->
 			<%= image_tag "#{@book.image_url}", :class => 'imgs' %>
 			<%= render partial: 'bookstatuses/readstatus' , locals: { object: @book }  %>
-			<%= render partial: 'booklists/bookshow_dropdown' , locals: { book: @book , user: current_user}  %>
 		</div>
 		<div class="col-8">
-
 			<h3>
-
 				<%= @book.title %>
 			</h3>
 			<h3>
 				by <%= @book.author %>
 			</h3>
-			<% if @avg_ratings == 5  %>
-				<span class="star-color">★★★★★</span>
-			<% elsif @avg_ratings >= 4 && @avg_ratings < 5 %>
-				<span class="star-color">★★★★</span><span class="star-color-2">★</span>
-			<% elsif @avg_ratings >= 3 && @avg_ratings < 4 %>
-				<span class="star-color">★★★</span><span class="star-color-2">★★</span>
-			<% elsif @avg_ratings >= 2 && @avg_ratings < 3 %>
-				<span class="star-color">★★</span><span class="star-color-2">★★★</span>
-			<% elsif @avg_ratings >= 1 && @avg_ratings < 2 %>
-				<span class="star-color">★</span><span class="star-color-2">★★★★</span>
-			<% end %>
-			<%= @avg_ratings.round(2) %> <br>
-			<%= @book.reviews.length %> reviews
+			<!-- Check if this book have any reviews at all -->
+      <!-- Will throw an error if there are no reviews as @avg_ratings = nil -->
+      <% if @avg_ratings != nil %>
+          <% if @avg_ratings == 5  %>
+              <span class="star-color">★★★★★</span>
+          <% elsif @avg_ratings >= 4 && @avg_ratings < 5 %>
+              <span class="star-color">★★★★</span><span class="star-color-2">★</span>
+          <% elsif @avg_ratings >= 3 && @avg_ratings < 4 %>
+              <span class="star-color">★★★</span><span class="star-color-2">★★</span>
+          <% elsif @avg_ratings >= 2 && @avg_ratings < 3 %>
+              <span class="star-color">★★</span><span class="star-color-2">★★★</span>
+          <% elsif @avg_ratings >= 1 && @avg_ratings < 2 %>
+              <span class="star-color">★</span><span class="star-color-2">★★★★</span>
+          <% end %>
+       <%= @avg_ratings.round(2) %> <br>
+       <%= @book.reviews.length %> reviews
+      <% end %>
 			<p>
 				<%= @book._description %>
 			</p>
@@ -64,12 +66,6 @@
 	<p>
 		<%= review.created_at.in_time_zone('Singapore').strftime('%d %B %Y %I:%M %p') %>
 	</p>
-
-
-
-
-
-
 
 	<% if current_user == review.user %>
 		<%= link_to 'Edit your Review', edit_review_path(review), :class => 'btn btn-secondary' %>
