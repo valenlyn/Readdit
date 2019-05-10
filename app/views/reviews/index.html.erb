@@ -30,8 +30,8 @@
 	   	<div class="row">
 
 		   	<div class="col-3 d-flex justify-content-center">
-		   		<img height="200px" src=<%= review.book.image_url %>
-		   	</div>
+		   		<img height="200px" src=<%= review.book.image_url %>>
+
 		   </div>
 
 		  <div class="col-7">
@@ -46,6 +46,7 @@
 
 	   		<!-- If bookstatuses for this book exists  -->
 		  	<% if review.book.bookstatuses.first %>
+		  	<%= review.book.bookstatuses.inspect %>
 
 		  	<!-- Loop through records and get the read_status for the current user -->
 		   		<% review.book.bookstatuses.map do |meep| %>
