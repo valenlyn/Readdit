@@ -22,9 +22,9 @@ Rails.application.routes.draw do
   # patch '/books/:id' => 'books#update'
   # delete '/books/:id' => 'books#destroy'
 
-  get '/books/:book_id/user' => 'user#index', as: 'book_user'
-  get '/books/:book_id/user/new' => 'user#create', as: 'new_book_customer'
-  post '/books/:book_id/user' => 'user#create'
+  get '/books/:book_id/reviews/new' => 'reviews#new', as: 'book_review_new'
+  post '/books/:book_id/reviews' => 'reviews#create', as: 'book_review_create'
+
 
   # USERS
   # get '/user' => 'user#index', as: 'user'
