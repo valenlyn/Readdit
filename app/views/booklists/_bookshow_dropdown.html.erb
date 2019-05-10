@@ -1,6 +1,13 @@
 <br>
 <!-- ********************************** -->
 
+<% if book.bookstatuses[0] == nil %>
+<%= statusNow = 0; %>
+<% else %>
+<%= statusNow = book.bookstatuses[0][:read_status] %>
+<% end %>
+
+
 
 <div class="btn-group book-id" id=<%= book.id %>>
 
@@ -8,11 +15,19 @@
     Want to Read
   </button>
 
-  <div class="dropdown-menu read-status-now">
+  <div class="dropdown-menu read-status-now" id=<%=statusNow%>>
   	<!-- //value here is read_status value -->
     	<button class="dropdown-item" id="drop-down-button" type="button" value="1">Want to Read</button>
     	<button class="dropdown-item" id="drop-down-button" type="button" value="2">Currently Reading</button>
     	<button class="dropdown-item" id="drop-down-button" type="button" value="3">Read</button>
 
+
+  <div class="dropdown-divider"></div>
+  <div class="dropdown">
+  	<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+  	<label class="form-check-label" for="defaultCheck1">
+    	Default checkbox
+  	</label>
+  </div>
   </div>
  </div>
