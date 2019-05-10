@@ -70,7 +70,8 @@ class BookstatusesController < ApplicationController
 
     else
       @bookstatus = Bookstatus.find(@test[0].id)
-
+      p "this might be edit portion"
+      p @bookstatus
       @bookstatus.update(user_id: params[:user_id] , book_id: params[:book_id] , read_status: params[:read_status])
       p 'editTTING'
       respond_to do |format|
