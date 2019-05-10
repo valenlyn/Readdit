@@ -1,47 +1,21 @@
 <br>
-<!-- Part 1:
-Create dropdown list which is a form.
-Users can choose 3 status
+<!-- ********************************** -->
 
-if choose 'want', status = 1;
-dropdown button shows current status,
-drops down to status 2 & 3.
-
-if choose 'currently', status = 2;
-dropdown button shows current status,
-drops down to status 1 & 3.
-
-if choose 'read', status =3;
-dropdown button shows current status,
-drops down to status 1 & 2.
-Prompts user to write review.
-
-Part 2:
-Dropdown displays other booklists user has created.
-Booklist drop down is a checkbox form.  -->
+<!-- checks book status. if does not exist status is 0 -->
+<!-- statusnow is required for statusShelfButton variable in dropdown@showbook.js -->
+<!-- this would allow the function to check current status -->
 
 <div class="btn-group book-id" id=<%= book.id %>>
-
 
   <button class="btn btn-success dropdown-toggle" type="button" id="status-shelf" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Want to Read
   </button>
 
-  <div class="dropdown-menu read-status-now" id=<%=book.bookstatuses[0][:read_status]%>>
-
+  <div class="dropdown-menu read-status-now">
+  	<!-- //value here is read_status value -->
     	<button class="dropdown-item" id="drop-down-button" type="button" value="1">Want to Read</button>
     	<button class="dropdown-item" id="drop-down-button" type="button" value="2">Currently Reading</button>
     	<button class="dropdown-item" id="drop-down-button" type="button" value="3">Read</button>
 
   </div>
  </div>
-
-  <% if book.bookstatuses.length === 0 %>
-
-	<% elsif book.bookstatuses[0][:read_status] === 1 %>
-
-	<% elsif book.bookstatuses[0][:read_status] === 2 %>
-
-	<% elsif book.bookstatuses[0][:read_status] === 3 %>
-
-	<% end %>

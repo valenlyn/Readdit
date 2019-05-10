@@ -1,5 +1,7 @@
 console.log('hi')
 
+
+// finds book and current user variable. To be passed into post request.
 var bookId = document.getElementsByClassName('book-id')[0].id;
 var userId = document.getElementsByClassName('current-user')[0].id;
 
@@ -54,6 +56,7 @@ function changeDOMButton(jsonInput){
 function highlightSelection(status){
 
     var buttonAll = document.querySelectorAll('#drop-down-button');
+
     for(let i = 0 ; i < buttonAll.length; i++ ){
         buttonAll[i].removeAttribute("style");
         if(buttonAll[i].innerText === status){
