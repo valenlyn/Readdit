@@ -79,9 +79,17 @@
 						   	<!-- Set p_read_status; and do nothing -->
 						   		<% @p_read_status = -1 %>
 
-						   	<% end %>
+						   <% end %>
 
-		      	<%= render partial: 'dropdown', locals: { object: book, list: @booklists, readstatus: @p_read_status } %>
+						  <!-- Getting booklist ID for each book -->
+						  <% if book.booklists.first %>
+
+						  	<% book.booklists.each do |mip| %>
+						  		<% @booklist_number = mip.id %>
+						  	<% end %>
+						  <% end %>
+
+		      	<%= render partial: 'dropdown', locals: { object: book, list: @booklists, readstatus: @p_read_status, bookliststatus: @booklist_number } %>
 
 		      </td>
 		      <td><%= book.created_at.in_time_zone('Singapore').strftime('%d %B %Y') %></td>
