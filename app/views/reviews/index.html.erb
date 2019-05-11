@@ -1,6 +1,5 @@
 <div class="col-11 padding0">
-<!-- set variable, increments only when review belongs to user -->
-<% edit_form_id = 1 %>
+
 		<%= form_tag(books_path, method: "get" ) do %>
 			<input  id="search" type="text" class="search-form" name="search" placeholder="What are you reading next?">
   		<button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
@@ -37,7 +36,6 @@
 
 		 		<!-- If bookstatuses for this book exists  -->
 		  	<% if review.book.bookstatuses.first %>
-
 
 		  	<!-- Loop through records and get the read_status for the current user -->
 		   		<% review.book.bookstatuses.map do |meep| %>
@@ -117,37 +115,16 @@
 
 					<span class="star-color-2"><%= review.created_at.in_time_zone('Singapore').strftime('%d %B %Y %I:%M %p') %></span>
 
-					<!-- looping through with index. so that each edit form has a unique Id to it -->
-					<!-- refer to reviews.js & hidden_edit.html.erb for more-->
-					<% indexNow = edit_form_id %>
-					<% idUnqiue = 'review_' + indexNow.to_s %>
-
-	  				<div class="row ml-1">
-	  					<!-- #edit button , pressing this will render hidden_edit.html form-->
-							<div class="edit-review check_user" id=<%= idUnqiue %>>✏️</div>
 
 					<!-- Only show edit and delete functions to current logged in user, with Devise -->
 
 				</div>
 
-
 				<div class="col-2 d-flex flex-column align-items-center ">
-
-
-						</div>
-
-						<!-- renders edit form when button pressed -->
-						<%= render partial: 'reviews/hidden_edit' , locals: {object: review, indexNum: indexNow } %>
-						<% edit_form_id = edit_form_id + 1 %>
-					<% else %>
-
-					<% end %>
-					<%= render partial: 'bookstatuses/readstatus' , locals: { object: review.book }  %>
 
 		   		<img height="200px" src=<%= review.book.image_url %>>
 		   		<br>
 		   		<%= render partial: 'bookstatuses/readstatus' , locals: { object: review.book }  %>
-
 					<!-- Sending information to dropdown partial: Book, booklists, read status -->
 					<%= render partial: 'booklists/dropdown', locals: { object: review.book, readstatus: @p_read_status, bookliststatus: @booklist_number } %>
 
@@ -156,7 +133,6 @@
 		  	</div>
 
 		  <hr>
-
 		  <% end %>
 
 	</div>
