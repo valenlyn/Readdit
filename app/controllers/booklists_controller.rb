@@ -25,6 +25,16 @@ class BooklistsController < ApplicationController
 
     @booklists = Booklist.where(:user_id => current_user.id)
 
+    # Calculating lengths
+    @all_books = Book.joins(:bookstatuses)
+              .where('user_id = ?', current_user.id).length
+    @currently_reading = Book.joins(:bookstatuses)
+              .where('read_status = ? and user_id = ?', 2, current_user.id).length
+    @want_read = Book.joins(:bookstatuses)
+              .where('read_status = ? and user_id = ?', 1, current_user.id).length
+    @read_books = Book.joins(:bookstatuses)
+              .where('read_status = ? and user_id = ?', 3, current_user.id).length
+
   end
 
   def new

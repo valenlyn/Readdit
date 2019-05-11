@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
   def index
 
     if request.query_parameters[:sort] == "rating"
-      @reviews = Review.order(rating: :desc)
+      @reviews = Review.order(rating: :desc, created_at: :desc)
     elsif request.query_parameters[:sort] == "desc"
       #showing most recent reviews first
       @reviews = Review.order(created_at: :desc)

@@ -105,7 +105,7 @@ function searchElementsCreator(jsonData){
         outerDiv.append(innerDiv);
 
         outerDiv.className = "d-flex justify-content-start p-1 search-item"
-        imgDiv.className = "mr-2";
+        imgDiv.className = "ml-2 mr-2";
         innerDiv.className = "ml-2";
 
         searchContainerDiv.append(outerDiv);
