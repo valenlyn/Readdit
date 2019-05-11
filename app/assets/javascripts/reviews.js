@@ -1,6 +1,3 @@
-// What is this var for?
-var i;
-
 window.addEventListener('DOMContentLoaded', () =>{
     // addEventListener onEach 'pencil'
     document.querySelectorAll('.edit-review').forEach((item, index) => {
