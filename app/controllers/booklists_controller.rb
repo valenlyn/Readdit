@@ -64,7 +64,7 @@ class BooklistsController < ApplicationController
     @booklist = Booklist.find(params[:id])
 
     @booklist.update(booklist_params)
-    redirect_to @booklist
+    redirect_to booklists_path
   end
 
   def destroy
@@ -103,7 +103,7 @@ class BooklistsController < ApplicationController
 
 private
 
-  def book_params
+  def booklist_params
     params.require(:booklist).permit(:user_id, :booklist_type)
   end
 end
