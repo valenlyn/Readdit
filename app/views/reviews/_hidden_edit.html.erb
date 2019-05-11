@@ -1,21 +1,42 @@
-<% p 'hello' %>
+<!-- Form hidden until user clicked on 'pencil' -->
+<!-- indexNum is passed here from index.html.erb. This ensures all forms have unique id starting from 1 to n depending on how many items.  -->
 
-<!-- form is initially display:none -->
-<!-- when event listener triggered, form is displayed -->
-<!-- indexNum is passed to this html from index.html. This ensures all forms have unique id starting from 1 to.... depending on how many items.  -->
-<% indexNow = indexNum %>
-<% idUnqiue = 'review_' + indexNow.to_s %>
-<% idTextBox = 'edit_review_' + indexNow.to_s %>
-<% idButton = 'edit_button_' + indexNow.to_s %>
+<!-- Still trying to figure out the purpose of declaring this here -->
+<% idUnique = 'review_' + indexNum.to_s %>
 
-<!-- in the form. id's are unique. will trigger SHOW on screen when pressed. -->
+<!-- The following var(s) gives our text and submit <input> an id where we can select them in our reviews.js -->
+<% idForRadio = 'edit_rating_' + indexNum.to_s %><!--"edit_rating_1"-->
+<% idForText = 'edit_review_' + indexNum.to_s %><!--"edit_review_1"-->
+<% idForButton = 'edit_button_' + indexNum.to_s %><!--"edit_button_1"-->
 
+<!-- All <input> are hidden initially.. -->
+<!-- Submit the form to PATCH route passing in object.id which corresponds to id of this review.. -->
 <%= form_with scope: :review, url: "/reviews/#{object.id}", local:true do |form| %>
 
+	<!-- Compulsory.. -->
 	<input type="hidden" name="_method" value="patch">
-	<input type="text" style="display:none" name="review[reviews]" autofocus id=<%= idTextBox %>>
+
+	<div class="rate toggle" id=<%= idForRadio %>>
+    <input type="radio" id="star5" name="review[rating]" value="5" />
+    <label for="star5" title="text">5 stars</label>
+    <input type="radio" id="star4" name="review[rating]" value="4" />
+    <label for="star4" title="text">4 stars</label>
+    <input type="radio" id="star3" name="review[rating]" value="3" />
+    <label for="star3" title="text">3 stars</label>
+    <input type="radio" id="star2" name="review[rating]" value="2" />
+    <label for="star2" title="text">2 stars</label>
+    <input type="radio" id="star1" name="review[rating]" value="1" />
+    <label for="star1" title="text">1 star</label>
+ 	</div>
+
+	<!-- Give an id to "text" type input -->
+	<input type="text" class="toggle" name="review[reviews]" autofocus id=<%= idForText %>>
+
+	<!-- hidden_field need to have value of current_user.id and object.book_id -->
 	<%= form.hidden_field :user_id, value: current_user.id %>
 	<%= form.hidden_field :book_id, value: object.book_id %>
-	<input type="submit" style="display:none" value="update" id=<%= idButton %>>
+
+	<!-- Give an id to "text" type input -->
+	<input type="submit" class="toggle" value="update" id=<%= idForButton %>>
 
 <% end %>

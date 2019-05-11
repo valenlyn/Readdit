@@ -43,7 +43,7 @@
 <hr>
 <!--There are no reviews for this book OR user didn't add review for this book -->
 <% if @book.reviews[0] == nil || !@arr.include?(current_user.id) %>
-	<%= link_to 'Add a Review', new_review_path, :class => 'btn btn-secondary' %> <br>
+	<%= link_to 'Add a Review', book_review_new_path(@book.id), :class => 'btn btn-secondary' %> <br>
 <% end %>
 
 <% if @book.reviews.length > 0 %>
