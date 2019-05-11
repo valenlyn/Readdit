@@ -19,7 +19,7 @@
 
 	  <br>
 	  <br>
-
+	  <% edit_review_index = 1 %>
 	  <% @reviews.each.with_index do |review, index| %>
 
 	   	<div class="row d-flex flex-row-reverse justify-content-center">
@@ -87,7 +87,7 @@
 	   		<% if current_user == review.user %>
 					<!-- looping through @reviews with index, so that each form has a unique Id to it -->
 					<!-- refer to reviews.js & hidden_edit.html.erb for more-->
-					<% indexNow = index+1 %><!-- index = 0 -->
+					<% indexNow = edit_review_index %><!-- index = 0 -->
 					<% idUnique = 'review_' + indexNow.to_s %>
 
 	  			<!-- The following is a link that when clicked, renders a partial that user can edit his/her review  -->
@@ -100,7 +100,7 @@
 					<!-- This partial is hidden initially and only appears when user clicked on the 'pencil' -->
 					<!-- review has info like id, user_id, book_id, reviews, rating, created_at, ... -->
 					<%= render partial: 'reviews/hidden_edit' , locals: {object: review, indexNum: indexNow } %>
-
+					<% edit_review_index = edit_review_index + 1 %>
 				<% else %>
 
 					<a href="/books/<%= review.book.id %>/reviews/new" class="action-btn">Add a review</a>
