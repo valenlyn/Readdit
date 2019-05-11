@@ -1,28 +1,41 @@
-// place eventlistener on each edit-reivew button
-//when button pressed, form hidden_edit html is rendered
+// What is this var for?
 var i;
 
-console.log('gello')
-
 window.addEventListener('DOMContentLoaded', () =>{
-    document.querySelectorAll('.edit-review').forEach((item,index) => {
-
+    // addEventListener onEach 'pencil'
+    document.querySelectorAll('.edit-review').forEach((item, index) => {
         item.addEventListener('click', ()=>{
-            showEditForm(index+1)
+            // ...
+            showEditForm(index + 1)
         });
 
     })
 })
 
+// This func() 'unhide' the <input>s when user clicked on 'pencil'
 function showEditForm(indexOnPage){
     // console.log(indexOnPage);
     // console.log(e.target);
-    var idUnique = `review_` + indexOnPage;
-    var editFormId = `edit_review_` + indexOnPage;
-    var editButtonId = `edit_button_` + indexOnPage;
 
-    let editForm = document.getElementById(editFormId).style.display = "inline-block";
-    let editButton = document.getElementById(editButtonId).style.display = "inline-block";
+    var idUnique = `review_` + indexOnPage;//"review_1"
+    var idForRadio = `edit_rating_` + indexOnPage;//"edit_rating_1"
+    var idForText = `edit_review_` + indexOnPage;//"edit_review_1"
+    var idForButton = `edit_button_` + indexOnPage;//"edit_button_1"
+
+    //The <input type="radio">
+    let radioInput = document.getElementById(idForRadio);
+    radioInput.classList.toggle("toggle");
+
+    //The <input type="text">
+    let textInput = document.getElementById(idForText);
+    textInput.classList.toggle("toggle");
+
+    //The <button>
+    let button = document.getElementById(idForButton);
+    button.classList.toggle("toggle");
+
+    //The 'pencil'
+    // Change the styling of pencil? ?_0
     let reviewform = document.getElementById(idUnique).style.color = "black";
 
 }
