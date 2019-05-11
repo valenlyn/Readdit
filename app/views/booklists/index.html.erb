@@ -20,11 +20,11 @@
 
 			<ul>
 				<% @booklists.each do |booklist| %>
-						<li>
+						<li class="row padding0">
 							<a class="booklist-custom" href=<%= "#{booklists_path}?sort=#{booklist.id}" %>><%= booklist.booklist_type %></a>
-							<%= render partial: 'edit' , locals: { id: booklist.id } %>
-							<a href="#" class="booklist-<%= booklist.id %>" id="edit-booklist"><i class="fas fa-pencil-alt edit-color"></i></a>
-							<a data-confirm="Do you really want to delete this?" rel="nofollow" data-method="delete" href=<%= booklist_path(booklist) %>><i class="fas fa-trash-alt delete-color"></i></a>
+							<%= render partial: 'edit', :style => "display: inline-block", locals: { id: booklist.id, booklist_type: booklist.booklist_type } %>
+							<a href="#" class="booklist-<%= booklist.id %>" id="edit-booklist"><i class="fas fa-pencil-alt edit-color mini-nav-btn"></i></a>
+							<a data-confirm="Do you really want to delete this?" rel="nofollow" data-method="delete" href=<%= booklist_path(booklist) %>><i class="fas fa-trash-alt delete-color mini-nav-btn"></i></a>
 						</li>
 
 				<% end %>
