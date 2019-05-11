@@ -41,7 +41,6 @@
 
 		 		<!-- If bookstatuses for this book exists  -->
 		  	<% if review.book.bookstatuses.first %>
-		  	<%= review.book.bookstatuses.inspect %>
 
 		  	<!-- Loop through records and get the read_status for the current user -->
 		   		<% review.book.bookstatuses.map do |meep| %>
@@ -67,7 +66,7 @@
 					<% if review.book.booklists.first %>
 
 						<% review.book.booklists.each do |mip| %>
-							<%= @booklist_number = mip.id %>
+							<% @booklist_number = mip.id %>
 						<% end %>
 					<% end %>
 				<!-- End of getting booklist ID for each book -->
