@@ -1,10 +1,11 @@
 <div class="container current-user" id=<%= current_user.id%>>
+
 	<div class="row">
 		<div class="col-4">
 			<!-- Renders an img and a dropdown(Book's status)-->
 			<%= image_tag "#{@book.image_url}", :class => 'imgs' %>
-			<%= render partial: 'bookstatuses/readstatus' , locals: { object: @book }  %>
-			<%= render partial: 'booklists/bookshow_dropdown' , locals: { book: @book , user: current_user}  %>
+			<br>
+			<%= render partial: 'booklists/bookshow_dropdown' , locals: { book: @book , user: current_user, booklists: @booklists}  %>
 		</div>
 		<div class="col-8">
 			<h3>
