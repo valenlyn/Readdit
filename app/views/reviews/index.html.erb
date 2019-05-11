@@ -104,7 +104,7 @@
 
 	  				<div class="row ml-1">
 	  					<!-- #edit button , pressing this will render hidden_edit.html form-->
-							<div class="edit-review" id=<%= idUnqiue %>>✏️</div>
+							<div class="edit-review" id=<%= idUnqiue %>><i class="fas fa-pencil-alt edit-color"></i></div>
 
 							<%= link_to '❌',review_path(review), method: :delete, data: { confirm: 'Do you really want to delete this?'} %>
 
