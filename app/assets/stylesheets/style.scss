@@ -56,6 +56,10 @@ nav i {
 	color: $delete-color;
 }
 
+.action-color {
+	color: $action-color;
+}
+
 .grey-text, .star-color-2 {
 	color: #CCCCCC;
 }
@@ -126,11 +130,25 @@ a:hover {
 	// border-radius: 5px;
 	color: black;
 	display: inline-block;
-	width: 75%;
+	width: 77%;
 	height: 95%;
 	font-weight: 700;
 	font-size: $secondary-nav-font-size;
 	margin: 0px;
+}
+
+.mini-nav-btn {
+	padding: 17px 8px;
+	background-color: $support-color;
+}
+
+.mini-nav-btn, button {
+	border: 0;
+	margin: 0;
+}
+
+.mini-nav-btn:hover {
+	color: black;
 }
 
 .booklist {
@@ -147,6 +165,7 @@ a:hover {
 .booklist-custom {
 	@extend %mininav;
 	background-color: $support-color;
+	width: 62.5%;
 }
 
 .booklist:hover, .indentleft:hover {
@@ -157,6 +176,28 @@ a:hover {
 .booklist-custom:hover {
 	background-color: $primary-color;
 	color: black;
+}
+
+#bl-edit {
+	padding: 10px 33px 10px 10px;
+	margin: 0;
+	font-size: $secondary-nav-font-size;
+	border: 0;
+	background-color: $support-color;
+	width: 82%;
+}
+
+.bg-support {
+	background-color: $support-color;
+
+	i:hover {
+		color: black;
+	}
+}
+
+.embed-form {
+	background-color: $support-color;
+	padding: 0;
 }
 
 li {
@@ -252,7 +293,7 @@ ul {
 	// border-radius: 5px;
 	color: black;
 	display: inline-block;
-	width: 75%;
+	width: 77%;
 	font-weight: 700;
 	font-size: $secondary-nav-font-size;
 	margin: 0px;

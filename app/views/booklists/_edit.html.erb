@@ -1,6 +1,6 @@
 <%= form_with scope: :booklist, url: "/booklists/#{id}", :class => "embed-form", local: true do |form| %>
 	<input type="hidden" name="_method" value="patch">
 	<%= form.hidden_field :user_id, value: current_user.id %>
-	<input type="text" class="booklist-<%= id %>" style="display: none" name="booklist[booklist_type]" autofocus>
-	<input type="submit" class="booklist-<%= id %>" style="display: none" value="Submit">
+	<input type="text" class="booklist-<%= id %>" id="bl-edit" style="display: none" name="booklist[booklist_type]" value="<%= booklist_type %>" autofocus>
+	<button type="submit" class="booklist-<%= id %> bg-support" style="display: none"><i class="fas fa-check bg-support action-color"></i></button>
 <% end %>
