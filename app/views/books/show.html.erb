@@ -31,7 +31,7 @@
           <%= @avg_ratings.round(2) %> <br>
        		<%= @book.reviews.length %> reviews
       <% else %>
-        <span class="star-color-2">★★★★★</span> (No ratings yet)
+        <span class="star-color-2">★★★★★ (not rated yet)</span>
       <% end %>
 
 			<p>
@@ -43,7 +43,6 @@
 <hr>
 <!--There are no reviews for this book OR user didn't add review for this book -->
 <% if @book.reviews[0] == nil || !@arr.include?(current_user.id) %>
-	<p>Read the book? Add a review here!</p>
 	<%= link_to 'Add a Review', new_review_path, :class => 'btn btn-secondary' %> <br>
 <% end %>
 

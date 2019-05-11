@@ -111,7 +111,7 @@ a:hover {
 }
 
 %mininav {
-	padding: 10px 10px 10px 20px;
+	padding: 10px 10px 10px 40px;
 	// border-radius: 5px;
 	color: black;
 	display: inline-block;
@@ -125,11 +125,11 @@ a:hover {
 .booklist {
 	@extend %mininav;
 	background-color: $primary-color;
+	padding: 10px 10px 10px 20px;
 }
 
 .indentleft {
 	@extend %mininav;
-	padding: 10px 10px 10px 40px;
 	background-color: $support-color;
 }
 
@@ -237,7 +237,7 @@ ul {
 
 #show-input {
 	background-color: $action-color;
-	padding: 10px;
+	padding: 10px 10px 10px 20px;
 	// border-radius: 5px;
 	color: black;
 	display: inline-block;
@@ -270,4 +270,21 @@ ul {
 
 .action-btn:hover {
 	background-color: green;
+}
+
+#new-list {
+	padding: 11px;
+	width: 62%;
+	border: 0;
+	background-color: $quaternary-color;
+	margin: 0;
+}
+
+#list-button {
+	border: 0;
+	background-color: $secondary-color;
+}
+
+#list-button:hover {
+	background-color: #FFFFFF;
 }
