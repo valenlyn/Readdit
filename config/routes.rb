@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   #individual book add read status
   post '/bookstatuses/books' => 'bookstatuses#book_create'
 
+  #ajax request for booklist from owner
+  get '/booklists/books/:user_id' => 'booklists#list_all'
+
 
 
 
