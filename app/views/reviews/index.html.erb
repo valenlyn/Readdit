@@ -1,8 +1,8 @@
 <div class="col-11 padding0">
 
 		<%= form_tag(books_path, method: "get" ) do %>
-			<input  id="search" type="text" class="form-control search-form" name="search" placeholder="What are you reading next?">
-  		<%= submit_tag 'Search', class:"btn btn-primary", type:"submit"%>
+			<input  id="search" type="text" class="search-form" name="search" placeholder="What are you reading next?">
+  		<button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
 		<% end %>
 		<div id="search-results" class="column d-flex">
 		</div>
