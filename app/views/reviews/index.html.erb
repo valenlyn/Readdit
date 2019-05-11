@@ -7,6 +7,9 @@
 		<div id="search-results" class="column d-flex">
 		</div>
 
+
+		<br>
+
 		<select name="sample" onchange="location = this.value;">
 			<option value="">---Sort by---</option>
 			<option value="<%= "#{reviews_path}?sort=rating" %>">Highest rated</option>
@@ -103,7 +106,7 @@
 
 		   	<br>
 
-	   		<div class="">
+	   		<div class="review-content">
 					<%= review.reviews %>
 				</div>
 
