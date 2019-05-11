@@ -80,6 +80,27 @@ class BooklistsController < ApplicationController
 
   end
 
+  def list_all
+    p 'hello findinggggg booklist for user..'
+    p params[:user_id];
+
+    booklists = Booklist.where(:user_id => params[:user_id])
+
+    @booklists_results = []
+
+    booklists.each do |item|
+     @booklists_results << item[:booklist_type]
+   end
+
+   p @booklists_results
+
+    respond_to do |format|
+      format.json do
+        render json: @booklists_results.to_json
+      end
+    end
+  end
+
 private
 
   def booklist_params

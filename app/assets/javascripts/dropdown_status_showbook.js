@@ -8,18 +8,17 @@ var onLoadString = document.getElementById('status-shelf');
 
 window.addEventListener('DOMContentLoaded', () =>{
     var dropDown = document.querySelectorAll("#drop-down-button");
-    console.log('the status now',currentStatus[0].id);
-    console.log('the thing to change: ', onLoadString.innerText);
     initialDomButton(currentStatus[0].id);
     dropDown.forEach( item => {
         item.addEventListener('click', () => {
-        updateStatus(event)
+        updateReadStatus(event)
         // highlightSelection(status);
         });
     })
 })
 
-function updateStatus(e){
+
+function updateReadStatus(e){
     var status = e.target.value
 
     const payload = {

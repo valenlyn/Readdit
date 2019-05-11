@@ -1,6 +1,6 @@
 <div class="container current-user" id=<%= current_user.id%>>
 	<div class="row">
-		<div class="col-4">
+		<div class="col-4 book-class-tag" id=<%= @book.id%>>
 			<!-- Renders an img and a dropdown(Book's status)-->
 			<%= image_tag "#{@book.image_url}", :class => 'imgs' %>
 			<%= render partial: 'bookstatuses/readstatus' , locals: { object: @book }  %>
@@ -43,7 +43,7 @@
 <hr>
 <!--There are no reviews for this book OR user didn't add review for this book -->
 <% if @book.reviews[0] == nil || !@arr.include?(current_user.id) %>
-	<%= link_to 'Add a Review', new_review_path, :class => 'btn btn-secondary' %> <br>
+	<%= link_to 'Add a Review', book_review_new_path(@book.id), :class => 'btn btn-secondary' %> <br>
 <% end %>
 
 <% if @book.reviews.length > 0 %>
@@ -80,4 +80,5 @@
 
 <% end %>
 
-  <script type="text/javascript" src="/assets/dropdown@showbook"></script>
+  <script type="text/javascript" src="/assets/dropdown_status_showbook"></script>
+  <script type="text/javascript" src="/assets/dropdown_booklist_showbook"></script>
