@@ -1,6 +1,6 @@
 <div class="container current-user" id=<%= current_user.id%>>
 	<div class="row">
-		<div class="col-4">
+		<div class="col-4 book-class-tag" id=<%= @book.id%>>
 			<!-- Renders an img and a dropdown(Book's status)-->
 			<%= image_tag "#{@book.image_url}", :class => 'imgs' %>
 			<%= render partial: 'bookstatuses/readstatus' , locals: { object: @book }  %>
@@ -77,4 +77,5 @@
 
 <% end %>
 
-  <script type="text/javascript" src="/assets/dropdown@showbook"></script>
+  <script type="text/javascript" src="/assets/dropdown_status_showbook"></script>
+  <script type="text/javascript" src="/assets/dropdown_booklist_showbook"></script>

@@ -71,7 +71,6 @@ class BooksController < ApplicationController
   def show
     # find the book with the corresponding :id
     @book = Book.find(params[:id])
-
     #What about cases when this book don't have any reviews?
     #We will get an empty arr []
     arr = @book.reviews
@@ -89,6 +88,8 @@ class BooksController < ApplicationController
       # # # Pass this to our show view
       @avg_ratings = add_ratings / @book.reviews.length
     end
+
+    p @book
   end
 
 private

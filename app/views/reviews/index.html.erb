@@ -1,5 +1,6 @@
 <div class="col-11 padding0">
-
+<!-- set variable, increments only when review belongs to user -->
+<% edit_form_id = 1 %>
 		<%= form_tag(books_path, method: "get" ) do %>
 			<input  id="search" type="text" class="form-control search-form" name="search" placeholder="What are you reading next?">
   		<%= submit_tag 'Search', class:"btn btn-primary", type:"submit"%>
@@ -41,7 +42,7 @@
 
 		 		<!-- If bookstatuses for this book exists  -->
 		  	<% if review.book.bookstatuses.first %>
-		  	<%= review.book.bookstatuses.inspect %>
+
 
 		  	<!-- Loop through records and get the read_status for the current user -->
 		   		<% review.book.bookstatuses.map do |meep| %>
@@ -101,22 +102,24 @@
 
 					<% if current_user == review.user %>
 
-					<!-- looping through with index. so that each form has a unique Id to it -->
+					<!-- looping through with index. so that each edit form has a unique Id to it -->
 					<!-- refer to reviews.js & hidden_edit.html.erb for more-->
-					<% indexNow = index+1 %>
+					<% indexNow = edit_form_id %>
 					<% idUnqiue = 'review_' + indexNow.to_s %>
 
 	  				<div class="row ml-1">
 	  					<!-- #edit button , pressing this will render hidden_edit.html form-->
-							<div class="edit-review" id=<%= idUnqiue %>>✏️</div>
+							<div class="edit-review check_user" id=<%= idUnqiue %>>✏️</div>
 
 							<%= link_to '❌',review_path(review), method: :delete, data: { confirm: 'Do you really want to delete this?'} %>
 
 						</div>
-						<% indexNow = index+1 %>
+
 						<!-- renders edit form when button pressed -->
 						<%= render partial: 'reviews/hidden_edit' , locals: {object: review, indexNum: indexNow } %>
+						<% edit_form_id = edit_form_id + 1 %>
 					<% else %>
+
 					<% end %>
 					<%= render partial: 'bookstatuses/readstatus' , locals: { object: review.book }  %>
 					<!-- Sending information to dropdown partial: Book, booklists, read status -->
@@ -129,6 +132,7 @@
 
 		  </div>
 		  <hr>
+
 		  <% end %>
 
 	</div>
