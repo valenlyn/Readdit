@@ -7,6 +7,9 @@ $action-color: #419d59;
 $hover-color: #dc9e70;
 $support-color: #ececec;
 
+$edit-color: #46a4f4;
+$delete-color: #f23a31;
+
 
 $secondary-nav-font-size: 20px;
 
@@ -41,8 +44,16 @@ a:hover {
 	color: $primary-color;
 }
 
-i {
+nav i {
 	margin: 15px 10px 14px 10px;
+}
+
+.edit-color {
+	color: $edit-color;
+}
+
+.delete-color {
+	color: $delete-color;
 }
 
 .grey-text, .star-color-2 {
@@ -173,16 +184,16 @@ ul {
 }
 
 .search-btn {
-	border: 1px solid $secondary-color;
+	border: 2px solid $secondary-color;
 	background-color: $secondary-color;
-	padding: 4px;
+	padding: 16px;
 	margin: 0;
-	font-size: 17px;
+	font-size: 15px;
 }
 
 .search-item{
 	background-color: #FFFFFF;
-	border-bottom: 1px solid grey;
+	border-bottom: 1px solid #EEEEEE;
 }
 
 .search-form {

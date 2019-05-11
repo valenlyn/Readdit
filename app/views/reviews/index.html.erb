@@ -7,6 +7,9 @@
 		<div id="search-results" class="column d-flex">
 		</div>
 
+
+		<br>
+
 		<select name="sample" onchange="location = this.value;">
 			<option value="">---Sort by---</option>
 			<option value="<%= "#{reviews_path}?sort=rating" %>">Highest rated</option>
@@ -19,14 +22,9 @@
 
 	  <% @reviews.each.with_index do |review, index| %>
 
-	   	<div class="row">
+	   	<div class="row d-flex flex-row-reverse justify-content-center">
 
-		   	<div class="col-3 d-flex justify-content-center">
-		   		<img height="200px" src=<%= review.book.image_url %>>
-
-		   </div>
-
-		  <div class="col-7">
+		  	<div class="col-5">
 
 
 
@@ -83,9 +81,32 @@
 	   			<span class="star-color">★</span><span class="star-color-2">★★★★</span>
 	   		<% end %>
 
+	   		<% if current_user == review.user %>
+
+					<!-- looping through with index. so that each form has a unique Id to it -->
+					<!-- refer to reviews.js & hidden_edit.html.erb for more-->
+					<% indexNow = index+1 %>
+					<% idUnqiue = 'review_' + indexNow.to_s %>
+
+
+	  					<!-- #edit button, pressing this will render hidden_edit.html form-->
+							<span class="edit-review" id=<%= idUnqiue %>><i class="fas fa-pencil-alt edit-color"></i></span>
+
+							<a data-confirm="Are you sure you want to delete this review?" rel="nofollow" data-method="delete" href=<%= review_path(review) %>><i class="fas fa-trash-alt delete-color"></i></a>
+
+						<% indexNow = index+1 %>
+
+						<!-- renders edit form when button pressed -->
+						<%= render partial: 'reviews/hidden_edit' , locals: {object: review, indexNum: indexNow } %>
+						<!-- End of edit form -->
+					<% else %>
+
+					<a href="/books/<%= review.book.id %>/reviews/new" class="action-btn">Add a review</a>
+				<% end %>
+
 		   	<br>
 
-	   		<div class="review-content-">
+	   		<div class="review-content">
 					<%= review.reviews %>
 				</div>
 
@@ -93,38 +114,23 @@
 
 					<span class="star-color-2"><%= review.created_at.in_time_zone('Singapore').strftime('%d %B %Y %I:%M %p') %></span>
 
+
 					<!-- Only show edit and delete functions to current logged in user, with Devise -->
 
-					<% if current_user == review.user %>
-
-					<!-- looping through with index. so that each form has a unique Id to it -->
-					<!-- refer to reviews.js & hidden_edit.html.erb for more-->
-					<% indexNow = index+1 %>
-					<% idUnqiue = 'review_' + indexNow.to_s %>
-
-	  				<div class="row ml-1">
-	  					<!-- #edit button , pressing this will render hidden_edit.html form-->
-							<div class="edit-review" id=<%= idUnqiue %>>✏️</div>
-
-							<%= link_to '❌',review_path(review), method: :delete, data: { confirm: 'Do you really want to delete this?'} %>
-
-						</div>
-						<% indexNow = index+1 %>
-						<!-- renders edit form when button pressed -->
-						<%= render partial: 'reviews/hidden_edit' , locals: {object: review, indexNum: indexNow } %>
-					<% else %>
-
-
-					<%= render partial: 'bookstatuses/readstatus' , locals: { object: review.book }  %>
-					<!-- Sending information to dropdown partial: Book, booklists, read status -->
-					<!-- need to fix -->
-					<%= render partial: 'booklists/dropdown', locals: { object: review.book, readstatus: @p_read_status, bookliststatus: @booklist_number } %>
-
-					<a href="/books/<%= review.book.id %>/reviews/new" class="action-btn">Add a review</a>
-					<% end %>
 				</div>
 
-		  </div>
+				<div class="col-2 d-flex flex-column align-items-center ">
+
+		   		<img height="200px" src=<%= review.book.image_url %>>
+		   		<br>
+		   		<%= render partial: 'bookstatuses/readstatus' , locals: { object: review.book }  %>
+					<!-- Sending information to dropdown partial: Book, booklists, read status -->
+					<%= render partial: 'booklists/dropdown', locals: { object: review.book, readstatus: @p_read_status, bookliststatus: @booklist_number } %>
+
+		  	</div>
+
+		  	</div>
+
 		  <hr>
 		  <% end %>
 

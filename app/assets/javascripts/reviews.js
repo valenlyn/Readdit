@@ -24,4 +24,5 @@ function showEditForm(indexOnPage){
     let editForm = document.getElementById(editFormId).style.display = "inline-block";
     let editButton = document.getElementById(editButtonId).style.display = "inline-block";
     let reviewform = document.getElementById(idUnique).style.color = "black";
+
 }
