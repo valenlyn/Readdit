@@ -28,8 +28,8 @@ Rails.application.routes.draw do
 
   # BOOKLISTS
 
-  get '/booklists/:booklist_id/edit' => 'booklists#update', as: 'booklist_edit'
-  post '/booklists/:booklist_id/' => 'booklists#create', as: 'booklist_create'
+  get '/booklists/:booklist_id/edit' => 'booklists#edit', as: 'booklist_edit'
+  patch '/booklists/:booklist_id' => 'booklists#update', as: 'booklist_create'
 
 
   # USERS
