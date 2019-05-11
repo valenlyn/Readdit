@@ -1,9 +1,9 @@
-$primary-color: #bcb1b3;
-$secondary-color: #dec8c1;
-$tertiary-color: #ede2d5;
-$quaternary-color: #f4eee9;
-$quinary-color: #f3f1ee;
-$action-color: #green;
+$primary-color: #ff98ac;
+$secondary-color: #ffbf9b;
+$tertiary-color: #ffe9c6;
+$quaternary-color: #fff9d6;
+$quinary-color: #fffde5;
+$action-color: #46a65c;
 
 
 $secondary-nav-font-size: 20px;
@@ -15,7 +15,7 @@ body {
 nav {
 	font-size: 50px;
 	display: flex;
-	background-color: $quinary-color;
+	background-color: $primary-color;
 	width: 116px;
 	height: 100%;
 	margin: 0px;
@@ -23,18 +23,15 @@ nav {
 
 a, nav {
 	color: #000000;
+	font-weight: bold;
 }
 
 a:hover, nav {
-	color: $primary-color;
+	color: $quaternary-color;
 }
 
 i {
 	margin: 15px 10px 14px 10px;
-}
-
-select {
-	background-color: $quinary-color;
 }
 
 .grey-text, .star-color-2 {
@@ -149,7 +146,8 @@ ul {
 }
 
 #search {
-	background-color: $quaternary-color;
+	background-color: $tertiary-color;
+	color: #000000;
 	border: none;
 }
 
@@ -158,13 +156,30 @@ ul {
 	flex-direction: column;
 	position: absolute;
 	z-index: 1;
-	width:350px;
+	width: 93%;
+}
 
+.search-btn {
+	border: 1px solid $secondary-color;
+	background-color: $secondary-color;
+	padding: 5px;
+	margin: 0;
 }
 
 .search-item{
-	background-color:#F3F1EE;
+	background-color: #FFFFFF;
 	border-bottom: 1px solid grey;
+}
+
+.search-form {
+	width: 93%;
+	color: #000000;
+	padding: 13px;
+	font-size: 20px;
+}
+
+.search-form::placeholder {
+	color: $secondary-color;
 }
 
 .search-bar-list {
