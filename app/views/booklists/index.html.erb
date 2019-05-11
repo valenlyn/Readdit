@@ -1,10 +1,9 @@
 <div class="col-3 padding0">
-		<h2> My books </h2>
 		<ul>
-			<li><a class="booklist" href=<%= "#{booklists_path}" %>>All books</a></li>
-			<li><a class="booklist" href=<%= "#{booklists_path}?sort=current" %>>Currently reading</a></li>
-			<li><a class="booklist" href=<%= "#{booklists_path}?sort=want" %>>Want to read</a></li>
-			<li><a class="booklist" href=<%= "#{booklists_path}?sort=read" %>>Read</a></li>
+			<li><a class="booklist" href=<%= "#{booklists_path}" %>>All books (<%= @all_books %>)</a></li>
+			<li><a class="indentleft" href=<%= "#{booklists_path}?sort=current" %>>Currently reading (<%= @currently_reading %>)</a></li>
+			<li><a class="indentleft" href=<%= "#{booklists_path}?sort=want" %>>Want to read (<%= @want_read %>)</a></li>
+			<li><a class="indentleft" href=<%= "#{booklists_path}?sort=read" %>>Read (<%= @read_books %>)</a></li>
 		</ul>
 
 		<hr>
