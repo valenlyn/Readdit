@@ -29,12 +29,6 @@ Rails.application.routes.draw do
   post '/books/:book_id/reviews' => 'reviews#create', as: 'book_review_create'
 
 
-  # BOOKLISTS
-
-  get '/booklists/:booklist_id/edit' => 'booklists#edit', as: 'booklist_edit'
-  patch '/booklists/:booklist_id' => 'booklists#update', as: 'booklist_create'
-
-
   # USERS
   # get '/user' => 'user#index', as: 'user'
   # get '/user/new' => 'user#new', as: 'new_customer'

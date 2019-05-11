@@ -22,9 +22,7 @@
 				<% @booklists.each do |booklist| %>
 						<li>
 							<a class="booklist-custom" href=<%= "#{booklists_path}?sort=#{booklist.id}" %>><%= booklist.booklist_type %></a>
-							<%= render partial: 'edit' , locals: { id: booklist.id } %>
-							<a href="#" class="booklist-<%= booklist.id %>" id="edit-booklist"><i class="fas fa-pencil-alt edit-color"></i></a>
-							<a data-confirm="Do you really want to delete this?" rel="nofollow" data-method="delete" href=<%= booklist_path(booklist) %>><i class="fas fa-trash-alt delete-color"></i></a>
+							<a data-confirm="Do you really want to delete this?" rel="nofollow" data-method="delete" href=<%= booklist_path(booklist) %>><i class="fas fa-trash-alt"></i></a>
 						</li>
 
 				<% end %>
@@ -49,7 +47,7 @@
 		      <th scope="col">Title</th>
 		      <th scope="col">Author</th>
 		      <th scope="col">Status</th>
-		      <!-- <th scope="col">Date added</th> -->
+		      <th scope="col">Date added</th>
 
     			</tr>
   		</thead>
@@ -95,7 +93,7 @@
 
 		     		<%= render partial: 'dropdown', locals: { object: book, list: @booklists, readstatus: @p_read_status, bookliststatus: @booklist_number } %>
 		      </td>
-		      <!-- <td><%= book.created_at.in_time_zone('Singapore').strftime('%d %B %Y') %></td> -->
+		      <td><%= book.created_at.in_time_zone('Singapore').strftime('%d %B %Y') %></td>
 		    </tr>
     		<% end %>
   			</tbody>
