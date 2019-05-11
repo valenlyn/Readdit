@@ -7,9 +7,6 @@
 		<div id="search-results" class="column d-flex">
 		</div>
 
-
-		<h2>Reviews </h2>
-
 		<select name="sample" onchange="location = this.value;">
 			<option value="">---Sort by---</option>
 			<option value="<%= "#{reviews_path}?sort=rating" %>">Highest rated</option>
@@ -123,7 +120,7 @@
 					<%= render partial: 'booklists/dropdown', locals: { object: review.book, readstatus: @p_read_status, bookliststatus: @booklist_number } %>
 
 
-				<a href="/books/<%= review.book.id %>/reviews/new">Add a review</a>
+				<a href="/books/<%= review.book.id %>/reviews/new" class="action-btn">Add a review</a>
 				</div>
 
 		  </div>
