@@ -2,9 +2,9 @@
 <!-- ********************************** -->
 
 <% if book.bookstatuses[0] == nil %>
-<%= statusNow = 0; %>
+<% statusNow = 0; %>
 <% else %>
-<%= statusNow = book.bookstatuses[0][:read_status] %>
+<% statusNow = book.bookstatuses[0][:read_status] %>
 <% end %>
 
 

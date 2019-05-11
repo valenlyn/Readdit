@@ -3,7 +3,9 @@ $secondary-color: #ffbf9b;
 $tertiary-color: #ffe9c6;
 $quaternary-color: #fff9d6;
 $quinary-color: #fffde5;
-$action-color: #46a65c;
+$action-color: #419d59;
+$hover-color: #dc9e70;
+$support-color: #ececec;
 
 
 $secondary-nav-font-size: 20px;
@@ -21,13 +23,22 @@ nav {
 	margin: 0px;
 }
 
-a, nav {
-	color: #000000;
+nav a {
 	font-weight: bold;
+	color: #000000;
 }
 
-a:hover, nav {
-	color: $quaternary-color;
+nav a:hover {
+	color: #FFFFFF;
+}
+
+a {
+	color: #000000;
+	font-weight: 700;
+}
+
+a:hover {
+	color: $primary-color;
 }
 
 i {
@@ -99,9 +110,8 @@ a:hover {
 	text-decoration: none;
 }
 
-.booklist {
-	background-color: $primary-color;
-	padding: 10px;
+%mininav {
+	padding: 10px 10px 10px 40px;
 	// border-radius: 5px;
 	color: black;
 	display: inline-block;
@@ -110,28 +120,31 @@ a:hover {
 	font-weight: 700;
 	font-size: $secondary-nav-font-size;
 	margin: 0px;
+}
+
+.booklist {
+	@extend %mininav;
+	background-color: $primary-color;
+	padding: 10px 10px 10px 20px;
+}
+
+.indentleft {
+	@extend %mininav;
+	background-color: $support-color;
 }
 
 .booklist-custom {
-	background-color: $secondary-color;
-	padding: 10px;
-	// border-radius: 5px;
-	color: black;
-	display: inline-block;
-	width: 75%;
-	height: 95%;
-	font-weight: 700;
-	font-size: $secondary-nav-font-size;
-	margin: 0px;
+	@extend %mininav;
+	background-color: $support-color;
 }
 
-.booklist:hover {
-	background-color: $tertiary-color;
+.booklist:hover, .indentleft:hover {
+	background-color: $primary-color;
 	color: black;
 }
 
 .booklist-custom:hover {
-	background-color: $tertiary-color;
+	background-color: $primary-color;
 	color: black;
 }
 
@@ -162,8 +175,9 @@ ul {
 .search-btn {
 	border: 1px solid $secondary-color;
 	background-color: $secondary-color;
-	padding: 5px;
+	padding: 4px;
 	margin: 0;
+	font-size: 17px;
 }
 
 .search-item{
@@ -179,7 +193,7 @@ ul {
 }
 
 .search-form::placeholder {
-	color: $secondary-color;
+	color: $hover-color;
 }
 
 .search-bar-list {
@@ -223,7 +237,7 @@ ul {
 
 #show-input {
 	background-color: $action-color;
-	padding: 10px;
+	padding: 10px 10px 10px 20px;
 	// border-radius: 5px;
 	color: black;
 	display: inline-block;
@@ -231,9 +245,46 @@ ul {
 	font-weight: 700;
 	font-size: $secondary-nav-font-size;
 	margin: 0px;
+}
+
+#show-input:hover {
+	background-color: $quaternary-color;
+}
+
+.action-btn {
+	background-color: $action-color;
+	padding: 9px 12.5px 10px 12.5px;
+	border-radius: 5px;
+	margin: 3px;
+
+	a {
+		font-weight: 400;
+		color: #FFFFFF;
+	}
+
+	a:hover {
+
+	}
 
 }
 
-.testing {
-	font-size: 200px;
+.action-btn:hover {
+	background-color: green;
+}
+
+#new-list {
+	padding: 11px;
+	width: 62%;
+	border: 0;
+	background-color: $quaternary-color;
+	margin: 0;
+}
+
+#list-button {
+	border: 0;
+	background-color: $secondary-color;
+}
+
+#list-button:hover {
+	background-color: #FFFFFF;
 }

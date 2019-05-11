@@ -10,9 +10,9 @@
 			<h3>
 				<%= @book.title %>
 			</h3>
-			<h3>
+			<h6>
 				by <%= @book.author %>
-			</h3>
+			</h6>
 			<!-- Check if this book have any reviews at all -->
       <!-- Will throw an error if there are no reviews as @avg_ratings = nil -->
       <% if @avg_ratings != nil %>
@@ -24,12 +24,16 @@
               <span class="star-color">★★★</span><span class="star-color-2">★★</span>
           <% elsif @avg_ratings >= 2 && @avg_ratings < 3 %>
               <span class="star-color">★★</span><span class="star-color-2">★★★</span>
-          <% elsif @avg_ratings >= 1 && @avg_ratings < 2 %>
+          <% else %>
               <span class="star-color">★</span><span class="star-color-2">★★★★</span>
           <% end %>
-       <%= @avg_ratings.round(2) %> <br>
-       <%= @book.reviews.length %> reviews
+
+          <%= @avg_ratings.round(2) %> <br>
+       		<%= @book.reviews.length %> reviews
+      <% else %>
+        <span class="star-color-2">★★★★★ (not rated yet)</span>
       <% end %>
+
 			<p>
 				<%= @book._description %>
 			</p>
@@ -39,7 +43,6 @@
 <hr>
 <!--There are no reviews for this book OR user didn't add review for this book -->
 <% if @book.reviews[0] == nil || !@arr.include?(current_user.id) %>
-	<p>Read the book? Add a review here!</p>
 	<%= link_to 'Add a Review', new_review_path, :class => 'btn btn-secondary' %> <br>
 <% end %>
 
