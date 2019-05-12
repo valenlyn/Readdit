@@ -7,15 +7,62 @@
 console.log('For booklist stuff')
 
 var userId = document.getElementsByClassName('current-user')[0].id;
-var parentNode = document.getElementsByClassName('booklist-dropdown-showbook')[0];
-// var bookId = document.getElementsByClassName('book-class-tag')[0].id;
+// var parentNode = document.getElementsByClassName('booklist-dropdown-showbook')[0];
+var bookId = document.getElementsByClassName('book-data-holder')[0].id;
+
+// var test = document.getElementsByClassName('check-me')[0].id;
 
 
 
 window.addEventListener('DOMContentLoaded', () =>{
-    getBooklist(userId);
-
+    var booklistItems = document.querySelectorAll(".check-box");
+    // getBooklist(userId);
+    console.log(booklistItems);
+    booklistItems.forEach( item =>{
+        item.addEventListener('click', () =>{
+            updateBookList(event)
+        })
+    })
 })
+
+function updateBookList(e){
+    console.log(e.target.checked)
+    var booklistId = e.target.parentNode.id
+    console.log(booklistId);
+    // if on click == false, means remove. Book is in booklist and will remove from book list. Update booklist
+    if(e.target.checked === false){
+        fetch(`/booklists/${bookId}/${booklistId}/remove`,{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-Token': Rails.csrfToken()
+            },
+        }).then(res => {
+            return res.json();
+        }).then(json => {
+            console.log('god dam it..');
+        })
+    }else{
+        fetch(`/booklists/${bookId}/${booklistId}/add`,{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-Token': Rails.csrfToken()
+            },
+        }).then(res => {
+            return res.json();
+        }).then(json => {
+            console.log('god dam it..');
+        })
+    }
+    console.log('updating booklist')
+}
+
+function refreshBookList(){
+
+}
 
 function getBooklist(userId){
     fetch(`/booklists/books/${userId}`,{
@@ -28,7 +75,7 @@ function getBooklist(userId){
     }).then(json =>{
         console.log('yeappers');
         //json returns all booklist from current user
-        storeBooklistsOnDom(json);
+        // storeBooklistsOnDom(json);
     })
 }
 
@@ -37,9 +84,9 @@ function getBooklist(userId){
 function storeBooklistsOnDom(booklistObj){
 
     var test = JSON.stringify(booklistObj);
-    console.log(test);
+    // console.log(test);
     var storeDataOnDom = document.getElementsByClassName('booklist-data-holder')[0];
-    console.log(storeDataOnDom);
+    // console.log(storeDataOnDom);
 
     storeDataOnDom.id = test;
 }

@@ -31,8 +31,15 @@ Rails.application.routes.draw do
   get '/booklists/:booklist_id/edit' => 'booklists#edit', as: 'booklist_edit'
   patch '/booklists/:booklist_id' => 'booklists#update', as: 'booklist_create'
 
- #ajax request for booklist from owner
-  get '/booklists/books/:user_id' => 'booklists#list_all'
+# request all current users booklist
+ get '/booklists/books/:user_id' => 'booklists#list_all'
+
+#ajax create book entry for booklist
+  post '/booklists/:book_id/:booklist_id/add' => 'booklists#add_book_to_booklist'
+
+
+# ajax edit book entry for booklist
+  post '/booklists/:book_id/:booklist_id/remove' => 'booklists#remove_book_from_booklist'
 
   # USERS
   # get '/user' => 'user#index', as: 'user'
