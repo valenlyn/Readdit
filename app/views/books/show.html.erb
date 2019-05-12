@@ -45,7 +45,11 @@
 <hr>
 <!--There are no reviews for this book OR user didn't add review for this book -->
 <% if @book.reviews[0] == nil || !@arr.include?(current_user.id) %>
-	<%= link_to 'Add a Review', book_review_new_path(@book.id), :class => 'btn btn-secondary' %> <br>
+
+	<span id="post-link" class="btn btn-warning">Add a Review</span>
+
+	<%= render partial: 'reviews/hidden_add' , locals: {object: @book} %>
+
 <% end %>
 
 <% if @book.reviews.length > 0 %>
@@ -74,12 +78,19 @@
 	</p>
 
 	<% if current_user == review.user %>
-		<%= link_to 'Edit your Review', edit_review_path(review), :class => 'btn btn-secondary' %>
+		<!--Use id instead of class as User have 1 review per book.. -->
+		<span id="edit-link" class="btn btn-warning">Edit your Review</span>
+
 		<%= link_to 'Delete your Review',review_path(review), method: :delete, data: { confirm: 'Do you really want to delete this?'}, :class => 'btn btn-danger' %><br>
+
+		<%= render partial: 'reviews/hidden_edit_book' , locals: {object: review} %>
+
 	<% end %>
 </div>
 <!-- The following end is for the loop -->
 
 <% end %>
 
-  <script type="text/javascript" src="/assets/dropdown@showbook"></script>
+<script type="text/javascript" src="/assets/dropdown@showbook"></script>
+<script type="text/javascript" src="/assets/edit-review.js"></script>
+<script type="text/javascript" src="/assets/add-review.js"></script>

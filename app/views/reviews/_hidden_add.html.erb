@@ -1,0 +1,39 @@
+<!-- Form hidden until user clicked on 'pencil' -->
+
+<!-- The following var(s) gives our <input> an id where we can select them in our reviews.js -->
+<!-- These are for reviews' index -->
+<% idForRadio = 'new_rating' %>
+<% idForText = 'new_review' %>
+<% idForButton = 'new_button' %>
+
+<!-- All <input> are hidden initially.. -->
+<!-- Submit the form to PATCH route passing in object.id which corresponds to id of this review.. -->
+<%= form_with scope: :review, url: "/reviews", local:true do |form| %>
+
+	<!-- Assuming I don't need these for POST -->
+	<!-- <input type="hidden" name="_method" value="post"> -->
+
+	<div class="rate toggle" id=<%= idForRadio %>>
+    <input type="radio" id="star5" name="review[rating]" value="5" />
+    <label for="star5" title="text">5 stars</label>
+    <input type="radio" id="star4" name="review[rating]" value="4" />
+    <label for="star4" title="text">4 stars</label>
+    <input type="radio" id="star3" name="review[rating]" value="3" />
+    <label for="star3" title="text">3 stars</label>
+    <input type="radio" id="star2" name="review[rating]" value="2" />
+    <label for="star2" title="text">2 stars</label>
+    <input type="radio" id="star1" name="review[rating]" value="1" />
+    <label for="star1" title="text">1 star</label>
+ 	</div>
+
+	<!-- Give an id to "text" type input -->
+	<input type="text" class="toggle" name="review[reviews]" autofocus id=<%= idForText %>>
+
+	<!-- hidden_field need to have value of current_user.id and object.book_id -->
+	<%= form.hidden_field :user_id, value: current_user.id %>
+	<%= form.hidden_field :book_id, value: @book.id %>
+
+	<!-- Give an id to "text" type input -->
+	<input type="submit" class="toggle" id=<%= idForButton %>>
+
+<% end %>
