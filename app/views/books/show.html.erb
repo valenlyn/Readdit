@@ -5,7 +5,9 @@
 			<!-- Renders an img and a dropdown(Book's status)-->
 			<%= image_tag "#{@book.image_url}", :class => 'imgs' %>
 			<br>
+
 			<%= render partial: 'booklists/bookshow_dropdown' , locals: { book: @book , user: current_user, booklists: @booklists}  %>
+
 
 		</div>
 		<div class="col-8">
