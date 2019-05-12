@@ -51,7 +51,10 @@ class BooklistsController < ApplicationController
   end
 
   def create
-    @booklist = Booklist.new(book_params)
+    p 'hello there'
+
+
+    @booklist = Booklist.new(user_id: params[:user_id], booklist_type:params[:booklist], book_ids:nil )
 
     if @booklist.save
       redirect_to booklists_path

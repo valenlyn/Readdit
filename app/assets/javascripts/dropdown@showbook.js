@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded', () =>{
     dropDown.forEach( item => {
         item.addEventListener('click', () => {
         updateStatus(event)
-        // highlightSelection(status);
+        highlightSelection(status);
         });
     })
 })
