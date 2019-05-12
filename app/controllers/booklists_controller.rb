@@ -51,13 +51,15 @@ class BooklistsController < ApplicationController
   end
 
   def create
-    @booklist = Booklist.new(book_params)
+
+    @booklist = Booklist.new(booklist_params)
 
     if @booklist.save
       redirect_to booklists_path
     else
-      render plain: 'booklist not created'
+      render 'new'
     end
+
   end
 
   def update

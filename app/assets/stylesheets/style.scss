@@ -21,7 +21,6 @@ nav {
 	font-size: 50px;
 	display: flex;
 	background-color: $primary-color;
-	width: 116px;
 	height: 100%;
 	margin: 0px;
 }
@@ -29,6 +28,7 @@ nav {
 nav a {
 	font-weight: bold;
 	color: #000000;
+	padding-left: 2px;
 }
 
 nav a:hover {
@@ -58,6 +58,10 @@ nav i {
 
 .action-color {
 	color: $action-color;
+}
+
+.bg-sec {
+	background-color: $secondary-color;
 }
 
 .grey-text, .star-color-2 {
@@ -343,4 +347,42 @@ ul {
 
 .toggle {
 	visibility: hidden;
+}
+
+// Large screens / Desktops
+@media only screen and (min-width : 1400px) {
+
+	nav {
+		font-size: 80px;
+		display: flex;
+		background-color: $primary-color;
+		height: 100%;
+		margin: 0px;
+	}
+
+}
+
+// Small screens / Mobiles
+@media only screen and (max-width : 1070px) {
+
+	nav {
+		font-size: 30px;
+		display: flex;
+		background-color: $primary-color;
+		height: 100%;
+		margin: 0px;
+	}
+
+	%mininav {
+		padding: 10px 10px 10px 40px;
+		// border-radius: 5px;
+		color: black;
+		display: inline-block;
+		width: 77%;
+		height: 95%;
+		font-weight: 700;
+		font-size: 14px;
+		margin: 0px;
+	}
+
 }
