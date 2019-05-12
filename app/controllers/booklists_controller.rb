@@ -67,6 +67,36 @@ class BooklistsController < ApplicationController
     redirect_to booklists_path
   end
 
+  def remove_book_from_booklist
+    p ' hello there fucker'
+    p params
+
+    booklist_edit = Booklist.find(params[:booklist_id])
+    book_to_remove = Book.find(params[:book_id])
+
+    booklist_edit.books.delete(book_to_remove)
+
+    respond_to do |format|
+        format.json do
+          render json: booklist_edit.to_json
+        end
+      end
+  end
+
+  def add_book_to_booklist
+
+    booklist_edit = Booklist.find(params[:booklist_id])
+    book_to_add = Book.find(params[:book_id])
+
+    booklist_edit.books << book_to_add
+
+    respond_to do |format|
+        format.json do
+          render json: booklist_edit.to_json
+        end
+      end
+  end
+
   def destroy
     @booklist = Booklist.find(params[:id])
 
@@ -79,9 +109,9 @@ class BooklistsController < ApplicationController
     @booklist = Booklist.find(params[:id])
 
   end
-
+# not in use
   def list_all
-    p 'hello findinggggg booklist for user..'
+
     p params[:user_id];
 
     booklists = Booklist.where(:user_id => params[:user_id])
