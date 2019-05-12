@@ -51,6 +51,7 @@ class BooklistsController < ApplicationController
   end
 
   def create
+
     @booklist = Booklist.new(booklist_params)
 
     if @booklist.save
