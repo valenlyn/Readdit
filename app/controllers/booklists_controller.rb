@@ -51,16 +51,17 @@ class BooklistsController < ApplicationController
   end
 
   def create
-    p 'hello there'
 
 
-    @booklist = Booklist.new(user_id: params[:user_id], booklist_type:params[:booklist], book_ids:nil )
+    @booklist = Booklist.new(booklist_params)
+
 
     if @booklist.save
       redirect_to booklists_path
     else
-      render plain: 'booklist not created'
+      render 'new'
     end
+
   end
 
   def update

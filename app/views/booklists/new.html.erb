@@ -13,4 +13,9 @@
   </p>
 <% end %>
 
-<%= link_to 'Go back to booklist index', booklists_path %>
+<p class="error">
+  <%= show_errors(@booklist, :booklist_type) %>
+</p>
+
+<br>
+<%= link_to 'Return to lists', booklists_path %>
