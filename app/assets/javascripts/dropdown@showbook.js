@@ -1,4 +1,9 @@
 //LOGIC FOR BOOK STATUS ON SHOW_BOOK PAGE
+// This sets out to accomplish:
+// 1. Placing event listener on dropdown buttons, so that we can recognise an action when it is being clicked
+// 2. Action to be carried out is to update or save a new book status entry for the specific book.
+// 3. Once record is created or update, drop down should indicate which read status the current book is at.
+// 4. Additional, when page is refreshed or revisited, it should load to the latest read status
 
 // finds book and current user variable. To be passed into post request.
 var bookId = document.getElementsByClassName('book-id')[0].id;
@@ -6,6 +11,7 @@ var userId = document.getElementsByClassName('current-user')[0].id;
 var currentStatus = document.getElementsByClassName('read-status-now');
 var onLoadString = document.getElementById('status-shelf');
 
+stlyingSelection(onLoadString.innerText);
 window.addEventListener('DOMContentLoaded', () =>{
     var dropDown = document.querySelectorAll("#drop-down-button");
     // console.log('the status now',currentStatus[0].id);
@@ -14,7 +20,7 @@ window.addEventListener('DOMContentLoaded', () =>{
     dropDown.forEach( item => {
         item.addEventListener('click', () => {
         updateStatus(event)
-        highlightSelection(status);
+        stlyingSelection(status);
         });
     })
 })
@@ -51,16 +57,15 @@ function changeDOMButton(jsonInput){
     // statusShelfButton selects the collapsed button view
     // finally it changes the innertext of viewing button to what was selected by user
 
-
     var statusString = jsonInput.innerText;
     var statusShelfButton = document.getElementById('status-shelf');
 
     statusShelfButton.innerText = statusString;
-    highlightSelection(statusString);
+    stlyingSelection(statusString);
 }
 
-function highlightSelection(status){
-
+function stlyingSelection(status){
+    console.log('GIVE ME COLOR')
     var buttonAll = document.querySelectorAll('#drop-down-button');
 
     for(let i = 0 ; i < buttonAll.length; i++ ){

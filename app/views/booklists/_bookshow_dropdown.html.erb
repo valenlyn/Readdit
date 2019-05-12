@@ -1,10 +1,17 @@
 <br>
 <!-- ********************************** -->
+<!-- this file takes in current book details, current user details and all the booklist from current user -->
+<!-- book id details stored in class 'book-id'
+current status of book is stored in class 'read-status-now' -->
 
-<% if book.bookstatuses[0] == nil %>
+<!-- sets current user of this partial dropdown -->
+<% current = user %>
+
 <% statusNow = 0 %>
-<% else %>
-<% statusNow = book.bookstatuses[0][:read_status] %>
+<% book.bookstatuses.each do |item| %>
+	<% if item.user_id == current.id %>
+	<% statusNow = item.read_status %>
+	<% end %>
 <% end %>
 
 <div class="btn-group book-id" id=<%= book.id %>>
@@ -24,7 +31,6 @@
   <!-- for each booklist the owner has -->
   <!-- run a loop to print out partial -->
   <!-- checks against book record of any booklist related to it-->
-
 
   <% counter = 0 %>
   	<% booklists.each do |item| %>

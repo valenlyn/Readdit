@@ -52,9 +52,7 @@ class BooklistsController < ApplicationController
 
   def create
 
-
     @booklist = Booklist.new(booklist_params)
-
 
     if @booklist.save
       redirect_to booklists_path
