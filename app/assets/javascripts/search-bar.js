@@ -58,7 +58,7 @@ function clearPreviousResults(){
 //       </div>
 //      </a>
 // </div>
-
+// this function creates the entire dom elements like the above example
 function searchElementsCreator(jsonData){
 
     var viewSearchResultLink = buildQueryString(fullString);
@@ -121,6 +121,7 @@ function searchElementsCreator(jsonData){
     }
 }
 
+//forms string for where-like query case in pg
 function buildQueryString(string){
 
     var itemArr =[];
@@ -128,12 +129,17 @@ function buildQueryString(string){
     var searchString = `/books?utf8=✓&search=`;
 
     itemArr =  string.split(" ");
-
-    itemArr.pop();
-
+//splits string based on spaces
+//if item Arr has more than one item, removes last empty array item
+    console.log(itemArr)
+    if(itemArr.length > 1){
+        itemArr.pop();
+    }
+    // forms query string word+word+word...
     for(let i=0; i <itemArr.length;i++){
         searchString = searchString + `${itemArr[i]}+` ;
     }
+
     searchString = searchString + `&commit=Search`;
 
     return searchString;
