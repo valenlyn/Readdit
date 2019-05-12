@@ -1,34 +1,44 @@
-<h2>Sign up</h2>
+<div class="col-3">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+</div>
 
-  <div class="field">
-  	<%= f.label :username %><br />
-  	<%= f.text_field :username, autofocus: true %>
-  </div>
+<div class="col-4" style="padding-top: 17px;">
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+	<div style="background-color: rgb(255, 233, 195); border-radius: 20px; padding: 15px">
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+		<h1 class="text-center">Sign Up</h1>
+		<p class="text-center">First time here? Sign up now! </p>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+			<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  		<%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+  		<div class="field">
+  			<%= f.text_field :username, autofocus: true, placeholder: "Username", :class => "form-control" %>
+  		</div>
 
-<%= render "devise/shared/links" %>
+		  <div class="field">
+		    <% if @minimum_password_length %>
+
+		    <% end %><br />
+		    <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password", :class => "form-control" %> <br>
+		  </div>
+
+		  <div class="field">
+		    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm Password", :class => "form-control" %>
+		    <em>(<%= @minimum_password_length %> characters minimum)</em>
+		  </div> <br>
+
+		  <div class="field">
+		    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", :class => "form-control" %> <br>
+		  </div>
+
+		  <div class="actions">
+		    <%= f.submit "Sign Up", :class => 'btn btn-warning btn-lg btn-block' %>
+		    <small class="form-text text-muted">Once you clicked on Sign Up, you will be automatically logged In</small> <br>
+		  </div>
+		<% end %>
+
+		<%= render "devise/shared/links" %>
+
+	</div>
+</div>
