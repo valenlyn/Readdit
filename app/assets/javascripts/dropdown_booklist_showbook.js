@@ -41,7 +41,7 @@ function updateBookList(e){
         }).then(res => {
             return res.json();
         }).then(json => {
-            console.log('god dam it..');
+            console.log('success', json);
         })
     }else{
         fetch(`/booklists/${bookId}/${booklistId}/add`,{
@@ -54,7 +54,7 @@ function updateBookList(e){
         }).then(res => {
             return res.json();
         }).then(json => {
-            console.log('god dam it..');
+            console.log('success',json);
         })
     }
     console.log('updating booklist')
@@ -63,7 +63,7 @@ function updateBookList(e){
 function refreshBookList(){
 
 }
-
+// not in use
 function getBooklist(userId){
     fetch(`/booklists/books/${userId}`,{
         headers: {
