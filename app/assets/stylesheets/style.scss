@@ -11,7 +11,7 @@ $edit-color: #46a4f4;
 $delete-color: #f23a31;
 
 
-$secondary-nav-font-size: 20px;
+$secondary-nav-font-size: 15px;
 
 body {
 	background-color: white;
@@ -142,13 +142,14 @@ a:hover {
 }
 
 .mini-nav-btn {
-	padding: 17px 8px;
+	padding: 16px 8px;
 	background-color: $support-color;
 }
 
 .mini-nav-btn, button {
 	border: 0;
 	margin: 0;
+	font-size: 10px;
 }
 
 .mini-nav-btn:hover {
@@ -170,6 +171,7 @@ a:hover {
 	@extend %mininav;
 	background-color: $support-color;
 	width: 62.5%;
+	height: 105%;
 }
 
 .booklist:hover, .indentleft:hover {
@@ -183,7 +185,7 @@ a:hover {
 }
 
 #bl-edit {
-	padding: 10px 33px 10px 10px;
+	padding: 10px 13px 10px 10px;
 	margin: 0;
 	font-size: $secondary-nav-font-size;
 	border: 0;
