@@ -10,23 +10,25 @@
 
 		<br>
 
-		<select name="sample" onchange="location = this.value;">
-			<option value="">---Sort by---</option>
-			<option value="<%= "#{reviews_path}?sort=rating" %>">Highest rated</option>
-			<option value="<%= "#{reviews_path}?sort=desc" %>">Most recent</option>
-			<option value="<%= "#{reviews_path}?sort=own" %>">My reviews</option>
-		</select>
-
-	  <br>
-	  <br>
 	  <% edit_review_index = 1 %>
+
+	  <div class="ml-3">
+		  <select name="sample" onchange="location = this.value;">
+				<option value="">---Sort reviews by---</option>
+				<option value="<%= "#{reviews_path}?sort=rating" %>">Highest rated</option>
+				<option value="<%= "#{reviews_path}?sort=desc" %>">Most recent</option>
+				<option value="<%= "#{reviews_path}?sort=own" %>">My reviews</option>
+			</select>
+			<br>
+			<br>
+		</div>
+
+
 	  <% @reviews.each.with_index do |review, index| %>
 
 	   	<div class="row d-flex flex-row-reverse justify-content-center">
 
 		  	<div class="col-5">
-
-
 
 	   		<%= link_to "#{review.book.title}", book_path(review.book_id) %>
 	   		<br>
@@ -105,9 +107,10 @@
 
 					<a href="/books/<%= review.book.id %>/reviews/new" class="action-btn">Add a review</a>
 
-				<% end %> <br><br>
+				<% end %>
 
 	   		<div class="review-content">
+	   			<br>
 					<%= review.reviews %>
 				</div>
 

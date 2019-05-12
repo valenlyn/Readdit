@@ -51,13 +51,14 @@ class BooklistsController < ApplicationController
   end
 
   def create
-    @booklist = Booklist.new(book_params)
+    @booklist = Booklist.new(booklist_params)
 
     if @booklist.save
       redirect_to booklists_path
     else
-      render plain: 'booklist not created'
+      render 'new'
     end
+
   end
 
   def update
@@ -65,6 +66,36 @@ class BooklistsController < ApplicationController
 
     @booklist.update(booklist_params)
     redirect_to booklists_path
+  end
+
+  def remove_book_from_booklist
+    p ' hello there fucker'
+    p params
+
+    booklist_edit = Booklist.find(params[:booklist_id])
+    book_to_remove = Book.find(params[:book_id])
+
+    booklist_edit.books.delete(book_to_remove)
+
+    respond_to do |format|
+        format.json do
+          render json: booklist_edit.to_json
+        end
+      end
+  end
+
+  def add_book_to_booklist
+
+    booklist_edit = Booklist.find(params[:booklist_id])
+    book_to_add = Book.find(params[:book_id])
+
+    booklist_edit.books << book_to_add
+
+    respond_to do |format|
+        format.json do
+          render json: booklist_edit.to_json
+        end
+      end
   end
 
   def destroy
@@ -79,9 +110,9 @@ class BooklistsController < ApplicationController
     @booklist = Booklist.find(params[:id])
 
   end
-
+# not in use
   def list_all
-    p 'hello findinggggg booklist for user..'
+
     p params[:user_id];
 
     booklists = Booklist.where(:user_id => params[:user_id])

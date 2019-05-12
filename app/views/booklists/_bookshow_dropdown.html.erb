@@ -20,14 +20,23 @@
     	<button class="dropdown-item" id="drop-down-button" type="button" value="3">Read</button>
 
 
-  <div class="dropdown-divider booklist-data-holder"></div>
-  	<% booklists.each do |booklist| %>
-  	<% if book.booklists[0] && booklist.booklist_type == book.booklists[0].booklist_type%>
-  	<%= render partial: 'booklists/booklist_item_checked', locals: { list_name: booklist }%>
+  <div class="dropdown-divider book-data-holder" id=<%=book.id%>></div>
+  <!-- for each booklist the owner has -->
+  <!-- run a loop to print out partial -->
+  <!-- checks against book record of any booklist related to it-->
+
+
+  <% counter = 0 %>
+  	<% booklists.each do |item| %>
+
+  	 <% if book.booklists[counter] && item.booklist_type == book.booklists[counter].booklist_type %>
+  	<%= render partial: 'booklists/booklist_item_checked', locals: { list_name: item }%>
+  	<% counter = counter + 1 %>
   	<% else %>
-  	<%= render partial: 'booklists/booklist_item_unchecked', locals: { list_name: booklist }%>
+  	<%= render partial: 'booklists/booklist_item_unchecked', locals: { list_name: item }%>
   	<% end %>
   	<% end %>
+
   </div>
  </div>
 

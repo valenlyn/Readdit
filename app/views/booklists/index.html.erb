@@ -1,13 +1,11 @@
-<div class="col-3 padding0">
+<div class="col-3 col-sm-6 col-lg-3 padding0">
 		<ul>
 			<li><a class="booklist" href=<%= "#{booklists_path}" %>>All books (<%= @all_books %>)</a></li>
 			<li><a class="indentleft" href=<%= "#{booklists_path}?sort=current" %>>Currently reading (<%= @currently_reading %>)</a></li>
 			<li><a class="indentleft" href=<%= "#{booklists_path}?sort=want" %>>Want to read (<%= @want_read %>)</a></li>
 			<li><a class="indentleft" href=<%= "#{booklists_path}?sort=read" %>>Read (<%= @read_books %>)</a></li>
 		</ul>
-
-		<hr>
-			<a href="#" id="show-input">Add new list</a>
+			<a href="#" id="show-input" class="mininav">Add new list</a>
 
 			<%= form_with scope: :booklist, url: booklists_path, local: true do |form| %>
 
@@ -28,12 +26,11 @@
 						</li>
 
 				<% end %>
-			</ul>
-	</div>
-	<div class="col-8 padding0">
 
-		<br>
-		<br>
+			</ul>
+</div>
+
+<div class="col-7 padding0">
 
 		<% if !@books %>
 
@@ -41,8 +38,8 @@
 
 		<% else %>
 
-		<table class="table">
-  		<thead class="thead-dark">
+		<table class="table table-sm">
+  		<thead class="bg-sec">
     		<tr>
 		      <th scope="col">#</th>
 		      <th scope="col">Cover</th>
