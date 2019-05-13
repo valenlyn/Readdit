@@ -127,7 +127,6 @@
 
 		   		<img height="200px" src=<%= review.book.image_url %>>
 		   		<br>
-		   		<%= render partial: 'bookstatuses/readstatus' , locals: { object: review.book }  %>
 					<!-- Sending information to dropdown partial: Book, booklists, read status -->
 					<%= render partial: 'booklists/dropdown', locals: { object: review.book, readstatus: @p_read_status, bookliststatus: @booklist_number } %>
 
