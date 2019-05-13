@@ -1,5 +1,5 @@
-<h2> Add a review for <%= @book.title %> </h2>
-
+<div class="col-7">
+	<h5> Add a review for <%= @book.title %> </h5>
 <%= form_with scope: :review, url: book_review_create_path, local: true do |form| %>
 
 	<%= form.hidden_field :book_id, value: params[:book_id] %>
@@ -17,7 +17,7 @@
     <label for="star1" title="text">1 star</label>
  </div>
   <p>
-	<%= form.label :comment %><br>
+	<%= form.label :review %><br>
 	<%= form.text_area :reviews %>
   </p>
 
@@ -30,3 +30,4 @@
   </p>
 
 <% end %>
+</div>
