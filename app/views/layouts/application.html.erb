@@ -11,6 +11,7 @@
   </head>
 
   <body>
+  	<% if current_user %>
   	<div class="row">
   		<div class="col-1 padding0">
   			<nav class="d-flex flex-column align-items-center">
@@ -21,6 +22,8 @@
 			  	<a href="/users/sign_out" data-method="delete"><i class="fas fa-sign-out-alt"></i></a>
 			  </nav>
 		  </div>
+		 <% else %>
+		 <% end %>
 
   				<%= yield %>
 
