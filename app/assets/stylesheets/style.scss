@@ -310,7 +310,7 @@ ul {
 }
 
 .action-btn {
-	background-color: $action-color;
+	background-color: $tertiary-color;
 	padding: 9px 12.5px 10px 12.5px;
 	border-radius: 5px;
 	margin: 3px;
@@ -327,7 +327,7 @@ ul {
 }
 
 .action-btn:hover {
-	background-color: green;
+	background-color: $secondary-color;
 }
 
 #new-list {

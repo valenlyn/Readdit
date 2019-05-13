@@ -15,7 +15,7 @@
 				<tr>
 					<th colspan="2">Cover / Title</th>
 					<th>Author</th>
-					<th>Status</th>
+
 					<th></th>
 				</tr>
 			</thead>
@@ -30,10 +30,6 @@
 						<a href=<%=book_path(book)%>> <%= book.title %> </a>
 					</td>
 					<td><%= book.author %></td>
-
-					<td><%= render partial: 'bookstatuses/readstatus' , locals: { object: book } %>
-
-					</td>
 				</tr>
 				<% end %>
 
