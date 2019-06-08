@@ -19,27 +19,31 @@ window.addEventListener('DOMContentLoaded', () => {
 //passes in e?
 //fetches at route /find/:params
 function searchForBook(e) {
-    console.log(e.target.value)
-    fetch(`/find/${e.target.value}`, {
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        }
-    })//callback response? returns a json object
-    .then(res =>{
-        return res.json();
-    })//ready to use
-    .then(json => {
-        fullString = e.target.value;
-        clearPreviousResults();
-        searchElementsCreator(json);
-        console.log(json);
-    });
+    console.log("SEACRCHING FOR THIS BOOK",e.target.value)
+
+    if(e.target.value.length > 0){
+        fetch(`/find/${e.target.value}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })//callback response? returns a json object
+        .then(res =>{
+            return res.json();
+        })//ready to use
+        .then(json => {
+            fullString = e.target.value;
+            clearPreviousResults();
+            searchElementsCreator(json);
+            console.log(json);
+        });
+    }
 }
 
 
 //removes all child elements when setimeout triggered
 function clearPreviousResults(){
+    var searchContainerDiv = document.getElementById("search-results");
     while (searchContainerDiv.firstChild) {
         searchContainerDiv.removeChild(searchContainerDiv.firstChild);
     }
@@ -61,6 +65,7 @@ function clearPreviousResults(){
 // this function creates the entire dom elements like the above example
 function searchElementsCreator(jsonData){
 
+    var searchContainerDiv = document.getElementById("search-results");
     var viewSearchResultLink = buildQueryString(fullString);
     console.log('HELLO')
     console.log(viewSearchResultLink);
