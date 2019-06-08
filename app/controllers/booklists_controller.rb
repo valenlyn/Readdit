@@ -1,5 +1,7 @@
 class BooklistsController < ApplicationController
 
+  protect_from_forgery prepend: true
+  skip_before_action :verify_authenticity_token
   before_action :authenticate_user!#, :except => [ :show, :index ]
 
   def index

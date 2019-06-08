@@ -39,7 +39,7 @@ function updateStatus(e){
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'X-CSRF-Token': Rails.csrfToken()
+            // 'X-CSRF-Token': Rails.csrfToken()
         },
         body: JSON.stringify(payload)
     }).then(res =>{

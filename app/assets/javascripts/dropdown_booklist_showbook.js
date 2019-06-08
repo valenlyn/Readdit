@@ -36,7 +36,7 @@ function updateBookList(e){
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'X-CSRF-Token': Rails.csrfToken()
+                // 'X-CSRF-Token': Rails.csrfToken()
             },
         }).then(res => {
             return res.json();
@@ -49,7 +49,7 @@ function updateBookList(e){
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'X-CSRF-Token': Rails.csrfToken()
+                // 'X-CSRF-Token': Rails.csrfToken()
             },
         }).then(res => {
             return res.json();
