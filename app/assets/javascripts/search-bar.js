@@ -116,12 +116,18 @@ function searchElementsCreator(jsonData){
         searchContainerDiv.append(outerDiv);
 
         if(i === listSize-1){
+            console.log("LAST LINK");
+            var lastLinkDiv = document.createElement('div');
             var lastLink = document.createElement('a');
 
+            lastLinkDiv.className = "d-flex justify-content-start p-1 search-item"
             lastLink.href = `${viewSearchResultLink}`;
             lastLink.innerText = `See all results for "${fullString}"`;
 
-            searchContainerDiv.append(lastLink);
+            lastLinkDiv.append(lastLink)
+            console.log('DIV OF LAST LINK', lastLinkDiv);
+
+            searchContainerDiv.append(lastLinkDiv);
         }
     }
 }

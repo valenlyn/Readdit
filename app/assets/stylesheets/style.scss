@@ -222,12 +222,19 @@ ul {
 	border: none;
 }
 
+.shadow {
+  -webkit-box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+  -moz-box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+  box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+}
+
 #search-results{
 	display:flex;
 	flex-direction: column;
 	position: absolute;
 	z-index: 1;
 	width: 93%;
+	@extend .shadow;
 }
 
 .search-btn {
@@ -239,6 +246,11 @@ ul {
 }
 
 .search-item{
+	background-color: #FFFFFF;
+	border-bottom: 1px solid #EEEEEE;
+}
+
+.search-link{
 	background-color: #FFFFFF;
 	border-bottom: 1px solid #EEEEEE;
 }
